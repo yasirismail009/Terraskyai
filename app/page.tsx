@@ -35,7 +35,7 @@ export default function Home() {
         }}
       >
         {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         
         {/* Content */}
         <div className="relative z-10  mx-auto text-center items-center justify-center flex flex-col">
@@ -282,66 +282,204 @@ export default function Home() {
       {/* Contact / For Help */}
       <section
         id="contact"
-        className="bg-[#f4f1ea] text-[#383F19] px-4 sm:px-6 lg:px-10 py-12"
+        className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14"
       >
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-widest">
-              For Help
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold">Contact Us</h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 bg-white rounded-2xl shadow-lg border border-[#383F19]/10 p-6 sm:p-8">
-            <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold">Call us:</h3>
-                <p className="text-base text-[#383F19]/90">+1 (401) 655 898</p>
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#e5e7eb]">
+          <div className="bg-linear-to-br from-[#383F19] to-[#707f2f] text-white p-8 sm:p-10 flex flex-col gap-6">
+            <div className="space-y-2">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[#dbdfc6]">
+                For Help
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold leading-tight">
+                Contact Us
+              </h2>
+              <p className="text-base text-white/85">
+                Share your goals and challenges—our team will respond with tailored
+                recommendations for your operation.
+              </p>
+            </div>
+            <div className="space-y-4 text-sm sm:text-base">
+              <div className="p-4 rounded-xl bg-white/10 border border-white/20">
+                <p className="font-semibold">Call us</p>
+                <p className="text-white/85">+1 (401) 655 898</p>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold">Email us:</h3>
+              <div className="p-4 rounded-xl bg-white/10 border border-white/20">
+                <p className="font-semibold">Email</p>
                 <a
-                  className="text-base font-semibold underline text-[#383F19]"
+                  className="text-white font-semibold underline"
                   href="mailto:support@terraskyai.com"
                 >
                   support@terraskyai.com
                 </a>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold">Follow Us on:</h3>
-                <div className="flex flex-wrap gap-3 mt-3">
+            </div>
+            <div className="space-y-3 text-sm sm:text-base">
+              <p className="font-semibold">Follow us</p>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { label: "Instagram", href: "#" },
+                  { label: "Twitter", href: "#" },
+                  { label: "Facebook", href: "#" },
+                ].map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="inline-flex items-center justify-center rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white border border-white/30 hover:bg-white/20 transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="p-8 sm:p-10 space-y-6 bg-white">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold" htmlFor="lp-name">
+                  Name
+                </label>
+                <input
+                  id="lp-name"
+                  type="text"
+                  placeholder="Your full name"
+                  className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold" htmlFor="lp-email">
+                  Email
+                </label>
+                <input
+                  id="lp-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-sm font-semibold" htmlFor="lp-message">
+                Tell us about your farm and what you need
+              </label>
+              <textarea
+                id="lp-message"
+                placeholder="Acres, crops, current challenges, and the outcomes you’re targeting…"
+                rows={6}
+                className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+              />
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <button className="inline-flex items-center gap-2 rounded-full bg-[#383F19] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#276d4b] transition-colors">
+                Send Message
+                <span aria-hidden>→</span>
+              </button>
+              <div className="text-sm text-[#4b5563]">
+                Prefer email? Reach us at{" "}
+                <a
+                  className="font-semibold text-[#383F19] underline"
+                  href="mailto:support@terraskyai.com"
+                >
+                  support@terraskyai.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#f7f9fb] text-[#1f2933] px-4 sm:px-6 lg:px-10 py-12 border-t border-[#e5e7eb]">
+        <div className="max-w-6xl mx-auto space-y-10">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/assets/Logo Light.png"
+                  alt="fyllo"
+                  width={140}
+                  height={48}
+                  className="h-12 w-auto"
+                  priority
+                />
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="#"
+                  className="inline-flex items-center justify-center rounded-md border border-[#d1d5db] bg-white px-3 py-2 text-sm font-semibold hover:bg-[#f3f4f6] transition-colors"
+                >
+                  Get it on Google Play
+                </a>
+                <a
+                  href="#"
+                  className="inline-flex items-center justify-center rounded-md border border-[#d1d5db] bg-white px-3 py-2 text-sm font-semibold hover:bg-[#f3f4f6] transition-colors"
+                >
+                  Download on the App Store
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
+              <div className="space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
+                  Company
+                </p>
+                <div className="space-y-2">
+                  {["About Us", "Contact Us", "How It Works", "Careers"].map((item) => (
+                    <a key={item} href="#" className="block hover:text-[#383F19]">
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
+                  Explore
+                </p>
+                <div className="space-y-2">
+                  {["Use Cases", "Products", "Research", "Blogs", "FAQ"].map((item) => (
+                    <a key={item} href="#" className="block hover:text-[#383F19]">
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
+                  Legal
+                </p>
+                <div className="space-y-2">
                   {[
-                    { label: "Instagram", href: "#" },
-                    { label: "Twitter", href: "#" },
-                    { label: "Facebook", href: "#" },
+                    "Terms & Conditions",
+                    "Privacy Policy",
+                    "Refund Policy",
+                    "Warranty Policy",
                   ].map((item) => (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="inline-flex items-center justify-center rounded-md bg-[#383F19] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#2f3615] transition-colors"
-                    >
-                      {item.label}
+                    <a key={item} href="#" className="block hover:text-[#383F19]">
+                      {item}
                     </a>
                   ))}
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-3">
-              <h3 className="text-lg font-semibold">Send us a note</h3>
-              <textarea
-                rows={6}
-                placeholder="Share your question or how we can help your farm..."
-                className="w-full rounded-lg border border-[#383F19]/20 px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#383F19]/50"
-              />
-              <button className="inline-flex w-fit items-center gap-2 rounded-full bg-[#383F19] px-5 py-3 text-white font-semibold shadow-md hover:bg-[#2f3615] transition-colors">
-                Send Message
-                <span aria-hidden>→</span>
-              </button>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-[#4b5563]">
+            <p>© 2025 Fyllo. All Rights Reserved.</p>
+            <div className="flex items-center gap-4 text-[#111827]">
+              {["Instagram", "Twitter", "Facebook", "LinkedIn", "YouTube"].map((item) => (
+                <a key={item} href="#" className="hover:text-[#383F19]">
+                  {item}
+                </a>
+              ))}
             </div>
           </div>
         </div>
-      </section>
+      </footer>
     </div>
   );
 }

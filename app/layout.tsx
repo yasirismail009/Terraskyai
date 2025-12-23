@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "fyllo - Where Technology Meets Agriculture",
-  description: "Next Gen Agri Intelligence Platform - Data Backed Agriculture Solutions",
+  title: "TerraSkyAI - Where Technology Meets Agriculture",
+  description: "TerraSkyAI is a precision agriculture platform that uses AI to help farmers make better decisions about their crops and soil.",
 };
 
 export default function RootLayout({
@@ -20,7 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"
+    >
+      <head>
+        <link rel="icon" href="/assets/favicon.ico" />
+      </head>
       <body
         className={`${inter.variable} font-sans antialiased`}
       >
