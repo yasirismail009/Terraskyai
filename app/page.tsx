@@ -391,93 +391,17 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#f7f9fb] text-[#1f2933] px-4 sm:px-6 lg:px-10 py-12 border-t border-[#e5e7eb]">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/assets/Logo Light.png"
-                  alt="fyllo"
-                  width={140}
-                  height={48}
-                  className="h-12 w-auto"
-                  priority
-                />
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center rounded-md border border-[#d1d5db] bg-white px-3 py-2 text-sm font-semibold hover:bg-[#f3f4f6] transition-colors"
-                >
-                  Get it on Google Play
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center rounded-md border border-[#d1d5db] bg-white px-3 py-2 text-sm font-semibold hover:bg-[#f3f4f6] transition-colors"
-                >
-                  Download on the App Store
-                </a>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 text-sm">
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
-                  Company
-                </p>
-                <div className="space-y-2">
-                  {["About Us", "Contact Us", "How It Works", "Careers"].map((item) => (
-                    <a key={item} href="#" className="block hover:text-[#383F19]">
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
-                  Explore
-                </p>
-                <div className="space-y-2">
-                  {["Use Cases", "Products", "Research", "Blogs", "FAQ"].map((item) => (
-                    <a key={item} href="#" className="block hover:text-[#383F19]">
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#4b5563]">
-                  Legal
-                </p>
-                <div className="space-y-2">
-                  {[
-                    "Terms & Conditions",
-                    "Privacy Policy",
-                    "Refund Policy",
-                    "Warranty Policy",
-                  ].map((item) => (
-                    <a key={item} href="#" className="block hover:text-[#383F19]">
-                      {item}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-[#4b5563]">
-            <p>© 2025 Fyllo. All Rights Reserved.</p>
-            <div className="flex items-center gap-4 text-[#111827]">
-              {["Instagram", "Twitter", "Facebook", "LinkedIn", "YouTube"].map((item) => (
-                <a key={item} href="#" className="hover:text-[#383F19]">
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
+      <footer className="bg-[#f7f9fb] text-[#1f2933] px-4 sm:px-6 lg:px-10 py-10 border-t border-[#e5e7eb]">
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
+          <Image
+            src="/assets/Logo Light.png"
+            alt="fyllo"
+            width={200}
+            height={90}
+            className="h-40 w-auto"
+            priority
+          />
+          <p className="text-sm text-[#4b5563] -mt-10">© 2025 TerraSkyAI. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
