@@ -57,7 +57,7 @@ export default function Header() {
           {/* Book Device Button */}
           <div className="flex items-center gap-4">
             <button className="bg-[#383F19] hover:bg-[#383F19]/80 text-white px-4 py-2 rounded-md font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              BOOK DEVICE
+              BOOK DEMO
             </button>
 
             {/* Mobile Menu Button */}

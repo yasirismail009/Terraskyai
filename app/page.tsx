@@ -29,6 +29,7 @@ export default function Home() {
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Hero Section with Background Image */}
       <section 
+        id="home"
         className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 font-sans bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/assets/img_0486.jpeg')`,
@@ -124,7 +125,7 @@ export default function Home() {
       {/* Technology In Action */}
       <section
         id="technology-in-action"
-        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14"
+        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto flex flex-col gap-8">
           <div className="text-left space-y-3">
@@ -177,7 +178,7 @@ export default function Home() {
       </section>
 
       {/* About Us */}
-      <section className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14">
+      <section id="about" className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20">
         <div className="max-w-5xl mx-auto flex flex-col gap-6 text-left">
           <p className="text-sm font-semibold uppercase tracking-widest">
             About Us
@@ -204,12 +205,12 @@ export default function Home() {
       {/* Why Us */}
       <section
         id="why-us"
-        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14"
+        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative w-full h-72 md:h-96 rounded-3xl overflow-hidden shadow-lg">
-              <Image
+            <Image
                 src="/assets/robot-arm-planting-tree-green-field.jpg"
                 alt="Precision agriculture technology"
                 fill
@@ -282,7 +283,7 @@ export default function Home() {
       {/* Contact / For Help */}
       <section
         id="contact"
-        className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14"
+        className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
         <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#e5e7eb]">
           <div className="bg-linear-to-br from-[#383F19] to-[#707f2f] text-white p-8 sm:p-10 flex flex-col gap-6">
@@ -387,6 +388,22 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Blog placeholder for navigation anchor */}
+      <section
+        id="blog"
+        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-10 scroll-mt-20"
+      >
+        <div className="max-w-5xl mx-auto text-center space-y-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#4b5563]">
+            Blog
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold">Insights coming soon</h2>
+          <p className="text-base text-[#4b5563]">
+            Stay tuned for product updates, research highlights, and field stories.
+          </p>
         </div>
       </section>
 
