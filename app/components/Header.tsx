@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 export default function Header() {
 
   return (
@@ -9,59 +7,55 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo Section */}
-            <div className="flex flex-col">
-              <Image
-                src="/assets/Logo Light.png"
-                alt="fyllo logo"
-                width={180}
-                height={80}
-                priority
+            <a href="/" className="flex flex-col h-12 lg:h-32 items-center justify-center">
+              <img
+                src="/assets/Logo.svg"
+                alt="terraskyai logo"
+                className="h-full w-auto"
+                draggable="false"
               />
               
-            </div>
+            </a>
 
           {/* Navigation Links */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             <a
-              href="#home"
-              className="text-gray-700 hover:text-[#383F19] transition-colors font-medium"
+              href="/"
+              className="text-[#545454] hover:text-[#454411] transition-colors font-medium"
             >
               Home
             </a>
             <a
-              href="#technology-in-action"
-              className="text-gray-700 hover:text-[#383F19] transition-colors font-medium"
+              href="/technology-in-action"
+              className="text-[#545454] hover:text-[#454411] transition-colors font-medium"
             >
               Technology In Action
             </a>
             <a
-              href="#about"
-              className="text-gray-700 hover:text-[#383F19] transition-colors font-medium"
+              href="/vision-mission"
+              className="text-[#545454] hover:text-[#454411] transition-colors font-medium"
             >
               About TerraSkyAI
             </a>
             <a
-              href="#contact"
-              className="text-gray-700 hover:text-[#383F19] transition-colors font-medium"
+              href="/contact"
+              className="text-[#545454] hover:text-[#454411] transition-colors font-medium"
             >
               Contact Us
             </a>
             <a
-              href="#blog"
-              className="text-gray-700 hover:text-[#383F19] transition-colors font-medium"
+              href="/careers"
+              className="text-[#545454] hover:text-[#454411] transition-colors font-medium"
             >
-              Blog
+              Career
             </a>
           </nav>
 
           {/* Book Device Button */}
           <div className="flex items-center gap-4">
-            <button className="bg-[#383F19] hover:bg-[#383F19]/80 text-white px-4 py-2 rounded-md font-medium transition-colors text-sm lg:text-base whitespace-nowrap">
-              BOOK DEMO
-            </button>
-
+          
             {/* Mobile Menu Button */}
-            <button className="lg:hidden text-gray-700 hover:text-[#383F19]">
+            <button className="lg:hidden text-[#545454] hover:text-[#454411]">
               <svg
                 className="w-6 h-6"
                 fill="none"

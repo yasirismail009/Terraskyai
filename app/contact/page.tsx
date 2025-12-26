@@ -1,14 +1,14 @@
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#f7f9fb] text-[#1f2933] px-4 sm:px-6 lg:px-10 py-16 flex items-center">
-      <div className="w-full max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#e5e7eb]">
-        <div className="bg-linear-to-br from-[#10394a] to-[#145f75] text-white p-8 sm:p-10 flex flex-col gap-6">
+    <div className="min-h-screen bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-16 flex items-center">
+      <div className="w-full max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#8B5E3C]/20">
+        <div className="bg-[#454411] text-white p-8 sm:p-10 flex flex-col gap-6">
           <div className="space-y-2">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#b9f5d0]">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#BEA950]">
               Contact Us
             </p>
             <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-              We’re here to help your farm thrive
+              We're here to help your farm thrive
             </h1>
             <p className="text-base text-white/85">
               Share your goals and challenges—our team will respond with tailored
@@ -30,7 +30,7 @@ export default function ContactPage() {
               </a>
             </div>
           </div>
-          <div className="space-y-3 text-sm sm:text-base">
+          {/* <div className="space-y-3 text-sm sm:text-base">
             <p className="font-semibold">Follow us</p>
             <div className="flex flex-wrap gap-3">
               {[
@@ -47,56 +47,56 @@ export default function ContactPage() {
                 </a>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="p-8 sm:p-10 space-y-6 bg-white">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold" htmlFor="name">
+              <label className="text-sm font-semibold text-[#454411]" htmlFor="name">
                 Name
               </label>
               <input
                 id="name"
                 type="text"
                 placeholder="Your full name"
-                className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold" htmlFor="email">
+              <label className="text-sm font-semibold text-[#454411]" htmlFor="email">
                 Email
               </label>
               <input
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold" htmlFor="message">
+            <label className="text-sm font-semibold text-[#454411]" htmlFor="message">
               Tell us about your farm and what you need
             </label>
             <textarea
               id="message"
-              placeholder="Acres, crops, current challenges, and the outcomes you’re targeting…"
+              placeholder="Acres, crops, current challenges, and the outcomes you're targeting…"
               rows={6}
-              className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+              className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
-            <button className="inline-flex items-center gap-2 rounded-full bg-[#2f855a] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#276d4b] transition-colors">
+            <button className="inline-flex items-center gap-2 rounded-full bg-[#454411] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#454411]/80 transition-colors">
               Send Message
               <span aria-hidden>→</span>
             </button>
-            <div className="text-sm text-[#4b5563]">
+            <div className="text-sm text-[#b0b0b0]">
               Prefer email? Reach us at{" "}
               <a
-                className="font-semibold text-[#145f75] underline"
+                className="font-semibold text-[#545454] underline hover:text-[#454411]"
                 href="mailto:support@terraskyai.com"
               >
                 support@terraskyai.com

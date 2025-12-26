@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #E6E2D6;
+  --foreground: #454411;
+  
+  /* Primary Colours */
+  --color-brand: #454411; /* Dark Olive Green - Brand color, logos, key CTAs */
+  --color-tech: #545454; /* Dark Gray - Tech-forward highlights, links, hover states */
+  --color-neutral: #b0b0b0; /* Light Gray - UI Neutral, dividers, secondary text */
+  
+  /* Secondary Colours */
+  --color-brown: #8B5E3C; /* Medium Brown - Secondary text, borders, icons */
+  --color-gold: #BEA950; /* Muted Gold/Yellow - Positive/success states, secondary accent */
+  --color-beige: #E6E2D6; /* Very Light Beige/Off-White - Backgrounds, cards, UI containers */
 }
 
 @theme inline {
@@ -13,8 +23,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #E6E2D6;
+    --foreground: #454411;
   }
 }
 
@@ -28,4 +38,16 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Ensure SVGs render sharply */
+img[src$=".svg"],
+img[src*=".svg"] {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

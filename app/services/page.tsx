@@ -23,22 +23,22 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#d6e2cd] text-[#383F19] px-4 sm:px-6 lg:px-10 py-12">
+    <div className="min-h-screen bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-12">
       <div className="max-w-6xl mx-auto text-center">
-        <p className="text-sm font-semibold uppercase tracking-widest mb-4">
+        <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-[#8B5E3C]">
           Services
         </p>
         <h1 className="text-4xl sm:text-5xl font-bold mb-6">
           What We Deliver
         </h1>
-        <div className="h-1 w-16 bg-[#383F19] mx-auto mb-10 rounded-full" />
+        <div className="h-1 w-16 bg-[#454411] mx-auto mb-10 rounded-full" />
       </div>
 
       <div className="max-w-6xl mx-auto grid gap-10 md:grid-cols-3">
         {services.map((service) => (
           <div
             key={service.title}
-            className="bg-white/70 rounded-xl shadow-sm overflow-hidden border border-white/40 hover:shadow-md transition-shadow"
+            className="bg-white rounded-xl shadow-sm overflow-hidden border border-[#8B5E3C]/20 hover:shadow-md transition-shadow"
           >
             <div className="relative h-52 w-full">
               <Image
@@ -50,11 +50,11 @@ export default function ServicesPage() {
                 priority
               />
             </div>
-            <div className="p-6 space-y-3 text-[#383F19]">
-              <h2 className="text-xl font-semibold leading-snug">
+            <div className="p-6 space-y-3">
+              <h2 className="text-xl font-semibold leading-snug text-[#454411]">
                 {service.title}
               </h2>
-              <p className="text-base leading-relaxed opacity-90">
+              <p className="text-base leading-relaxed text-[#545454]">
                 {service.description}
               </p>
             </div>

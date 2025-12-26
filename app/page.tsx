@@ -26,7 +26,7 @@ const services = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#E6E2D6] relative overflow-hidden">
       {/* Hero Section with Background Image */}
       <section 
         id="home"
@@ -36,47 +36,97 @@ export default function Home() {
         }}
       >
         {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         
         {/* Content */}
         <div className="relative z-10  mx-auto text-center items-center justify-center flex flex-col">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight tracking-tight drop-shadow-lg">
-          ENHANCING AGRICULTURE THROUGH AI
+          Flights to Insights
           </h1>
 
           {/* Sub-headline */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium rounded-lg w-fit bg-white/90 text-[#383F19] mb-3 leading-tight tracking-tight drop-shadow-lg">
-            <span className="px-2 py-1">Fast, Easy, and Accurate</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-3 leading-tight tracking-tight drop-shadow-lg">
+            <span className="px-2 py-1">Making Precision Farming Sustainable and Profitable
+            </span>
           </h2>
 
           {/* Descriptive Text */}
-          <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed mb-6 font-normal drop-shadow-md">
+          <p className="text-base sm:text-lg text-white max-w-2xl mx-auto leading-relaxed mb-6 font-normal drop-shadow-md">
             Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="bg-[#383F19] hover:bg-[#383F19]/80 text-white px-8 py-3 rounded-lg font-medium text-base transition-colors shadow-md hover:shadow-lg">
+          {/* <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button className="bg-[#454411] hover:bg-[#454411]/80 text-white px-8 py-3 rounded-lg font-medium text-base transition-colors shadow-md hover:shadow-lg">
               Get Started
             </button>
-            <button className="bg-white/90 hover:bg-white text-[#383F19] border border-white/50 px-8 py-3 rounded-lg font-medium text-base transition-colors shadow-md">
+            <button className="bg-[#E6E2D6] hover:bg-white text-[#454411] border border-[#8B5E3C]/30 px-8 py-3 rounded-lg font-medium text-base transition-colors shadow-md">
               Learn More
             </button>
+          </div> */}
+        </div>
+      </section>
+
+      {/* Our Product */}
+      <section className="bg-white text-white px-4 sm:px-6 lg:px-10 py-12">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-[#8B5E3C]">
+              Our Product
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#454411] mb-8">
+              Our Product
+            </h2>
+            <div className="h-1 w-16 bg-[#454411] mx-auto mb-10 rounded-full" />
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {/* TerraScout Card */}
+            <a href="/products/terrascout" className="block h-full">
+              <div className="bg-[#454411] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col">
+                <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">
+                  TerraScout
+                </h3>
+                <p className="text-lg leading-relaxed text-white/90 mb-4 grow">
+                  Desktop Application that revolutionizes farm analysis by delivering in-depth insights and simplifying report generation.
+                </p>
+                <span className="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                  Explore More
+                  <span aria-hidden>→</span>
+                </span>
+              </div>
+            </a>
+
+            {/* SkySight Card */}
+            <a href="/products/skysight" className="block h-full">
+              <div className="bg-[#545454] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full flex flex-col">
+                <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">
+                  SkySight
+                </h3>
+                <p className="text-lg leading-relaxed text-white/90 mb-4 grow">
+                  All-in-one digital farming portal for seamless farm management, unlocking efficiency and success.
+                </p>
+                <span className="inline-flex items-center gap-2 text-white font-semibold text-sm">
+                  Explore More
+                  <span aria-hidden>→</span>
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
 
       {/* Services Preview */}
-      <section className="bg-[#d6e2cd] text-[#383F19] px-4 sm:px-6 lg:px-10 py-12">
+      {/* <section className="bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-12">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3 text-[#8B5E3C]">
             Services
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold mb-8">
             What We Deliver
           </h2>
-          <div className="h-1 w-16 bg-[#383F19] mx-auto mb-10 rounded-full" />
+          <div className="h-1 w-16 bg-[#454411] mx-auto mb-10 rounded-full" />
         </div>
 
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
@@ -87,20 +137,20 @@ export default function Home() {
                 key={service.title}
                 className={`flex flex-col md:flex-row ${
                   isEven ? "" : "md:flex-row-reverse"
-                } bg-white rounded-3xl shadow-lg border border-white/60 overflow-hidden`}
+                } bg-white rounded-3xl shadow-lg border border-[#8B5E3C]/20 overflow-hidden`}
               >
                 <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#383F19]/10 text-sm font-medium w-fit">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#454411]/10 text-sm font-medium w-fit text-[#8B5E3C]">
                     <span>●</span>
                     <span>{service.tagline}</span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold leading-snug text-[#383F19]">
+                  <h3 className="text-3xl md:text-4xl font-bold leading-snug text-[#454411]">
                     {service.title}
                   </h3>
-                  <p className="text-lg leading-relaxed text-[#383F19]/90">
+                  <p className="text-lg leading-relaxed text-[#545454]">
                     {service.description}
                   </p>
-                  <button className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#383F19] px-5 py-3 text-white font-semibold shadow-md hover:bg-[#383F19]/80 transition-colors">
+                  <button className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-[#454411] px-5 py-3 text-white font-semibold shadow-md hover:bg-[#454411]/80 transition-colors">
                     Explore More
                     <span aria-hidden>→</span>
                   </button>
@@ -120,35 +170,36 @@ export default function Home() {
             );
           })}
         </div>
-      </section>
+      </section> */}
 
       {/* Technology In Action */}
       <section
         id="technology-in-action"
-        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
+        className="bg-white text-[#454411] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto flex flex-col gap-8">
           <div className="text-left space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-widest">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
               Technology In Action
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold">
-              TerraSkyAI is revolutionizing agriculture with real-time, AI-powered intelligence
+            TerraSkyAI is on a mission to make a meaningful impact in the global agricultural landscape
             </h2>
-            <p className="text-lg leading-relaxed text-[#383F19]/90">
-              Through satellite imagery, IoT sensors, and machine learning, TerraSkyAI delivers
-              instant visibility into crop health, soil conditions, and weather patterns. Farmers
-              can optimize irrigation, detect pests early, and boost yields while reducing costs
-              and environmental impact—bridging traditional farming with modern innovation for a
-              sustainable future.
+            <p className="text-lg leading-relaxed text-[#545454]">
+            In today's digital agricultural sector, where technology, data, and intelligence are vital, our 
+applications provide farmers with actionable insights. By leveraging data-driven decision-
+making, farmers can achieve higher efficiency and productivity. Our user-friendly approach ensures that our solutions are helping growers make profitable decisions at their farms. 
             </p>
-            <button className="inline-flex w-fit items-center gap-2 rounded-full bg-[#383F19] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#2f3615] transition-colors">
+            <a 
+              href="/technology-in-action"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-[#454411] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#454411]/80 transition-colors"
+            >
               Learn More
               <span aria-hidden>→</span>
-            </button>
+            </a>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          {/* <div className="grid gap-6 md:grid-cols-3">
             {[
               {
                 title: "Satellite & Drone Imagery",
@@ -160,44 +211,43 @@ export default function Home() {
               },
               {
                 title: "Predictive Models",
-                body: "ML-driven forecasts for irrigation, pest pressure, and yield, tuned to each field’s reality.",
+                body: "ML-driven forecasts for irrigation, pest pressure, and yield, tuned to each field's reality.",
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="rounded-2xl border border-[#383F19]/10 bg-[#383F19]/5 p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="rounded-2xl border border-[#8B5E3C]/20 bg-[#E6E2D6] p-6 shadow-sm hover:shadow-md transition-shadow"
               >
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-base leading-relaxed text-[#383F19]/90">
+                <h3 className="text-xl font-semibold mb-2 text-[#454411]">{item.title}</h3>
+                <p className="text-base leading-relaxed text-[#545454]">
                   {item.body}
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* About Us */}
-      <section id="about" className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20">
+      <section id="about" className="bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20">
         <div className="max-w-5xl mx-auto flex flex-col gap-6 text-left">
-          <p className="text-sm font-semibold uppercase tracking-widest">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
             About Us
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold">
             TerraSkyAI powers smarter fields with practical AI
           </h2>
-          <p className="text-lg leading-relaxed text-[#383F19]/90">
-            We’re building an AI-driven, precision agriculture platform that makes
-            data simple, affordable, and actionable for everyone across the
-            agricultural value chain. From growers to advisors, we deliver clear,
-            field-ready insights so farms can make confident decisions, cut waste,
-            and grow sustainably.
+          <p className="text-lg leading-relaxed text-[#545454]">
+          TerraSkyAI is an innovative AgriTech company leveraging Artificial Intelligence and Machine Learning to revolutionize agriculture. Our mission is to develop advanced agricultural technologies, empowering farmers worldwide with optimized operations and improved crop yields.
           </p>
           <div>
-            <button className="inline-flex items-center gap-2 rounded-full bg-[#383F19] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#2f3615] transition-colors">
+            <a
+              href="/vision-mission"
+              className="inline-flex items-center gap-2 rounded-full bg-[#454411] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#454411]/80 transition-colors"
+            >
               Learn More
               <span aria-hidden>→</span>
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -205,7 +255,7 @@ export default function Home() {
       {/* Why Us */}
       <section
         id="why-us"
-        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
+        className="bg-white text-[#454411] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -219,19 +269,19 @@ export default function Home() {
               />
             </div>
             <div className="space-y-4">
-              <p className="text-sm font-semibold uppercase tracking-widest">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
                 Why Us?
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold leading-snug">
                 Trusted, AI-driven partner for smarter farming
               </h2>
-              <p className="text-lg leading-relaxed text-[#383F19]/90">
+              <p className="text-lg leading-relaxed text-[#545454]">
                 TerraSkyAI blends satellite imagery, IoT sensors, and advanced machine
                 learning to deliver actionable insights that cut waste, improve yields,
                 and reduce costs. We tailor solutions to the realities of your farm,
                 pairing proven tech with a team committed to your success.
               </p>
-              <ul className="space-y-2 text-base text-[#383F19]/90">
+              <ul className="space-y-2 text-base text-[#545454]">
                 <li>• Real-time visibility into crop health, soil, and weather.</li>
                 <li>• Early detection of pests and stress for faster intervention.</li>
                 <li>• Precision irrigation guidance to save water and inputs.</li>
@@ -240,7 +290,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          {/* <div className="grid gap-6 md:grid-cols-3">
             {[
               {
                 name: "Fiona",
@@ -260,35 +310,35 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.name}
-                className="rounded-2xl border border-[#383F19]/10 bg-[#f8f9f5] p-6 shadow-sm"
+                className="rounded-2xl border border-[#8B5E3C]/20 bg-[#E6E2D6] p-6 shadow-sm"
               >
-                <div className="flex items-center gap-2 text-[#f59e0b] mb-3">
+                <div className="flex items-center gap-2 text-[#BEA950] mb-3">
                   {"★★★★★"}
                 </div>
-                <h3 className="text-lg font-semibold text-[#383F19]">
-                  “{item.title}”
+                <h3 className="text-lg font-semibold text-[#454411]">
+                  "{item.title}"
                 </h3>
-                <p className="text-base leading-relaxed text-[#383F19]/90 mt-2">
+                <p className="text-base leading-relaxed text-[#545454] mt-2">
                   {item.quote}
                 </p>
-                <p className="mt-3 text-sm font-semibold text-[#383F19]">
+                <p className="mt-3 text-sm font-semibold text-[#454411]">
                   {item.name}
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Contact / For Help */}
       <section
         id="contact"
-        className="bg-[#eef3e5] text-[#383F19] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
+        className="bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-14 scroll-mt-20"
       >
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#e5e7eb]">
-          <div className="bg-linear-to-br from-[#383F19] to-[#707f2f] text-white p-8 sm:p-10 flex flex-col gap-6">
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 border border-[#8B5E3C]/20">
+          <div className="bg-[#454411] text-white p-8 sm:p-10 flex flex-col gap-6">
             <div className="space-y-2">
-              <p className="text-sm font-semibold uppercase tracking-widest text-[#dbdfc6]">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[#BEA950]">
                 For Help
               </p>
               <h2 className="text-3xl sm:text-4xl font-bold leading-tight">
@@ -314,7 +364,7 @@ export default function Home() {
                 </a>
               </div>
             </div>
-            <div className="space-y-3 text-sm sm:text-base">
+            {/* <div className="space-y-3 text-sm sm:text-base">
               <p className="font-semibold">Follow us</p>
               <div className="flex flex-wrap gap-3">
                 {[
@@ -331,56 +381,56 @@ export default function Home() {
                   </a>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="p-8 sm:p-10 space-y-6 bg-white">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold" htmlFor="lp-name">
+                <label className="text-sm font-semibold text-[#454411]" htmlFor="lp-name">
                   Name
                 </label>
                 <input
                   id="lp-name"
                   type="text"
                   placeholder="Your full name"
-                  className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                  className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold" htmlFor="lp-email">
+                <label className="text-sm font-semibold text-[#454411]" htmlFor="lp-email">
                   Email
                 </label>
                 <input
                   id="lp-email"
                   type="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                  className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold" htmlFor="lp-message">
+              <label className="text-sm font-semibold text-[#454411]" htmlFor="lp-message">
                 Tell us about your farm and what you need
               </label>
               <textarea
                 id="lp-message"
-                placeholder="Acres, crops, current challenges, and the outcomes you’re targeting…"
+                placeholder="Acres, crops, current challenges, and the outcomes you're targeting…"
                 rows={6}
-                className="w-full rounded-lg border border-[#d5d9dc] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#145f75]"
+                className="w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#454411]"
               />
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-              <button className="inline-flex items-center gap-2 rounded-full bg-[#383F19] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#276d4b] transition-colors">
+              <button className="inline-flex items-center gap-2 rounded-full bg-[#454411] px-6 py-3 text-white font-semibold shadow-md hover:bg-[#454411]/80 transition-colors">
                 Send Message
                 <span aria-hidden>→</span>
               </button>
-              <div className="text-sm text-[#4b5563]">
+              <div className="text-sm text-[#b0b0b0]">
                 Prefer email? Reach us at{" "}
                 <a
-                  className="font-semibold text-[#383F19] underline"
+                  className="font-semibold text-[#545454] underline hover:text-[#454411]"
                   href="mailto:support@terraskyai.com"
                 >
                   support@terraskyai.com
@@ -392,35 +442,21 @@ export default function Home() {
       </section>
 
       {/* Blog placeholder for navigation anchor */}
-      <section
+      {/* <section
         id="blog"
-        className="bg-white text-[#383F19] px-4 sm:px-6 lg:px-10 py-10 scroll-mt-20"
+        className="bg-white text-[#454411] px-4 sm:px-6 lg:px-10 py-10 scroll-mt-20"
       >
         <div className="max-w-5xl mx-auto text-center space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#4b5563]">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
             Blog
           </p>
           <h2 className="text-2xl sm:text-3xl font-bold">Insights coming soon</h2>
-          <p className="text-base text-[#4b5563]">
+          <p className="text-base text-[#b0b0b0]">
             Stay tuned for product updates, research highlights, and field stories.
           </p>
         </div>
-      </section>
+      </section> */}
 
-      {/* Footer */}
-      <footer className="bg-[#f7f9fb] text-[#1f2933] px-4 sm:px-6 lg:px-10 py-10 border-t border-[#e5e7eb]">
-        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4 text-center">
-          <Image
-            src="/assets/Logo Light.png"
-            alt="fyllo"
-            width={200}
-            height={90}
-            className="h-40 w-auto"
-            priority
-          />
-          <p className="text-sm text-[#4b5563] -mt-10">© 2025 TerraSkyAI. All Rights Reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
