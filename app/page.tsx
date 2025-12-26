@@ -32,7 +32,7 @@ export default function Home() {
         id="home"
         className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 font-sans bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/assets/img_0486.jpeg')`,
+          backgroundImage: `url('/assets/main bg.png')`,
         }}
       >
         {/* Overlay for text readability */}
