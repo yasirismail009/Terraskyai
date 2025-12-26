@@ -9,7 +9,7 @@ export default function VisionMissionPage() {
           <div className="relative w-full h-screen md:h-[700px] rounded-2xl overflow-hidden shadow-2xl">
             {/* Background Image */}
             <Image
-              src="/assets/our mission.png"
+              src="/assets/drone1.png"
               alt="Aerial view of forest and agricultural fields"
               fill
               className="object-cover"
