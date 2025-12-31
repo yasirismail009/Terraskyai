@@ -237,7 +237,7 @@ export default function CareersPage() {
                       <p className="text-sm text-[#545454] mb-2">
                         <strong>Application Deadline:</strong> {position.applicationDeadline}
                       </p>
-                      <p className="text-sm text-[#545454]">
+                      {/* <p className="text-sm text-[#545454]">
                         Please email your application to{' '}
                         <a 
                           href={`mailto:${position.applicationEmail}?subject=${encodeURIComponent(position.applicationSubject)}`}
@@ -246,7 +246,7 @@ export default function CareersPage() {
                           {position.applicationEmail}
                         </a>
                         {' '}with the subject line "{position.applicationSubject}"
-                      </p>
+                      </p> */}
                     </div>
 
                     <button

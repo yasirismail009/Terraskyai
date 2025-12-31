@@ -4,33 +4,30 @@ const benefits = [
   {
     title: "Seed Production Industry",
     description: "Hybrid canola seed purity through off-type/volunteer canola detection, yield estimation for supply chain optimization.",
-    image: "/assets/img_0486.jpeg",
-  },
-  {
-    title: "Agriculture Consultants",
-    description: "Precise, real-time field intelligence to enhance decision-making, improve service value, and strengthen client outcomes.",
-    image: "/assets/img_1054.jpeg",
-  },
-  {
-    title: "Growers",
-    description: "Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability.",
-    image: "/assets/img_1058.jpeg",
-  },
-  {
-    title: "Insurance Companies",
-    description: "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency.",
-    image: "/assets/img_1059.jpeg",
-  },
-  {
-    title: "Agri-Retails",
-    description: "Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance.",
-    image: "/assets/robot-arm-planting-tree-green-field.jpg",
+    image: "/assets/Picture1.jpg",
   },
   {
     title: "Potato Processing Industry",
     description: "Delivers precise, field-level intelligence that helps secure reliable supply, improve quality consistency, and reduce production risk.",
-    image: "/assets/smart-farming-with-agriculture-iot.jpg",
+    image: "/assets/Picture2.jpg",
   },
+  {
+    title: "Agri-Retails",
+    description: "Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance.",
+    image: "/assets/AG.png",
+  },
+  {
+    title: "Growers",
+    description: "Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability.",
+    image: "/assets/Growers.png",
+  },
+  {
+    title: "Insurance Companies",
+    description: "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency.",
+    image: "/assets/insurance.png",
+  },
+ 
+ 
 ];
 
 export default function TechnologyInActionPage() {
@@ -69,11 +66,18 @@ export default function TechnologyInActionPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-12 gap-6">
             {benefits.map((benefit, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-[#8B5E3C]/20">
+              <div 
+                key={index} 
+                className={`bg-white rounded-2xl p-6 shadow-lg border border-[#8B5E3C]/20 ${
+                  index < 2 
+                    ? 'col-span-12 md:col-span-6' 
+                    : 'col-span-12 md:col-span-4'
+                }`}
+              >
                 <div className="flex flex-col gap-4">
-                  <div className="relative w-full h-48 rounded-lg overflow-hidden">
+                  <div className="relative w-full h-60 rounded-lg overflow-hidden">
                     <Image
                       src={benefit.image}
                       alt={benefit.title}

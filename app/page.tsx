@@ -1,5 +1,8 @@
 import Image from "next/image";
 
+export const AZURE_BASE_URL = 'https://skysightappstorage.blob.core.windows.net/devstorage';
+export const AZURE_SAS_TOKEN = '?sp=r&st=2025-12-31T17:48:54Z&se=2026-01-28T02:03:54Z&spr=https&sv=2024-11-04&sr=c&sig=GQBwxhZiidMqcD0Onjjxw6e1lHzY%2BySHTsNjvZua7VA%3D';
+
 const services = [
   {
     title: "AI-Driven Crop & Soil Analytics",
@@ -27,19 +30,29 @@ const services = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#E6E2D6] relative overflow-hidden">
-      {/* Hero Section with Background Image */}
-      <section 
+      {/* Hero Section with Background Video */}
+      <section
         id="home"
-        className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 font-sans bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/assets/main bg.png')`,
-        }}
+        className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 font-sans overflow-hidden"
       >
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-fill z-0"
+        >
+          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page${AZURE_SAS_TOKEN}`} type="video/mp4" />
+          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.webm${AZURE_SAS_TOKEN}`} type="video/webm" />
+          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.ogv${AZURE_SAS_TOKEN}`} type="video/ogg" />
+        </video>
+
         {/* Overlay for text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/10 z-10"></div>
         
         {/* Content */}
-        <div className="relative z-10  mx-auto text-center items-center justify-center flex flex-col">
+        <div className="relative z-20 mx-auto text-center items-center justify-center flex flex-col">
           {/* Main Headline */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight tracking-tight drop-shadow-lg">
           Flights to Insights
@@ -260,13 +273,17 @@ making, farmers can achieve higher efficiency and productivity. Our user-friendl
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="relative w-full h-72 md:h-96 rounded-3xl overflow-hidden shadow-lg">
-            <Image
-                src="/assets/robot-arm-planting-tree-green-field.jpg"
-                alt="Precision agriculture technology"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 50vw, (min-width: 768px) 50vw, 100vw"
-              />
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-fill rounded-3xl"
+              >
+                <source src={`${AZURE_BASE_URL}/Videos/why_us_1${AZURE_SAS_TOKEN}`} type="video/mp4" />
+                <source src={`${AZURE_BASE_URL}/Videos/why_us_2${AZURE_SAS_TOKEN}`} type="video/webm" />
+                <source src={`${AZURE_BASE_URL}/Videos/why_us_3${AZURE_SAS_TOKEN}`} type="video/ogg" />
+              </video>
             </div>
             <div className="space-y-4">
               <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
