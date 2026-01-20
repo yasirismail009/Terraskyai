@@ -42,6 +42,16 @@ function looksLikeHtml(value: string): boolean {
   return /<\/?[a-z][\s\S]*>/i.test(value);
 }
 
+function filterDescription(description: string): string {
+  const textToHide = '• Assist with new and existing CV model development through data collection, labeling, ground truthing and validation';
+  // Remove the text if it appears as a standalone bullet point
+  let filtered = description.replace(new RegExp(textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '');
+  // Also handle HTML bullet points
+  filtered = filtered.replace(new RegExp(`<li[^>]*>\\s*${textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</li>`, 'gi'), '');
+  filtered = filtered.replace(new RegExp(`<p[^>]*>\\s*${textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</p>`, 'gi'), '');
+  return filtered.trim();
+}
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://admin.terraskyai.com';
 
 function formatCurrencyAmount(value: unknown, currency: string): string | undefined {
@@ -426,7 +436,7 @@ export default function CareersPage() {
                 {typeof merged.description === 'string' && merged.description.trim().length > 0 && (
                   <div
                     className="text-base text-[#545454] mb-4"
-                    dangerouslySetInnerHTML={{ __html: merged.description }}
+                    dangerouslySetInnerHTML={{ __html: filterDescription(merged.description) }}
                   />
                 )}
 
@@ -497,7 +507,9 @@ export default function CareersPage() {
                           Key Responsibilities:
                         </h4>
                         <ul className="space-y-2 text-[#545454]">
-                          {merged.responsibilities.map((resp, idx) => (
+                          {merged.responsibilities
+                            .filter((resp) => !resp.includes('Assist with new and existing CV model development through data collection, labeling, ground truthing and validation'))
+                            .map((resp, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <span className="text-[#BEA950] mt-1">•</span>
                               <span>{resp}</span>
@@ -513,7 +525,12 @@ export default function CareersPage() {
                           Requirements:
                         </h4>
                         <ul className="space-y-2 text-[#545454]">
-                          {merged.requirements.map((req, idx) => (
+                          {merged.requirements
+                            .filter((req) => {
+                              const reqStr = typeof req === 'string' ? req : String(req);
+                              return !reqStr.includes('Assist with new and existing CV model development through data collection, labeling, ground truthing and validation');
+                            })
+                            .map((req, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <span className="text-[#BEA950] mt-1">•</span>
                               <span
@@ -534,7 +551,7 @@ export default function CareersPage() {
                         </h4>
                         <div
                           className="text-[#545454] space-y-2"
-                          dangerouslySetInnerHTML={{ __html: merged.requirementsHtml }}
+                          dangerouslySetInnerHTML={{ __html: filterDescription(merged.requirementsHtml) }}
                         />
                       </div>
                     )}
