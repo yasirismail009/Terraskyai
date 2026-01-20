@@ -454,18 +454,7 @@ export default function CareersPage() {
                             <div className="font-semibold text-[#454411]">{merged.applicationDeadline}</div>
                           </div>
                         )}
-                        {typeof merged.viewsCount === 'number' && (
-                          <div className="bg-[#E6E2D6] rounded-xl p-4">
-                            <div className="text-xs text-[#545454]">Views</div>
-                            <div className="font-semibold text-[#454411]">{merged.viewsCount}</div>
-                          </div>
-                        )}
-                        {typeof merged.applicationsCount === 'number' && (
-                          <div className="bg-[#E6E2D6] rounded-xl p-4">
-                            <div className="text-xs text-[#545454]">Applications</div>
-                            <div className="font-semibold text-[#454411]">{merged.applicationsCount}</div>
-                          </div>
-                        )}
+                       
                         {merged.applicationEmail && (
                           <div className="bg-[#E6E2D6] rounded-xl p-4 md:col-span-2">
                             <div className="text-xs text-[#545454]">Application email</div>
@@ -478,20 +467,7 @@ export default function CareersPage() {
                             </a>
                           </div>
                         )}
-                        {(merged.createdAt || merged.createdBy) && (
-                          <div className="bg-[#E6E2D6] rounded-xl p-4">
-                            <div className="text-xs text-[#545454]">Created</div>
-                            <div className="text-sm text-[#454411]">{merged.createdAt ?? ''}</div>
-                            <div className="text-xs text-[#545454]">{merged.createdBy ?? ''}</div>
-                          </div>
-                        )}
-                        {(merged.updatedAt || merged.updatedBy) && (
-                          <div className="bg-[#E6E2D6] rounded-xl p-4">
-                            <div className="text-xs text-[#545454]">Updated</div>
-                            <div className="text-sm text-[#454411]">{merged.updatedAt ?? ''}</div>
-                            <div className="text-xs text-[#545454]">{merged.updatedBy ?? ''}</div>
-                          </div>
-                        )}
+                      
                       </div>
                     )}
 
