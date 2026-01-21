@@ -390,8 +390,7 @@ export default function CareersPage() {
               return (
               <div
                 key={position.id}
-                className="bg-white rounded-2xl p-6 shadow-lg border border-[#8B5E3C]/20 hover:shadow-xl transition-all duration-300 cursor-pointer"
-                onClick={() => handleTogglePosition(position.id)}
+                className="bg-white rounded-2xl p-6 shadow-lg border border-[#8B5E3C]/20 hover:shadow-xl transition-all duration-300"
               >
                 <div className="flex justify-between items-start mb-4">
                   <div>
@@ -427,7 +426,11 @@ export default function CareersPage() {
                     </div>
                   </div>
                   <button
-                    className={`text-2xl transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleTogglePosition(position.id);
+                    }}
+                    className={`text-2xl transition-transform cursor-pointer ${isOpen ? 'rotate-180' : ''}`}
                   >
                     ▼
                   </button>
