@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en"
     >
       <head>
-        <link rel="icon" href="/assets/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={`${inter.variable} font-sans antialiased`}

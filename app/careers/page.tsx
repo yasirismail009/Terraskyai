@@ -481,7 +481,7 @@ export default function CareersPage() {
                       </div>
                     )}
 
-                    {!isDetailLoading && !detailError && (
+                    {/* {!isDetailLoading && !detailError && (
                       <div className="bg-white rounded-xl border border-[#8B5E3C]/20 p-4">
                         <h4 className="text-lg font-semibold text-[#454411] mb-3">Eligibility / Requirements Flags</h4>
                         <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-[#545454]">
@@ -499,11 +499,11 @@ export default function CareersPage() {
                           )}
                         </ul>
                       </div>
-                    )}
+                    )} */}
 
                     {!isDetailLoading && !detailError && merged.responsibilities && (
                       <div>
-                        <h4 className="text-lg font-semibold text-[#454411] mb-3">
+                        <h4 className="text-lg font-bold text-[#454411] mb-3">
                           Key Responsibilities:
                         </h4>
                         <ul className="space-y-2 text-[#545454]">
