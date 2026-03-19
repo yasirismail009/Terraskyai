@@ -21,9 +21,9 @@ const portalFeatures = [
 const reportFeatures = [
   { title: "High Resolution Map (1cm to 5cm)", image: "/assets/Picture1.png" },
   { title: "Crop Area and Boundary",           image: "/assets/fishnet.jpeg" },
-  { title: "Weed Detection for Spot-treatment",image: "/assets/Weed1.jpg" },
+  { title: "Weed Detection for Spot-treatment",image: "/assets/weed-1.jpg" },
   { title: "Germination Map (Plant Count)",    image: "/assets/Picture4.png" },
-  { title: "Off-type detection",               image: "/assets/vc detection2.jpg" },
+  { title: "Off-type detection",               image: "/assets/vc-detection-2.jpg" },
   { title: "Male and Female Parent Lines",     image: "/assets/male female bay.jpeg" },
   { title: "Disease detection",                image: "/assets/Picture7.png" },
   { title: "Insect defoliation detection",     image: "/assets/Picture8.png" },
@@ -318,9 +318,9 @@ export default function SkySightPage() {
 
           <div className="ss-highres-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:28 }}>
             {[
-              { src:"/assets/vc detection.jpg",  alt:"VC Detection",            title:"VC Detection",            desc:"AI detects volunteer canola plants with pinpoint accuracy, enabling precise roguing and protecting seed purity.",   boxes:false },
+              { src:"/assets/vc-detection.jpg",  alt:"VC Detection",            title:"VC Detection",            desc:"AI detects volunteer canola plants with pinpoint accuracy, enabling precise roguing and protecting seed purity.",   boxes:false },
               { src:"/assets/pods.jpeg",          alt:"Pod Count",               title:"Pod Count(Yield Estimation)",               desc:"Automated pod counting at the individual plant level delivers reliable yield estimates before harvest.", boxes:false },
-              { src:"/assets/Weedd.jpg",      alt:"Weed Detection",          title:"Weed Detection",          desc:"Weed pressure mapped across every zone of your field, so treatment goes exactly where it's needed — nothing more.", boxes:false },
+              { src:"/assets/weed-3.jpg",      alt:"Weed Detection",          title:"Weed Detection",          desc:"Weed pressure mapped across every zone of your field, so treatment goes exactly where it's needed — nothing more.", boxes:false },
            
             ].map((img, i) => (
               <div key={i} className="ss-img-card" style={{
