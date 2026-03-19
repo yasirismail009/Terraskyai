@@ -20,12 +20,12 @@ const coreValues = [
     highlight: null,
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-9 h-9">
-        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3"/>
-        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M20 26 L20 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
-        <path d="M20 22 C20 22 17 20 16 17 C18 17 20 19 20 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2"/>
-        <path d="M20 21 C20 21 23 19 24 16 C22 16 20 18 20 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2"/>
-        <circle cx="20" cy="27" r="1.5" fill="currentColor"/>
+        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3" />
+        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M20 26 L20 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M20 22 C20 22 17 20 16 17 C18 17 20 19 20 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2" />
+        <path d="M20 21 C20 21 23 19 24 16 C22 16 20 18 20 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2" />
+        <circle cx="20" cy="27" r="1.5" fill="currentColor" />
       </svg>
     ),
   },
@@ -45,12 +45,12 @@ const coreValues = [
     highlight: "80% input savings",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-9 h-9">
-        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3"/>
-        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-        <ellipse cx="20" cy="21" rx="3.5" ry="4.5" stroke="currentColor" strokeWidth="1.6"/>
-        <circle cx="20" cy="16" r="2" stroke="currentColor" strokeWidth="1.4"/>
-        <path d="M16.5 19 L14 17M16.5 21 L14 21M16.5 23 L14 25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-        <path d="M23.5 19 L26 17M23.5 21 L26 21M23.5 23 L26 25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3" />
+        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+        <ellipse cx="20" cy="21" rx="3.5" ry="4.5" stroke="currentColor" strokeWidth="1.6" />
+        <circle cx="20" cy="16" r="2" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M16.5 19 L14 17M16.5 21 L14 21M16.5 23 L14 25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M23.5 19 L26 17M23.5 21 L26 21M23.5 23 L26 25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -65,16 +65,16 @@ const coreValues = [
       "Hybrid seed purity verification",
       "Minimize cost of production up to 80%",
       "Rouging optimization & automation",
-      
+
     ],
     tag: "Single plant anomaly",
     highlight: "80% cost reduction",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-9 h-9">
-        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3"/>
-        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M20 26 C20 26 13 23 14 15 C14 15 22 15 23 22 C23 22 23 24 20 26Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.2" strokeLinejoin="round"/>
-        <path d="M20 26 L17 19" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3" />
+        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M20 26 C20 26 13 23 14 15 C14 15 22 15 23 22 C23 22 23 24 20 26Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.2" strokeLinejoin="round" />
+        <path d="M20 26 L17 19" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
     ),
   },
@@ -89,18 +89,18 @@ const coreValues = [
       "Optimized supply chain planning",
       "Seed storage optimization",
       "Sales & harvest planning support",
-      
+
     ],
     tag: "HD pod-level detection",
     highlight: null,
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-9 h-9">
-        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3"/>
-        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M14 21 C14 17 17 14 20 14 C23 14 26 17 26 21 C26 24 23 27 20 27 C17 27 14 24 14 21Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.15"/>
-        <circle cx="17.5" cy="21" r="1.5" fill="currentColor" fillOpacity="0.7"/>
-        <circle cx="20.5" cy="20" r="1.5" fill="currentColor" fillOpacity="0.7"/>
-        <circle cx="23" cy="21" r="1.5" fill="currentColor" fillOpacity="0.7"/>
+        <circle cx="20" cy="20" r="11" stroke="currentColor" strokeWidth="3" />
+        <line x1="28" y1="28" x2="40" y2="40" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+        <path d="M14 21 C14 17 17 14 20 14 C23 14 26 17 26 21 C26 24 23 27 20 27 C17 27 14 24 14 21Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.15" />
+        <circle cx="17.5" cy="21" r="1.5" fill="currentColor" fillOpacity="0.7" />
+        <circle cx="20.5" cy="20" r="1.5" fill="currentColor" fillOpacity="0.7" />
+        <circle cx="23" cy="21" r="1.5" fill="currentColor" fillOpacity="0.7" />
       </svg>
     ),
   },
@@ -265,7 +265,7 @@ export default function CoreValues() {
                 {val.highlight && (
                   <div style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 7, background: val.accentLight, border: `1.5px solid ${val.accentBorder}`, color: val.color, borderRadius: "10px", padding: "7px 14px", fontSize: "13px", fontWeight: 700 }}>
                     <svg fill="currentColor" viewBox="0 0 20 20" style={{ width: 14, height: 14 }}>
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                     {val.highlight}
                   </div>
@@ -275,7 +275,7 @@ export default function CoreValues() {
           ))}
         </div>
 
-       
+
 
       </div>
     </section>
