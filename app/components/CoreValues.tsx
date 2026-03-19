@@ -60,7 +60,7 @@ const coreValues = [
     color: "#454411",
     accentLight: "#f5f4e8",
     accentBorder: "#c8c67a",
-    image: "/assets/Off-Type.jpg",
+    image: "/assets/offtype.jpg",
     points: [
       "Hybrid seed purity verification",
       "Minimize cost of production up to 80%",
