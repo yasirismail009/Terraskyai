@@ -130,7 +130,7 @@ export default function Footer() {
                 Privacy Policy
               </a>
               <a href="#" className="hover:text-[#545454] transition-colors">
-                Terms of Servicex
+                Terms of Service
               </a>
             </div>
           </div>
