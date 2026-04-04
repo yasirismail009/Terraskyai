@@ -28,7 +28,7 @@ const reportFeatures = [
   { title: "Male and Female Parent Lines",     image: "/assets/male female bay.jpeg" },
   { title: "Disease detection",                image: "/assets/disease.jpg" },
   { title: "Insect defoliation detection",     image: "/assets/Picture8.png" },
-  { title: "Digital Elevation Map(DEM)",              image: "/assets/dem.jpg" },
+  { title: "Digital Elevation Map(DEM)",              image: "/assets/dem.png" },
   { title: "Pod Count(Yield Estimation)",          image: "/assets/pods.jpeg"},
   { title: "Crop Health Zones",                image: "/assets/Picture10.png"},
   { title: "Flight Mission Automation",        image: "/assets/Picture12.png"},
