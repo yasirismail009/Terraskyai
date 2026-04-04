@@ -22,9 +22,9 @@ const portalFeatures = [
 const reportFeatures = [
   { title: "High Resolution Map (1cm to 5cm)", image: "/assets/Picture1.png" },
   { title: "Crop Area and Boundary",           image: "/assets/fishnet.jpeg" },
-  { title: "Weed Detection for Spot-treatment",image: "/assets/Weed1.jpg" },
+  { title: "Weed Detection for Spot-treatment",image: "/assets/weed-1.jpg" },
   { title: "Germination Map (Plant Count)",    image: "/assets/Picture4.png" },
-  { title: "Off-type detection",               image: "/assets/vc detection2.jpg" },
+  { title: "Off-type detection",               image: "/assets/vc-detection-2.jpg" },
   { title: "Male and Female Parent Lines",     image: "/assets/male female bay.jpeg" },
   { title: "Disease detection",                image: "/assets/disease.jpg" },
   { title: "Insect defoliation detection",     image: "/assets/Picture8.png" },
