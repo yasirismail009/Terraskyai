@@ -32,8 +32,6 @@ type CareerPostDetail = CareerPostSummary & {
   requireEligibleToWorkInCanada?: boolean;
   showValidDriversLicense?: boolean;
   requireValidDriversLicense?: boolean;
-  showAccessToOwnVehicle?: boolean;
-  requireAccessToOwnVehicle?: boolean;
   showDronePilotLicense?: boolean;
   requireDronePilotLicense?: boolean;
 };
@@ -127,8 +125,6 @@ function normalizeCareerPostDetail(raw: any): CareerPostDetail {
     requireEligibleToWorkInCanada: typeof raw?.require_eligible_to_work_in_canada === 'boolean' ? raw.require_eligible_to_work_in_canada : raw?.requireEligibleToWorkInCanada,
     showValidDriversLicense: typeof raw?.show_valid_drivers_license === 'boolean' ? raw.show_valid_drivers_license : raw?.showValidDriversLicense,
     requireValidDriversLicense: typeof raw?.require_valid_drivers_license === 'boolean' ? raw.require_valid_drivers_license : raw?.requireValidDriversLicense,
-    showAccessToOwnVehicle: typeof raw?.show_access_to_own_vehicle === 'boolean' ? raw.show_access_to_own_vehicle : raw?.showAccessToOwnVehicle,
-    requireAccessToOwnVehicle: typeof raw?.require_access_to_own_vehicle === 'boolean' ? raw.require_access_to_own_vehicle : raw?.requireAccessToOwnVehicle,
     showDronePilotLicense: typeof raw?.show_drone_pilot_license === 'boolean' ? raw.show_drone_pilot_license : raw?.showDronePilotLicense,
     requireDronePilotLicense: typeof raw?.require_drone_pilot_license === 'boolean' ? raw.require_drone_pilot_license : raw?.requireDronePilotLicense,
   };
@@ -169,7 +165,6 @@ export default function CareersPage() {
     cv: null as File | null,
     eligibleToWorkInCanada: '' as '' | 'yes' | 'no',
     validDriversLicense: '' as '' | 'yes' | 'no',
-    accessToOwnVehicle: '' as '' | 'yes' | 'no',
     dronePilotLicense: '' as '' | 'yes' | 'no',
   });
 
@@ -238,7 +233,6 @@ export default function CareersPage() {
       payload.append('cover_letter', formData.coverLetter);
       payload.append('eligible_to_work_in_canada', yesNoToBoolString(formData.eligibleToWorkInCanada));
       payload.append('valid_drivers_license', yesNoToBoolString(formData.validDriversLicense));
-      payload.append('access_to_own_vehicle', yesNoToBoolString(formData.accessToOwnVehicle));
       payload.append('drone_pilot_license', yesNoToBoolString(formData.dronePilotLicense));
       payload.append('cv', formData.cv);
       const res = await fetch(`${API_BASE_URL}/api/career/applications/`, { method: 'POST', body: payload });
@@ -255,7 +249,7 @@ export default function CareersPage() {
         throw new Error(`Submission failed (${res.status})`);
       }
       setSubmitSuccess('Application submitted successfully. Thank you!');
-      setFormData({ name: '', email: '', phone: '', position: '', coverLetter: '', cv: null, eligibleToWorkInCanada: '', validDriversLicense: '', accessToOwnVehicle: '', dronePilotLicense: '' });
+      setFormData({ name: '', email: '', phone: '', position: '', coverLetter: '', cv: null, eligibleToWorkInCanada: '', validDriversLicense: '', dronePilotLicense: '' });
       if (fileInputRef.current) fileInputRef.current.value = '';
       setTimeout(() => { document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
     } catch (err: any) {
@@ -455,19 +449,46 @@ export default function CareersPage() {
             Help us revolutionize agriculture through AI and drone technology. Be part of a team making a real impact on farming and food security worldwide.
           </p>
 
-          {/* Stats row */}
-          <div style={{ display:"flex", justifyContent:"center", gap:48, flexWrap:"wrap" }}>
-            {[
-              { val:"AgriTech", label:"Industry" },
-              { val:"Canada", label:"Based In" },
-              { val:"Global", label:"Impact" },
-            ].map((s) => (
-              <div key={s.val} style={{ textAlign:"center" }}>
-                <p style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"2rem", fontWeight:700, color:"#BEA950", lineHeight:1 }}>{s.val}</p>
-                <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:11, color:"rgba(255,255,255,0.5)", fontWeight:500, marginTop:4, letterSpacing:"0.1em", textTransform:"uppercase" }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
+         {/* Stats row */}
+<div style={{ display:"flex", justifyContent:"center", gap:48, flexWrap:"wrap" }}>
+  {[
+    { val:"AI-Powered", label:"AgTech" },
+    { val:"Based In", label:"Canada" },
+    { val:"Real-World", label:"Impact" },
+  ].map((s) => (
+    <div key={s.val} style={{ textAlign:"center" }}>
+      
+      {/* SMALL VALUE */}
+      <p
+        style={{
+          fontFamily:"'DM Sans',sans-serif",
+          fontSize:"0.85rem",
+          fontWeight:500,
+          color:"rgba(255,255,255,0.6)",
+          letterSpacing:"0.08em",
+          textTransform:"uppercase",
+          marginBottom:6
+        }}
+      >
+        {s.val}
+      </p>
+
+      {/* BIG LABEL */}
+      <p
+        style={{
+          fontFamily:"'Cormorant Garamond',Georgia,serif",
+          fontSize:"1.8rem",
+          fontWeight:700,
+          color:"#BEA950",
+          lineHeight:1
+        }}
+      >
+        {s.label}
+      </p>
+
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
@@ -742,7 +763,6 @@ export default function CareersPage() {
                   {[
                     { name:"eligibleToWorkInCanada", label:"Eligible to work in Canada", value: formData.eligibleToWorkInCanada },
                     { name:"validDriversLicense",    label:"Valid driver's license",       value: formData.validDriversLicense    },
-                    { name:"accessToOwnVehicle",     label:"Access to own vehicle",        value: formData.accessToOwnVehicle     },
                     { name:"dronePilotLicense",      label:"Drone pilot license",          value: formData.dronePilotLicense      },
                   ].map((q) => (
                     <div key={q.name} className="cr-radio-card">

@@ -54,10 +54,13 @@ export default function VisionMissionPage() {
             />
           </div>
           <div className="absolute right-0 top-0 bottom-0 w-2/3 flex flex-col justify-center items-center md:items-start px-8 md:px-16 z-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-white/90 mb-4">
-              Our Vision
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-center md:text-left">
+            <p
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+  className="text-xl font-bold uppercase tracking-widest text-white/90 mb-4"
+>
+  Our Vision
+</p>
+            <h1 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif" }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-center md:text-left">
               Making Precision Farming Sustainable and Profitable
             </h1>
           </div>
@@ -69,21 +72,19 @@ export default function VisionMissionPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-[#b0b0b0] mb-4">
-                OUR MISSION
-              </p>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#545454] mb-6 leading-tight">
+             <p
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+  className="text-xl font-bold uppercase tracking-widest text-[#b0b0b0] mb-4"
+>
+  OUR MISSION
+</p>
+              <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif" }} className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#545454] mb-6 leading-tight">
                 To empower farmers globally
               </h2>
-              <p className="text-lg text-[#545454] leading-relaxed">
+              <p style={{ fontFamily:"'DM Sans',sans-serif" }} className="text-lg text-[#545454] leading-relaxed">
                 by developing advanced, innovative AI-driven precision farming technologies that optimize farm operations, enhance productivity, and promote sustainable farming.
               </p>
-              <a
-                href="/#contact"
-                className="inline-flex items-center gap-2 mt-8 bg-[#454411] hover:bg-[#454411]/80 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition-colors"
-              >
-                Contact Us
-              </a>
+             
             </div>
 
             <div className="relative">
@@ -97,7 +98,7 @@ export default function VisionMissionPage() {
                   <div className="bg-white rounded-lg overflow-hidden">
                     <div className="relative h-96">
                       <Image
-                        src="/assets/img_1054.jpeg"
+                        src="/assets/vision.png"
                         alt="Agricultural field monitoring dashboard"
                         fill
                         className="object-cover"
@@ -130,13 +131,16 @@ export default function VisionMissionPage() {
       <section className="bg-white px-4 sm:px-6 lg:px-10 py-16">
         <div className="max-w-6xl mx-auto">
           <div className="text-left space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#8B5E3C]">
-              Technology In Action
-            </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#454411]">
+          <p
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+  className="text-xl font-bold uppercase tracking-widest text-[#8B5E3C]"
+>
+  Technology In Action
+</p>
+            <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif" }} className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#454411]">
               TerraSkyAI is revolutionizing agriculture with real-time, AI-powered intelligence
             </h2>
-            <p className="text-lg leading-relaxed text-[#545454] max-w-4xl">
+            <p style={{ fontFamily:"'DM Sans',sans-serif" }} className="text-lg leading-relaxed text-[#545454] max-w-4xl">
               Through satellite imagery, IoT sensors, and machine learning, TerraSkyAI delivers
               instant visibility into crop health, soil conditions, and weather patterns. Farmers
               can optimize irrigation, detect pests early, and boost yields while reducing costs
@@ -151,10 +155,10 @@ export default function VisionMissionPage() {
       <section className="bg-[#E6E2D6] text-[#454411] px-4 sm:px-6 lg:px-10 py-16">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif" }} className="text-3xl sm:text-4xl font-bold mb-4">
               Our Stakeholders
             </h2>
-            <p className="text-lg text-[#545454] max-w-3xl mx-auto">
+            <p style={{ fontFamily:"'DM Sans',sans-serif" }} className="text-lg text-[#545454] max-w-3xl mx-auto">
               Discover how different sectors of agriculture leverage TerraSkyAI for enhanced productivity and profitability
             </p>
           </div>
@@ -180,10 +184,10 @@ export default function VisionMissionPage() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-[#454411] mb-2">
+                    <h3 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif" }} className="text-lg font-bold text-[#454411] mb-2">
                       {benefit.title}
                     </h3>
-                    <p className="text-sm leading-relaxed text-[#545454]">
+                    <p style={{ fontFamily:"'DM Sans',sans-serif" }} className="text-sm leading-relaxed text-[#545454]">
                       {benefit.description}
                     </p>
                   </div>
@@ -193,7 +197,6 @@ export default function VisionMissionPage() {
           </div>
         </div>
       </section>
-
 
     </div>
   );

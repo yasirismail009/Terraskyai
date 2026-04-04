@@ -8,7 +8,7 @@ export default function Footer() {
         borderTop: "1.5px solid rgba(69,68,17,0.12)",
         position: "relative",
         overflow: "hidden",
-        fontFamily: "'DM Sans', 'Segoe UI', sans-serif",
+        fontFamily: "'DM Sans', sans-serif",
       }}
     >
       <style>{`
@@ -132,20 +132,7 @@ export default function Footer() {
           <p style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"1.15rem", fontStyle:"italic", color:"#454411", fontWeight:600 }}>
             "From flights to insights — precision farming for the modern age."
           </p>
-          <a
-            href="/#contact"
-            style={{
-              background:"#454411", color:"#f5f2e8",
-              borderRadius:10, padding:"10px 22px",
-              fontSize:13, fontWeight:700,
-              textDecoration:"none", whiteSpace:"nowrap",
-              boxShadow:"0 4px 14px rgba(69,68,17,0.4)",
-              fontFamily:"'DM Sans',sans-serif",
-              transition:"background 0.2s",
-            }}
-          >
-            Get In Touch →
-          </a>
+          
         </div>
 
         {/* ── Main grid ── */}
@@ -169,19 +156,19 @@ export default function Footer() {
             {/* Socials */}
             <div style={{ display:"flex", gap:8 }}>
               {/* Instagram */}
-              <a href="#" className="ft-social" aria-label="Instagram">
+              {/* <a href="#" className="ft-social" aria-label="Instagram">
                 <svg viewBox="0 0 24 24" fill="none" style={{ width:16, height:16 }}>
                   <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.8"/>
                   <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8"/>
                   <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                 </svg>
-              </a>
+              </a> */}
               {/* Twitter/X */}
-              <a href="#" className="ft-social" aria-label="Twitter">
+              {/* <a href="#" className="ft-social" aria-label="Twitter">
                 <svg viewBox="0 0 24 24" fill="currentColor" style={{ width:14, height:14 }}>
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
-              </a>
+              </a> */}
               {/* LinkedIn */}
               <a href="https://ca.linkedin.com/company/terraskyai-inc" className="ft-social" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" fill="none" style={{ width:16, height:16 }}>
@@ -190,11 +177,11 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Facebook */}
-              <a href="#" className="ft-social" aria-label="Facebook">
+              {/* <a href="#" className="ft-social" aria-label="Facebook">
                 <svg viewBox="0 0 24 24" fill="none" style={{ width:16, height:16 }}>
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </a>
+              </a> */}
             </div>
           </div>
 
@@ -204,10 +191,10 @@ export default function Footer() {
             <ul style={{ listStyle:"none", padding:0, margin:0, display:"flex", flexDirection:"column", gap:10 }}>
               {[
                 { label:"Home",                href:"/#home" },
-                { label:"Career",              href:"/#Career" },
-                { label:"About Us",            href:"/#about" },
+                { label:"Career",              href:"/careers" },
+                { label:"About Us",            href:"/vision-mission" },
                 { label:"Why Us",              href:"/#why-us" },
-                { label:"Contact",             href:"/#contact" },
+                { label:"Contact",             href:"/contact" },
               ].map((l) => (
                 <li key={l.label}>
                   <a href={l.href} className="ft-link">{l.label}</a>
@@ -251,32 +238,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h3 className="ft-col-title">Newsletter</h3>
-            <p style={{ fontSize:13, color:"#545454", lineHeight:1.75, marginBottom:16 }}>
-              Stay updated with the latest in precision agriculture, product launches, and field insights.
-            </p>
-            <div style={{ display:"flex", gap:8, marginBottom:10 }}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="ft-newsletter-input"
-              />
-              <button className="ft-newsletter-btn">→</button>
-            </div>
-            <p style={{ fontSize:11, color:"#a0a080" }}>No spam. Unsubscribe anytime.</p>
-
-            {/* Location */}
-            <div style={{ marginTop:22, display:"flex", alignItems:"flex-start", gap:8 }}>
-              <svg viewBox="0 0 24 24" fill="none" style={{ width:14, height:14, color:"#8B5E3C", flexShrink:0, marginTop:2 }}>
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span style={{ fontSize:13, color:"#545454", lineHeight:1.6 }}>Alberta, Canada</span>
-            </div>
-          </div>
-
+         
         </div>
 
         {/* ── Divider ── */}
@@ -287,11 +249,7 @@ export default function Footer() {
           <p style={{ fontSize:12, color:"#a0a080" }}>
             © {new Date().getFullYear()} TerraSkyAI. All Rights Reserved.
           </p>
-          <div style={{ display:"flex", gap:20 }}>
-            <a href="#" className="ft-bottom-link">Privacy Policy</a>
-            <a href="#" className="ft-bottom-link">Terms of Service</a>
-            <a href="#" className="ft-bottom-link">Sitemap</a>
-          </div>
+          
         </div>
 
       </div>

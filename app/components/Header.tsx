@@ -39,10 +39,13 @@ export default function Header() {
                 <a
                   key={href}
                   href={href}
-                  className="relative font-medium transition-colors"
+                  className="relative transition-colors"
                   style={{
+                    fontFamily: "'DM Sans', sans-serif",
                     color: isActive ? "#454411" : "#545454",
                     fontWeight: isActive ? 700 : 500,
+                    fontSize: 15,
+                    textDecoration: "none",
                   }}
                 >
                   {label}
@@ -91,6 +94,7 @@ export default function Header() {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   style={{
+                    fontFamily: "'DM Sans', sans-serif",
                     color: isActive ? "#454411" : "#545454",
                     fontWeight: isActive ? 700 : 500,
                     borderLeft: isActive ? "3px solid #454411" : "3px solid transparent",
@@ -98,7 +102,6 @@ export default function Header() {
                     paddingTop: 12,
                     paddingBottom: 12,
                     fontSize: 15,
-                    fontFamily: "'DM Sans', sans-serif",
                     transition: "color 0.2s",
                     textDecoration: "none",
                     display: "block",

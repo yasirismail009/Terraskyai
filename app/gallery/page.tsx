@@ -25,7 +25,7 @@ const events = [
     tag: "Career Event",
     tagColor: "#454411",
     description:
-      "It was a pleasure connecting with talented students and professionals passionate about agriculture, technology, and innovation at the University of Lethbridge Career Fair. We shared our vision for the future of AgriTech, discussed career opportunities, and were energized by the enthusiasm of the next generation of agricultural innovators.",
+      "It was a pleasure connecting with talented students and professionals passionate about agriculture, technology, and innovation at the University of Lethbridge Career Fair. We shared our vision for the future of AgTech, discussed career opportunities, and were energized by the enthusiasm of the next generation of agricultural innovators.",
     highlight: "Connecting with the next generation",
     images: [
 
@@ -490,7 +490,7 @@ export default function GalleryPage() {
             lineHeight:1.8,
             marginBottom:32,
           }}>
-            We'd love to connect. Reach out and let's start a conversation about the future of your farm.
+            Reach out and let's start a conversation about the future of your farm.
           </p>
           <a
             href="/contact"
