@@ -1,9 +1,6 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import CoreValues from '@/app/components/CoreValues';
-
-export const AZURE_BASE_URL = 'https://skysightappstorage.blob.core.windows.net/devstorage';
-export const AZURE_SAS_TOKEN =
-  '?sp=racwdl&st=2026-01-28T07:09:45Z&se=2026-02-27T15:24:45Z&spr=https&sv=2024-11-04&sr=c&sig=2a%2BRyb1L6GOWdqb8tm2fP1IzAC%2F%2FIjOMq06BDVSxxPM%3D';
 
 export default function Home() {
   return (
@@ -276,7 +273,7 @@ export default function Home() {
             </div>
           </div>
 
-          <a
+          <Link
             href="/products/skysight"
             className="prod-card prod-card-2 prod-card-inner"
             style={{
@@ -388,7 +385,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 

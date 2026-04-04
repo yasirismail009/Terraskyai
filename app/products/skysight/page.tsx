@@ -46,8 +46,6 @@ export default function SkySightPage() {
   return (
     <div className="min-h-screen" style={{ background: '#FDFCF5' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
-
         @keyframes ss-fadeUp {
           from { opacity:0; transform:translateY(30px); }
           to   { opacity:1; transform:translateY(0); }

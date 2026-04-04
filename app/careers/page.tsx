@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type CareerPostSummary = {
   id: string | number;
@@ -224,7 +224,7 @@ export default function CareersPage() {
     dronePilotLicense: '' as '' | 'yes' | 'no',
   });
 
-  const positionsForRender = useMemo(() => positions, [positions]);
+  const positionsForRender = positions;
 
   useEffect(() => {
     let cancelled = false;
@@ -353,8 +353,6 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen" style={{ background: '#FDFCF5' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600;700&display=swap');
-
         @keyframes cr-fadeUp   { from{opacity:0;transform:translateY(32px);}  to{opacity:1;transform:translateY(0);} }
         @keyframes cr-spin     { from{transform:rotate(0deg);}  to{transform:rotate(360deg);} }
         @keyframes cr-pulse    { 0%,100%{opacity:0.4;} 50%{opacity:0.85;} }

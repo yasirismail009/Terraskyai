@@ -39,7 +39,7 @@ export default function Header() {
             {navLinks.map(({ href, label }) => {
               const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
               return (
-                <a
+                <Link
                   key={href}
                   href={href}
                   className="relative transition-colors"
@@ -65,7 +65,7 @@ export default function Header() {
                       }}
                     />
                   )}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -106,7 +106,7 @@ export default function Header() {
             {navLinks.map(({ href, label }) => {
               const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
               return (
-                <a
+                <Link
                   key={href}
                   href={href}
                   onClick={() => setMenuOpen(false)}
@@ -125,7 +125,7 @@ export default function Header() {
                   }}
                 >
                   {label}
-                </a>
+                </Link>
               );
             })}
           </nav>

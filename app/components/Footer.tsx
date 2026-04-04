@@ -13,8 +13,6 @@ export default function Footer() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap');
-
         .ft-dot-grid {
           background-image: radial-gradient(circle, rgba(69,68,17,0.06) 1px, transparent 1px);
           background-size: 28px 28px;
@@ -296,9 +294,9 @@ export default function Footer() {
                 { label: 'Contact', href: '/contact' },
               ].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="ft-link">
+                  <Link href={l.href} className="ft-link">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -319,9 +317,9 @@ export default function Footer() {
             >
               {[{ label: 'SkySight', href: '/products/skysight' }].map((l) => (
                 <li key={l.label}>
-                  <a href={l.href} className="ft-link">
+                  <Link href={l.href} className="ft-link">
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
