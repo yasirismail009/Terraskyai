@@ -1,33 +1,36 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const benefits = [
   {
-    title: "Seed Production Industry",
-    description: "Hybrid canola seed purity through off-type/volunteer canola detection, yield estimation for supply chain optimization.",
-    image: "/assets/Picture1.jpg",
+    title: 'Seed Production Industry',
+    description:
+      'Hybrid canola seed purity through off-type/volunteer canola detection, yield estimation for supply chain optimization.',
+    image: '/assets/Picture1.jpg',
   },
   {
-    title: "Potato Processing Industry",
-    description: "Delivers precise, field-level intelligence that helps secure reliable supply, improve quality consistency, and reduce production risk.",
-    image: "/assets/Picture2.jpg",
+    title: 'Potato Processing Industry',
+    description:
+      'Delivers precise, field-level intelligence that helps secure reliable supply, improve quality consistency, and reduce production risk.',
+    image: '/assets/Picture2.jpg',
   },
   {
-    title: "Agri-Retails",
-    description: "Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance.",
-    image: "/assets/AG.png",
+    title: 'Agri-Retails',
+    description:
+      'Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance.',
+    image: '/assets/AG.png',
   },
   {
-    title: "Growers",
-    description: "Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability.",
-    image: "/assets/Growers.png",
+    title: 'Growers',
+    description:
+      'Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability.',
+    image: '/assets/Growers.png',
   },
   {
-    title: "Insurance Companies",
-    description: "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency.",
-    image: "/assets/insurance.png",
+    title: 'Insurance Companies',
+    description:
+      'Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency.',
+    image: '/assets/insurance.png',
   },
- 
- 
 ];
 
 export default function TechnologyInActionPage() {
@@ -46,8 +49,8 @@ export default function TechnologyInActionPage() {
             <p className="text-lg leading-relaxed text-[#545454] max-w-4xl">
               Through satellite imagery, IoT sensors, and machine learning, TerraSkyAI delivers
               instant visibility into crop health, soil conditions, and weather patterns. Farmers
-              can optimize irrigation, detect pests early, and boost yields while reducing costs
-              and environmental impact—bridging traditional farming with modern innovation for a
+              can optimize irrigation, detect pests early, and boost yields while reducing costs and
+              environmental impact—bridging traditional farming with modern innovation for a
               sustainable future.
             </p>
           </div>
@@ -62,18 +65,17 @@ export default function TechnologyInActionPage() {
               How can they benefit by using TerraSkyAI?
             </h2>
             <p className="text-lg text-[#545454] max-w-3xl mx-auto">
-              Discover how different sectors of agriculture leverage TerraSkyAI for enhanced productivity and profitability
+              Discover how different sectors of agriculture leverage TerraSkyAI for enhanced
+              productivity and profitability
             </p>
           </div>
 
           <div className="grid grid-cols-12 gap-6">
             {benefits.map((benefit, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className={`bg-white rounded-2xl p-6 shadow-lg border border-[#8B5E3C]/20 ${
-                  index < 2 
-                    ? 'col-span-12 md:col-span-6' 
-                    : 'col-span-12 md:col-span-4'
+                  index < 2 ? 'col-span-12 md:col-span-6' : 'col-span-12 md:col-span-4'
                 }`}
               >
                 <div className="flex flex-col gap-4">
@@ -87,12 +89,8 @@ export default function TechnologyInActionPage() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-[#454411] mb-2">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[#545454]">
-                      {benefit.description}
-                    </p>
+                    <h3 className="text-lg font-bold text-[#454411] mb-2">{benefit.title}</h3>
+                    <p className="text-sm leading-relaxed text-[#545454]">{benefit.description}</p>
                   </div>
                 </div>
               </div>
@@ -103,4 +101,3 @@ export default function TechnologyInActionPage() {
     </div>
   );
 }
-

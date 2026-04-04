@@ -1,67 +1,68 @@
-import Image from "next/image";
-import CoreValues from "@/app/components/CoreValues";
+import Image from 'next/image';
+import CoreValues from '@/app/components/CoreValues';
 
 export const AZURE_BASE_URL = 'https://skysightappstorage.blob.core.windows.net/devstorage';
-export const AZURE_SAS_TOKEN = '?sp=racwdl&st=2026-01-28T07:09:45Z&se=2026-02-27T15:24:45Z&spr=https&sv=2024-11-04&sr=c&sig=2a%2BRyb1L6GOWdqb8tm2fP1IzAC%2F%2FIjOMq06BDVSxxPM%3D';
+export const AZURE_SAS_TOKEN =
+  '?sp=racwdl&st=2026-01-28T07:09:45Z&se=2026-02-27T15:24:45Z&spr=https&sv=2024-11-04&sr=c&sig=2a%2BRyb1L6GOWdqb8tm2fP1IzAC%2F%2FIjOMq06BDVSxxPM%3D';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#E6E2D6] relative overflow-hidden">
-
       {/* ── Hero ── */}
-    <section
-  id="home"
-  className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-hidden"
->  {/* <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-fill z-0">
+      <section
+        id="home"
+        className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-hidden"
+      >
+        {' '}
+        {/* <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-fill z-0">
           <source src={`${AZURE_BASE_URL}/Videos/Landing_Page${AZURE_SAS_TOKEN}`} type="video/mp4" />
           <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.webm${AZURE_SAS_TOKEN}`} type="video/webm" />
           <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.ogv${AZURE_SAS_TOKEN}`} type="video/ogg" />
         </video> */}
-  {/* Background Image */}
-  <img
-    src="/assets/behind.jpg"
-    alt="TerraSkyAI in action"
-    className="absolute inset-0 w-full h-full object-cover z-0"
-  />
+        {/* Background Image */}
+        <Image
+          src="/assets/behind.jpg"
+          alt="TerraSkyAI in action"
+          fill
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/30 z-10" />
+        {/* Content */}
+        <div className="relative z-20 mx-auto text-center flex flex-col items-center justify-center">
+          <h1
+            style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
+            className="text-3xl sm:text-4xl lg:text-5xl text-white mb-2 leading-tight tracking-tight drop-shadow-lg"
+          >
+            Flights to Insights
+          </h1>
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 bg-black/30 z-10" />
+          <h2
+            style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
+            className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-3 leading-tight tracking-tight drop-shadow-lg"
+          >
+            <span className="px-2 py-1">Making Precision Farming Sustainable and Profitable</span>
+          </h2>
 
-  {/* Content */}
-  <div className="relative z-20 mx-auto text-center flex flex-col items-center justify-center">
-    <h1
-      style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
-      className="text-3xl sm:text-4xl lg:text-5xl text-white mb-2 leading-tight tracking-tight drop-shadow-lg"
-    >
-      Flights to Insights
-    </h1>
+          <p
+            style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 400 }}
+            className="text-base sm:text-lg text-white max-w-2xl mx-auto leading-relaxed mb-6 drop-shadow-md"
+          >
+            Leverage advanced drone imagery and AI technology to optimize your crop scouting,
+            increase yields, and make data-driven decisions for your farm.
+          </p>
+        </div>
+      </section>
 
-    <h2
-      style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
-      className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-3 leading-tight tracking-tight drop-shadow-lg"
-    >
-      <span className="px-2 py-1">
-        Making Precision Farming Sustainable and Profitable
-      </span>
-    </h2>
-
-    <p
-      style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 400 }}
-      className="text-base sm:text-lg text-white max-w-2xl mx-auto leading-relaxed mb-6 drop-shadow-md"
-    >
-      Leverage advanced drone imagery and AI technology to optimize your crop scouting,
-      increase yields, and make data-driven decisions for your farm.
-    </p>
-  </div>
-</section>
-
-       {/* ── Our Products ── */}
+      {/* ── Our Products ── */}
       <section
         style={{
-          background: "#FDFCF5",
-          padding: "80px 24px",
-          position: "relative",
-          overflow: "hidden",
+          background: '#FDFCF5',
+          padding: '80px 24px',
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
         <style>{`
@@ -184,70 +185,206 @@ export default function Home() {
           }
         `}</style>
 
-        <div className="prod-section-bg" style={{ position:"absolute", inset:0, pointerEvents:"none" }} />
-        <div style={{ position:"absolute", top:-80, left:"20%", width:400, height:400, borderRadius:"50%", background:"radial-gradient(circle, rgba(69,68,17,0.06) 0%, transparent 70%)", filter:"blur(40px)", pointerEvents:"none" }} />
+        <div
+          className="prod-section-bg"
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: -80,
+            left: '20%',
+            width: 400,
+            height: 400,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(69,68,17,0.06) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            pointerEvents: 'none',
+          }}
+        />
 
-        <div style={{ maxWidth:1100, margin:"0 auto", position:"relative" }}>
-          <div style={{ textAlign:"center", marginBottom:52 }}>
-            <span style={{ display:"inline-block", background:"rgba(69,68,17,0.08)", border:"1px solid rgba(69,68,17,0.2)", color:"#454411", fontSize:"11px", fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", padding:"5px 16px", borderRadius:"999px", marginBottom:16, fontFamily:"'DM Sans',sans-serif" }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+          <div style={{ textAlign: 'center', marginBottom: 52 }}>
+            <span
+              style={{
+                display: 'inline-block',
+                background: 'rgba(69,68,17,0.08)',
+                border: '1px solid rgba(69,68,17,0.2)',
+                color: '#454411',
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                padding: '5px 16px',
+                borderRadius: '999px',
+                marginBottom: 16,
+                fontFamily: "'DM Sans',sans-serif",
+              }}
+            >
               Our Products
             </span>
-            <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"clamp(2rem,4vw,3rem)", fontWeight:700, color:"#2d2e0a", lineHeight:1.15, letterSpacing:"-0.02em", marginBottom:12 }}>
-              Tools Built for the{" "}<em style={{ color:"#8B5E3C" }}>Modern Farm</em>
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond',Georgia,serif",
+                fontSize: 'clamp(2rem,4vw,3rem)',
+                fontWeight: 700,
+                color: '#2d2e0a',
+                lineHeight: 1.15,
+                letterSpacing: '-0.02em',
+                marginBottom: 12,
+              }}
+            >
+              Tools Built for the <em style={{ color: '#8B5E3C' }}>Modern Farm</em>
             </h2>
-            <p style={{ fontFamily:"'DM Sans',sans-serif", color:"#7a7860", fontSize:"1rem", maxWidth:480, margin:"0 auto", lineHeight:1.75 }}>
-              Our flagship platform — turning aerial drone data into actionable decisions that grow your yield and bottom line.
+            <p
+              style={{
+                fontFamily: "'DM Sans',sans-serif",
+                color: '#7a7860',
+                fontSize: '1rem',
+                maxWidth: 480,
+                margin: '0 auto',
+                lineHeight: 1.75,
+              }}
+            >
+              Our flagship platform — turning aerial drone data into actionable decisions that grow
+              your yield and bottom line.
             </p>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, marginTop:20 }}>
-              <div style={{ height:1, width:56, background:"linear-gradient(90deg,transparent,#454411)" }} />
-              <div style={{ width:6, height:6, borderRadius:"50%", background:"#454411" }} />
-              <div style={{ height:1, width:56, background:"linear-gradient(90deg,#454411,transparent)" }} />
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 10,
+                marginTop: 20,
+              }}
+            >
+              <div
+                style={{
+                  height: 1,
+                  width: 56,
+                  background: 'linear-gradient(90deg,transparent,#454411)',
+                }}
+              />
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#454411' }} />
+              <div
+                style={{
+                  height: 1,
+                  width: 56,
+                  background: 'linear-gradient(90deg,#454411,transparent)',
+                }}
+              />
             </div>
           </div>
 
           <a
             href="/products/skysight"
             className="prod-card prod-card-2 prod-card-inner"
-            style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:48, alignItems:"center", padding:"60px 56px 52px" }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 48,
+              alignItems: 'center',
+              padding: '60px 56px 52px',
+            }}
           >
             <div className="prod-icon-wrap" />
             <div className="prod-icon-wrap-2" />
             <div className="prod-badge">Web Portal</div>
 
-            <div style={{ display:"flex", flexDirection:"column" }}>
-              <div className="prod-tag" style={{ marginBottom:24 }}>
-                <svg viewBox="0 0 16 16" fill="none" style={{ width:10, height:10 }}>
-                  <path d="M8 2a6 6 0 100 12A6 6 0 008 2z" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M2 8h12M8 2c-1.5 2-2 4-2 6s.5 4 2 6M8 2c1.5 2 2 4 2 6s-.5 4-2 6" stroke="currentColor" strokeWidth="1.2"/>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <div className="prod-tag" style={{ marginBottom: 24 }}>
+                <svg viewBox="0 0 16 16" fill="none" style={{ width: 10, height: 10 }}>
+                  <path
+                    d="M8 2a6 6 0 100 12A6 6 0 008 2z"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path
+                    d="M2 8h12M8 2c-1.5 2-2 4-2 6s.5 4 2 6M8 2c1.5 2 2 4 2 6s-.5 4-2 6"
+                    stroke="currentColor"
+                    strokeWidth="1.2"
+                  />
                 </svg>
                 Precision Analytics
               </div>
-              <h3 className="prod-title" style={{ fontSize:"clamp(2.8rem,5vw,4rem)", marginBottom:20 }}>SkySight</h3>
+              <h3
+                className="prod-title"
+                style={{ fontSize: 'clamp(2.8rem,5vw,4rem)', marginBottom: 20 }}
+              >
+                SkySight
+              </h3>
               <div className="prod-shimmer-line" />
-              <p className="prod-desc" style={{ fontSize:16, marginBottom:32 }}>
-                All-in-one digital farming portal for seamless farm management, unlocking efficiency and success from anywhere, anytime.
+              <p className="prod-desc" style={{ fontSize: 16, marginBottom: 32 }}>
+                All-in-one digital farming portal for seamless farm management, unlocking efficiency
+                and success from anywhere, anytime.
               </p>
               <div className="prod-cta">
                 Explore SkySight
-                <svg viewBox="0 0 20 20" fill="none" style={{ width:16, height:16 }}>
-                  <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
+                  <path
+                    d="M4 10h12M10 4l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             </div>
 
-            <div className="prod-feat-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:14 }}>
+            <div
+              className="prod-feat-grid"
+              style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}
+            >
               {[
-                { label:"Real-time field monitoring",            desc:"Live data from every corner of your farm" },
-                { label:"Drone data integration",               desc:"Seamless aerial imagery processing" },
-                { label:"Cloud-based portal",                   desc:"Access from anywhere, anytime" },
-                { label:"AI-powered analytics",                 desc:"Turn raw data into clear decisions" },
-                { label:"Computer Vision Analytics and Reports",desc:"In-depth insights and simplified report generation" },
-                { label:"AI Powered Crop Intelligence",         desc:"Smart recommendations for every growth stage" },
-              ].map((f,i) => (
-                <div key={i} style={{ background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.12)", borderRadius:14, padding:"16px 14px", transition:"background 0.25s, transform 0.25s" }}>
-                  <span style={{ fontSize:22, display:"block", marginBottom:8 }}></span>
-                  <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:13, fontWeight:700, color:"#fff", marginBottom:4 }}>{f.label}</p>
-                  <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:12, color:"rgba(255,255,255,0.6)", lineHeight:1.5 }}>{f.desc}</p>
+                {
+                  label: 'Real-time field monitoring',
+                  desc: 'Live data from every corner of your farm',
+                },
+                { label: 'Drone data integration', desc: 'Seamless aerial imagery processing' },
+                { label: 'Cloud-based portal', desc: 'Access from anywhere, anytime' },
+                { label: 'AI-powered analytics', desc: 'Turn raw data into clear decisions' },
+                {
+                  label: 'Computer Vision Analytics and Reports',
+                  desc: 'In-depth insights and simplified report generation',
+                },
+                {
+                  label: 'AI Powered Crop Intelligence',
+                  desc: 'Smart recommendations for every growth stage',
+                },
+              ].map((f, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: 'rgba(255,255,255,0.07)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    borderRadius: 14,
+                    padding: '16px 14px',
+                    transition: 'background 0.25s, transform 0.25s',
+                  }}
+                >
+                  <span style={{ fontSize: 22, display: 'block', marginBottom: 8 }}></span>
+                  <p
+                    style={{
+                      fontFamily: "'DM Sans',sans-serif",
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: '#fff',
+                      marginBottom: 4,
+                    }}
+                  >
+                    {f.label}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "'DM Sans',sans-serif",
+                      fontSize: 12,
+                      color: 'rgba(255,255,255,0.6)',
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {f.desc}
+                  </p>
                 </div>
               ))}
             </div>
@@ -261,7 +398,12 @@ export default function Home() {
       <section
         id="about"
         className="scroll-mt-20"
-        style={{ background: "#FDFCF5", padding: "96px 24px", position: "relative", overflow: "hidden" }}
+        style={{
+          background: '#FDFCF5',
+          padding: '96px 24px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
       >
         <style>{`
           .ab-dot-bg {
@@ -313,49 +455,153 @@ export default function Home() {
           }
         `}</style>
 
-        <div className="ab-dot-bg" style={{ position:"absolute", inset:0, pointerEvents:"none" }} />
-        <div style={{ position:"absolute", top:-80, left:"-5%", width:420, height:420, borderRadius:"50%", background:"radial-gradient(circle, rgba(190,169,80,0.07) 0%, transparent 70%)", filter:"blur(50px)", pointerEvents:"none" }} />
-        <div style={{ position:"absolute", bottom:-60, right:"5%", width:340, height:340, borderRadius:"50%", background:"radial-gradient(circle, rgba(139,94,60,0.06) 0%, transparent 70%)", filter:"blur(40px)", pointerEvents:"none" }} />
+        <div
+          className="ab-dot-bg"
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: -80,
+            left: '-5%',
+            width: 420,
+            height: 420,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(190,169,80,0.07) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: -60,
+            right: '5%',
+            width: 340,
+            height: 340,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(139,94,60,0.06) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            pointerEvents: 'none',
+          }}
+        />
 
-        <div style={{ maxWidth:1200, margin:"0 auto", position:"relative" }}>
-          <div className="ab-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"center" }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
+          <div
+            className="ab-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 64,
+              alignItems: 'center',
+            }}
+          >
             <div className="ab-left">
-              <span style={{ display:"inline-block", background:"rgba(69,68,17,0.08)", border:"1px solid rgba(69,68,17,0.18)", color:"#454411", fontSize:11, fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", padding:"5px 16px", borderRadius:"999px", marginBottom:20, fontFamily:"'DM Sans',sans-serif" }}>
+              <span
+                style={{
+                  display: 'inline-block',
+                  background: 'rgba(69,68,17,0.08)',
+                  border: '1px solid rgba(69,68,17,0.18)',
+                  color: '#454411',
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  padding: '5px 16px',
+                  borderRadius: '999px',
+                  marginBottom: 20,
+                  fontFamily: "'DM Sans',sans-serif",
+                }}
+              >
                 About Us
               </span>
-              <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"clamp(2.2rem,4vw,3.2rem)", fontWeight:700, color:"#2d2e0a", lineHeight:1.15, letterSpacing:"-0.02em", marginBottom:20 }}>
-                Powering Smarter Fields with{" "}
-                <em style={{ color:"#8B5E3C" }}>Practical AI</em>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond',Georgia,serif",
+                  fontSize: 'clamp(2.2rem,4vw,3.2rem)',
+                  fontWeight: 700,
+                  color: '#2d2e0a',
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.02em',
+                  marginBottom: 20,
+                }}
+              >
+                Powering Smarter Fields with <em style={{ color: '#8B5E3C' }}>Practical AI</em>
               </h2>
-              <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:16, color:"#545454", lineHeight:1.8, marginBottom:32 }}>
-                TerraSkyAI is an innovative AgTech company leveraging Artificial Intelligence and Machine Learning to revolutionize agriculture — empowering farmers worldwide with optimized operations and improved crop yields.
+              <p
+                style={{
+                  fontFamily: "'DM Sans',sans-serif",
+                  fontSize: 16,
+                  color: '#545454',
+                  lineHeight: 1.8,
+                  marginBottom: 32,
+                }}
+              >
+                TerraSkyAI is an innovative AgTech company leveraging Artificial Intelligence and
+                Machine Learning to revolutionize agriculture — empowering farmers worldwide with
+                optimized operations and improved crop yields.
               </p>
-             <div className="grid grid-cols-2 gap-4 mb-9">
-  {["AI & Machine Learning","Drone Imagery","Precision Analytics","Sustainable Farming"].map((p) => (
-    <div
-      key={p}
-      className="ab-pill flex items-center justify-center text-center px-3 py-3"
-    >
-      <svg viewBox="0 0 8 8" fill="#454411" className="w-2 h-2 mr-2 flex-shrink-0">
-        <circle cx="4" cy="4" r="4"/>
-      </svg>
-      <span>{p}</span>
-    </div>
-  ))}
-</div>
+              <div className="grid grid-cols-2 gap-4 mb-9">
+                {[
+                  'AI & Machine Learning',
+                  'Drone Imagery',
+                  'Precision Analytics',
+                  'Sustainable Farming',
+                ].map((p) => (
+                  <div
+                    key={p}
+                    className="ab-pill flex items-center justify-center text-center px-3 py-3"
+                  >
+                    <svg viewBox="0 0 8 8" fill="#454411" className="w-2 h-2 mr-2 flex-shrink-0">
+                      <circle cx="4" cy="4" r="4" />
+                    </svg>
+                    <span>{p}</span>
+                  </div>
+                ))}
+              </div>
               <a href="/vision-mission" className="ab-cta">
                 Learn More
-                <svg viewBox="0 0 20 20" fill="none" style={{ width:16, height:16 }}>
-                  <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
+                  <path
+                    d="M4 10h12M10 4l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </a>
             </div>
 
-            <div className="ab-right" style={{ display:"flex", flexDirection:"column", gap:20 }}>
+            <div className="ab-right" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               <div className="ab-img-wrap">
-                <img src="/assets/img_1054.jpeg" alt="TerraSkyAI in action" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
-                <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(30,32,9,0.4) 0%, transparent 55%)" }} />
-                <div style={{ position:"absolute", bottom:20, left:20, right:20, fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"1.2rem", fontWeight:700, color:"#fff", lineHeight:1.3 }}>
+                <Image
+                  src="/assets/img_1054.jpeg"
+                  alt="TerraSkyAI in action"
+                  width={720}
+                  height={540}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(30,32,9,0.4) 0%, transparent 55%)',
+                  }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    left: 20,
+                    right: 20,
+                    fontFamily: "'Cormorant Garamond',Georgia,serif",
+                    fontSize: '1.2rem',
+                    fontWeight: 700,
+                    color: '#fff',
+                    lineHeight: 1.3,
+                  }}
+                >
                   From Flights to Insights
                 </div>
               </div>
@@ -368,7 +614,12 @@ export default function Home() {
       <section
         id="why-us"
         className="scroll-mt-20"
-        style={{ background: "#FDFCF5", padding: "88px 24px", position: "relative", overflow: "hidden" }}
+        style={{
+          background: '#FDFCF5',
+          padding: '88px 24px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
       >
         <style>{`
           .wu-dot-grid {
@@ -435,77 +686,244 @@ export default function Home() {
           }
         `}</style>
 
-        <div className="wu-dot-grid" style={{ position:"absolute", inset:0, pointerEvents:"none" }} />
-        <div style={{ position:"absolute", top:-60, right:"10%", width:360, height:360, borderRadius:"50%", background:"radial-gradient(circle, rgba(139,94,60,0.06) 0%, transparent 70%)", filter:"blur(50px)", pointerEvents:"none" }} />
-        <div style={{ position:"absolute", bottom:-40, left:"5%", width:300, height:300, borderRadius:"50%", background:"radial-gradient(circle, rgba(69,68,17,0.05) 0%, transparent 70%)", filter:"blur(40px)", pointerEvents:"none" }} />
+        <div
+          className="wu-dot-grid"
+          style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: -60,
+            right: '10%',
+            width: 360,
+            height: 360,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(139,94,60,0.06) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: -40,
+            left: '5%',
+            width: 300,
+            height: 300,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(69,68,17,0.05) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            pointerEvents: 'none',
+          }}
+        />
 
-        <div style={{ maxWidth:1300, margin:"0 auto", position:"relative" }}>
-          <div style={{ marginBottom:48 }}>
-            <span style={{ display:"inline-block", background:"rgba(69,68,17,0.07)", border:"1px solid rgba(69,68,17,0.18)", color:"#454411", fontSize:"11px", fontWeight:700, letterSpacing:"0.14em", textTransform:"uppercase", padding:"5px 16px", borderRadius:"999px", fontFamily:"'DM Sans',sans-serif" }}>
+        <div style={{ maxWidth: 1300, margin: '0 auto', position: 'relative' }}>
+          <div style={{ marginBottom: 48 }}>
+            <span
+              style={{
+                display: 'inline-block',
+                background: 'rgba(69,68,17,0.07)',
+                border: '1px solid rgba(69,68,17,0.18)',
+                color: '#454411',
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                padding: '5px 16px',
+                borderRadius: '999px',
+                fontFamily: "'DM Sans',sans-serif",
+              }}
+            >
               Why Us?
             </span>
           </div>
 
-          <div className="wu-main-grid" style={{ display:"grid", gridTemplateColumns:"1.3fr 1fr", gap:52, alignItems:"stretch" }}>
-            <div className="wu-video-wrap" style={{ position:"relative", display:"flex", flexDirection:"column" }}>
-              <div style={{ position:"relative", borderRadius:24, overflow:"hidden", boxShadow:"0 20px 60px rgba(0,0,0,0.15)", height:"100%" }}>
-<video
-  autoPlay
-  muted
-  loop
-  playsInline
-  style={{
-    width: "100%",
-    height: "100%",
-    minHeight: 520,
-    objectFit: "cover",
-    objectPosition: "36% center", 
-    display: "block"
-  }}
->                  <source src="https://res.cloudinary.com/dtv4ky9cu/video/upload/v1773917961/Website-video-1-small_pcllip.mp4" type="video/mp4" />
+          <div
+            className="wu-main-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1.3fr 1fr',
+              gap: 52,
+              alignItems: 'stretch',
+            }}
+          >
+            <div
+              className="wu-video-wrap"
+              style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}
+            >
+              <div
+                style={{
+                  position: 'relative',
+                  borderRadius: 24,
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 60px rgba(0,0,0,0.15)',
+                  height: '100%',
+                }}
+              >
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    minHeight: 520,
+                    objectFit: 'cover',
+                    objectPosition: '36% center',
+                    display: 'block',
+                  }}
+                >
+                  {' '}
+                  <source
+                    src="https://res.cloudinary.com/dtv4ky9cu/video/upload/v1773917961/Website-video-1-small_pcllip.mp4"
+                    type="video/mp4"
+                  />
                 </video>
-                <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(30,32,9,0.35) 0%, transparent 50%)" }} />
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(to top, rgba(30,32,9,0.35) 0%, transparent 50%)',
+                  }}
+                />
               </div>
-              <div style={{ position:"absolute", top:-8, left:-8, right:8, bottom:8, borderRadius:28, border:"1.5px dashed rgba(69,68,17,0.12)", pointerEvents:"none", zIndex:-1 }} />
+              <div
+                style={{
+                  position: 'absolute',
+                  top: -8,
+                  left: -8,
+                  right: 8,
+                  bottom: 8,
+                  borderRadius: 28,
+                  border: '1.5px dashed rgba(69,68,17,0.12)',
+                  pointerEvents: 'none',
+                  zIndex: -1,
+                }}
+              />
             </div>
 
             <div className="wu-content">
-              <h2 style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"clamp(2rem,3.5vw,2.8rem)", fontWeight:700, color:"#2d2e0a", lineHeight:1.2, letterSpacing:"-0.02em", marginBottom:16 }}>
-                Trusted, AI-driven partner for{" "}
-                <em style={{ color:"#8B5E3C" }}>smarter farming</em>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond',Georgia,serif",
+                  fontSize: 'clamp(2rem,3.5vw,2.8rem)',
+                  fontWeight: 700,
+                  color: '#2d2e0a',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.02em',
+                  marginBottom: 16,
+                }}
+              >
+                Trusted, AI-driven partner for <em style={{ color: '#8B5E3C' }}>smarter farming</em>
               </h2>
-              <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:15, color:"#545454", lineHeight:1.8, marginBottom:28 }}>
-                TerraSkyAI blends satellite imagery and advanced machine learning to deliver actionable insights that cut waste, improve yields, and reduce costs.
+              <p
+                style={{
+                  fontFamily: "'DM Sans',sans-serif",
+                  fontSize: 15,
+                  color: '#545454',
+                  lineHeight: 1.8,
+                  marginBottom: 28,
+                }}
+              >
+                TerraSkyAI blends satellite imagery and advanced machine learning to deliver
+                actionable insights that cut waste, improve yields, and reduce costs.
               </p>
 
-              <div className="wu-stats-row" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12, marginBottom:28 }}>
+              <div
+                className="wu-stats-row"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3,1fr)',
+                  gap: 12,
+                  marginBottom: 28,
+                }}
+              >
                 {[
-                  { val:"80%", label:"Input savings",       bar:"80" },
-                  { val:"3×",  label:"Faster scouting",     bar:"65" },
-                  { val:"99%", label:"Detection accuracy",  bar:"99" },
+                  { val: '80%', label: 'Input savings', bar: '80' },
+                  { val: '3×', label: 'Faster scouting', bar: '65' },
+                  { val: '99%', label: 'Detection accuracy', bar: '99' },
                 ].map((s) => (
-                  <div key={s.val} className="wu-stat" style={{ background:"rgba(69,68,17,0.04)", border:"1px solid rgba(69,68,17,0.1)", borderRadius:12, padding:"12px 14px" }}>
-                    <p style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:"1.8rem", fontWeight:700, color:"#454411", lineHeight:1 }}>{s.val}</p>
-                    <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:11, color:"#8B5E3C", fontWeight:500, marginTop:3 }}>{s.label}</p>
+                  <div
+                    key={s.val}
+                    className="wu-stat"
+                    style={{
+                      background: 'rgba(69,68,17,0.04)',
+                      border: '1px solid rgba(69,68,17,0.1)',
+                      borderRadius: 12,
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: "'Cormorant Garamond',Georgia,serif",
+                        fontSize: '1.8rem',
+                        fontWeight: 700,
+                        color: '#454411',
+                        lineHeight: 1,
+                      }}
+                    >
+                      {s.val}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 11,
+                        color: '#8B5E3C',
+                        fontWeight: 500,
+                        marginTop: 3,
+                      }}
+                    >
+                      {s.label}
+                    </p>
                     <div className="wu-bar-track">
-                      <div className="wu-bar-fill" style={{ "--bar-w": `${s.bar}%` } as React.CSSProperties} />
+                      <div
+                        className="wu-bar-fill"
+                        style={{ '--bar-w': `${s.bar}%` } as React.CSSProperties}
+                      />
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ display:"flex", flexDirection:"column", gap:4 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {[
-                  { icon:"🌱", label:"Real-time visibility into crop health.",                              color:"rgba(69,68,17,0.08)" },
-                  { icon:"🔍", label:"Early detection of pests and stress for faster intervention.",        color:"rgba(139,94,60,0.08)" },
-                  { icon:"💧", label:"Precision irrigation guidance to save water and inputs.",             color:"rgba(69,68,17,0.08)" },
-                  { icon:"🤝", label:"Dedicated experts focused on outcomes, not just tools.",              color:"rgba(139,94,60,0.08)" },
+                  {
+                    icon: '🌱',
+                    label: 'Real-time visibility into crop health.',
+                    color: 'rgba(69,68,17,0.08)',
+                  },
+                  {
+                    icon: '🔍',
+                    label: 'Early detection of pests and stress for faster intervention.',
+                    color: 'rgba(139,94,60,0.08)',
+                  },
+                  {
+                    icon: '💧',
+                    label: 'Precision irrigation guidance to save water and inputs.',
+                    color: 'rgba(69,68,17,0.08)',
+                  },
+                  {
+                    icon: '🤝',
+                    label: 'Dedicated experts focused on outcomes, not just tools.',
+                    color: 'rgba(139,94,60,0.08)',
+                  },
                 ].map((f, i) => (
                   <div key={i} className="wu-feature-item">
                     <div className="wu-icon-circle" style={{ background: f.color }}>
-                      <span style={{ fontSize:16 }}>{f.icon}</span>
+                      <span style={{ fontSize: 16 }}>{f.icon}</span>
                     </div>
-                    <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:14, color:"#454411", lineHeight:1.6, paddingTop:2 }}>{f.label}</p>
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 14,
+                        color: '#454411',
+                        lineHeight: 1.6,
+                        paddingTop: 2,
+                      }}
+                    >
+                      {f.label}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -513,7 +931,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

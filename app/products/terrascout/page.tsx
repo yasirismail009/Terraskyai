@@ -1,53 +1,53 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const features = [
   {
-    title: "High Resolution Map (1cm to 5cm)",
-    image: "/assets/Picture1.png",
+    title: 'High Resolution Map (1cm to 5cm)',
+    image: '/assets/Picture1.png',
   },
   {
-    title: "Crop Area and Boundary",
-    image: "/assets/Picture2.png",
+    title: 'Crop Area and Boundary',
+    image: '/assets/Picture2.png',
   },
   {
-    title: "Weed Detection for Spot-treatment",
-    image: "/assets/Picture3.png",
+    title: 'Weed Detection for Spot-treatment',
+    image: '/assets/Picture3.png',
   },
   {
-    title: "Germination Map (Plant Count)",
-    image: "/assets/Picture4.png",
+    title: 'Germination Map (Plant Count)',
+    image: '/assets/Picture4.png',
   },
   {
-    title: "Off-type detection",
-    image: "/assets/Picture5.png",
+    title: 'Off-type detection',
+    image: '/assets/Picture5.png',
   },
   {
-    title: "Canopy Cover Analysis",
-    image: "/assets/Picture6.png",
+    title: 'Canopy Cover Analysis',
+    image: '/assets/Picture6.png',
   },
   {
-    title: "Disease detection",
-    image: "/assets/Picture7.png",
+    title: 'Disease detection',
+    image: '/assets/Picture7.png',
   },
   {
-    title: "Insect defoliation detection",
-    image: "/assets/Picture8.png",
+    title: 'Insect defoliation detection',
+    image: '/assets/Picture8.png',
   },
   {
-    title: "Water Logging Zones",
-    image: "/assets/Picture9.png",
+    title: 'Water Logging Zones',
+    image: '/assets/Picture9.png',
   },
   {
-    title: "Crop Health Zones",
-    image: "/assets/Picture10.png",
+    title: 'Crop Health Zones',
+    image: '/assets/Picture10.png',
   },
   {
-    title: "Individual Plant Health",
-    image: "/assets/Picture11.png",
+    title: 'Individual Plant Health',
+    image: '/assets/Picture11.png',
   },
   {
-    title: "Flight Mission Automation",
-    image: "/assets/Picture12.png",
+    title: 'Flight Mission Automation',
+    image: '/assets/Picture12.png',
   },
 ];
 
@@ -55,17 +55,18 @@ export default function TerraScoutPage() {
   return (
     <div className="min-h-screen bg-[#E6E2D6]">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 bg-cover bg-center bg-no-repeat"
+      <section
+        className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('/assets/img_1054.jpeg')`,
         }}
       >
         {/* Blurred background layer */}
         <div className="absolute inset-0 backdrop-blur-xs bg-[#454411]/10"></div>
-        
+
         {/* Overlay for text readability */}
         <div className="absolute inset-0 bg-[#454411]/10"></div>
-        
+
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto text-center">
           <div className="inline-block mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-white/10 to-[#545454]/10 border border-[#454411]/20 backdrop-blur-sm">
@@ -85,7 +86,6 @@ export default function TerraScoutPage() {
         </div>
       </section>
 
-  
       {/* Product Details Section */}
       <section className="bg-white px-4 sm:px-6 lg:px-10 py-12">
         <div className="max-w-7xl mx-auto">
@@ -104,7 +104,8 @@ export default function TerraScoutPage() {
 
           {/* Description */}
           <p className="text-sm sm:text-base text-[#545454] mb-12 max-w-3xl leading-relaxed">
-            Crop Insights and Reports, along with numerous on-request analyses to cater to specific farming needs and preferences.
+            Crop Insights and Reports, along with numerous on-request analyses to cater to specific
+            farming needs and preferences.
           </p>
 
           {/* Features Grid */}
@@ -116,7 +117,7 @@ export default function TerraScoutPage() {
               >
                 {/* Subtle gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#454411]/0 to-[#545454]/0 group-hover:from-[#454411]/3 group-hover:to-[#545454]/3 transition-all duration-300 rounded-lg"></div>
-                
+
                 <div className="relative w-full h-40 mb-3 rounded-lg overflow-hidden border border-[#b0b0b0]/15 group-hover:border-[#454411]/30 transition-all duration-300">
                   <Image
                     src={feature.image}
@@ -134,21 +135,34 @@ export default function TerraScoutPage() {
           </div>
         </div>
       </section>
-          {/* High Resolution Imagery Section */}
-          <section className="relative bg-gradient-to-b from-white via-white to-[#454411] px-4 sm:px-6 lg:px-10 py-20 overflow-hidden">
+      {/* High Resolution Imagery Section */}
+      <section className="relative bg-gradient-to-b from-white via-white to-[#454411] px-4 sm:px-6 lg:px-10 py-20 overflow-hidden">
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5" style={{
-          backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(69, 68, 17, 0.1) 2px, rgba(69, 68, 17, 0.1) 4px)`
-        }}></div>
-        
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(69, 68, 17, 0.1) 2px, rgba(69, 68, 17, 0.1) 4px)`,
+          }}
+        ></div>
+
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Three Featured Images with Carousel Style */}
           <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-16">
             {/* Left Arrow Indicator (Decorative) */}
             <div className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 z-20">
               <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
                 </svg>
               </div>
             </div>
@@ -203,8 +217,18 @@ export default function TerraScoutPage() {
             {/* Right Arrow Indicator (Decorative) */}
             <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 z-20">
               <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg
+                  className="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </div>
             </div>
@@ -216,13 +240,12 @@ export default function TerraScoutPage() {
               High definition imagery so clear you can count the spots on a lady bug
             </h2>
             <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Experience unparalleled detail with our ultra-high resolution mapping technology, delivering precision down to the individual plant level.
+              Experience unparalleled detail with our ultra-high resolution mapping technology,
+              delivering precision down to the individual plant level.
             </p>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
-
