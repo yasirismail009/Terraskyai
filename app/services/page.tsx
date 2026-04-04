@@ -1,23 +1,23 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const services = [
   {
-    title: "AI-Driven Crop & Soil Analytics",
+    title: 'AI-Driven Crop & Soil Analytics',
     description:
-      "Predict yields, detect pests, and optimize irrigation with hyper-accurate AI models trained on millions of agricultural data points.",
-    image: "/assets/robot-arm-planting-tree-green-field.jpg",
+      'Predict yields, detect pests, and optimize irrigation with hyper-accurate AI models trained on millions of agricultural data points.',
+    image: '/assets/robot-arm-planting-tree-green-field.jpg',
   },
   {
-    title: "Edge-Powered Real-Time Monitoring",
+    title: 'Edge-Powered Real-Time Monitoring',
     description:
-      "Process data locally with edge devices to reduce latency, cut costs, and deliver instant insights—even in low-connectivity rural areas.",
-    image: "/assets/img_1059.jpeg",
+      'Process data locally with edge devices to reduce latency, cut costs, and deliver instant insights—even in low-connectivity rural areas.',
+    image: '/assets/img_1059.jpeg',
   },
   {
-    title: "IoT-Enabled Precision Farming",
+    title: 'IoT-Enabled Precision Farming',
     description:
-      "Deploy smart sensors and drones to monitor soil health, weather patterns, and crop growth, turning raw data into actionable steps.",
-    image: "/assets/smart-farming-with-agriculture-iot.jpg",
+      'Deploy smart sensors and drones to monitor soil health, weather patterns, and crop growth, turning raw data into actionable steps.',
+    image: '/assets/smart-farming-with-agriculture-iot.jpg',
   },
 ];
 
@@ -28,9 +28,7 @@ export default function ServicesPage() {
         <p className="text-sm font-semibold uppercase tracking-widest mb-4 text-[#8B5E3C]">
           Services
         </p>
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-          What We Deliver
-        </h1>
+        <h1 className="text-4xl sm:text-5xl font-bold mb-6">What We Deliver</h1>
         <div className="h-1 w-16 bg-[#454411] mx-auto mb-10 rounded-full" />
       </div>
 
@@ -51,12 +49,8 @@ export default function ServicesPage() {
               />
             </div>
             <div className="p-6 space-y-3">
-              <h2 className="text-xl font-semibold leading-snug text-[#454411]">
-                {service.title}
-              </h2>
-              <p className="text-base leading-relaxed text-[#545454]">
-                {service.description}
-              </p>
+              <h2 className="text-xl font-semibold leading-snug text-[#454411]">{service.title}</h2>
+              <p className="text-base leading-relaxed text-[#545454]">{service.description}</p>
             </div>
           </div>
         ))}
@@ -64,4 +58,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-
