@@ -10,7 +10,7 @@ const coreValues = [
     color: "#454411",
     accentLight: "#f5f4e8",
     accentBorder: "#c8c67a",
-    image: "/assets/Plant Stand Count.jpg",
+    image: "/assets/plant-stand-count.jpg",
     points: [
       "Reseeding decisions with real-time accuracy",
       "Parent seed line vigor evaluation",
@@ -35,7 +35,7 @@ const coreValues = [
     color: "#8B5E3C",
     accentLight: "#faf4ee",
     accentBorder: "#d4956a",
-    image: "/assets/Weed.jpg",
+    image: "/assets/weed-detection.jpg",
     points: [
       "Targeted spot treatment for precise management",
       "Multi-species color-coded identification",
