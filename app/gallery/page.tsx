@@ -34,8 +34,6 @@ export default function GalleryPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#FDFCF5', overflowX: 'hidden' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
         /* ── Animations ── */
         @keyframes gl-fadeUp {
           from { opacity:0; transform:translateY(40px); }

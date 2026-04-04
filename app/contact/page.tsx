@@ -202,7 +202,6 @@ export default function ContactPage() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap');
         .c-dot-grid {
           background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
           background-size: 28px 28px;
