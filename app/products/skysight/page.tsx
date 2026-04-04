@@ -1,7 +1,8 @@
 import Image from "next/image";
 import {
   Search, Leaf, FileText, BarChart2, Bug, TrendingUp,
-  Heart, Map, ShieldCheck, Settings, Monitor
+  Heart, Map, ShieldCheck, Settings, Monitor,
+  Cross
 } from "lucide-react";
 
 const portalFeatures = [
@@ -11,7 +12,7 @@ const portalFeatures = [
   { title: "Plant Stand Count Analytics", Icon: BarChart2   },
   { title: "Insect & Weed Detection",     Icon: Bug         },
   { title: "Yield Estimation",            Icon: TrendingUp  },
-  { title: "Crop Health",                 Icon: Heart       },
+  { title: "Crop Health",                 Icon: Cross       },
   { title: "Field Mapping",               Icon: Map         },
   { title: "No REI Exposure",             Icon: ShieldCheck },
   { title: "Manage Operations",           Icon: Settings    },
@@ -21,15 +22,15 @@ const portalFeatures = [
 const reportFeatures = [
   { title: "High Resolution Map (1cm to 5cm)", image: "/assets/Picture1.png" },
   { title: "Crop Area and Boundary",           image: "/assets/fishnet.jpeg" },
-  { title: "Weed Detection for Spot-treatment",image: "/assets/weed-1.jpg" },
+  { title: "Weed Detection for Spot-treatment",image: "/assets/Weed1.jpg" },
   { title: "Germination Map (Plant Count)",    image: "/assets/Picture4.png" },
-  { title: "Off-type detection",               image: "/assets/vc-detection-2.jpg" },
+  { title: "Off-type detection",               image: "/assets/vc detection2.jpg" },
   { title: "Male and Female Parent Lines",     image: "/assets/male female bay.jpeg" },
-  { title: "Disease detection",                image: "/assets/Picture7.png" },
+  { title: "Disease detection",                image: "/assets/disease.jpg" },
   { title: "Insect defoliation detection",     image: "/assets/Picture8.png" },
-  { title: "Water Logging Zones",              image: "/assets/Picture9.png" },
+  { title: "Digital Elevation Map(DEM)",              image: "/assets/dem.jpg" },
+  { title: "Pod Count(Yield Estimation)",          image: "/assets/pods.jpeg"},
   { title: "Crop Health Zones",                image: "/assets/Picture10.png"},
-  { title: "Individual Plant Health",          image: "/assets/Picture11.png"},
   { title: "Flight Mission Automation",        image: "/assets/Picture12.png"},
 ];
 
@@ -165,7 +166,7 @@ export default function SkySightPage() {
             padding:"6px 20px", borderRadius:999,
             background:"rgba(190,169,80,0.15)", border:"1px solid rgba(190,169,80,0.35)",
             fontFamily:"'DM Sans',sans-serif", fontSize:17, fontWeight:700,
-            letterSpacing:"0.14em", textTransform:"uppercase", color:"#BEA950",
+            letterSpacing:"0.14em", textTransform:"uppercase", color:"#fff",
           }}>
             Real-Time AI Portal & Dashboard
           </div>
@@ -205,18 +206,30 @@ export default function SkySightPage() {
             </h2>
             <div className="ss-shimmer" style={{ maxWidth:180, margin:"0 auto" }} />
           </div>
-          <div className="ss-feat-grid ss-fade-2" style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:18 }}>
-            {portalFeatures.map(({ title, Icon }, i) => (
-              <div key={i} className="ss-feat-card">
-                <div className="ss-feat-icon">
-                  <Icon size={26} color="#454411" strokeWidth={1.7} />
-                </div>
-                <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:15, fontWeight:600, color:"#2d2e0a", lineHeight:1.4 }}>
-                  {title}
-                </p>
-              </div>
-            ))}
-          </div>
+      <div
+  className="ss-feat-grid ss-fade-2"
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 18,
+    justifyContent: "center",
+  }}
+>
+  {portalFeatures.map(({ title, Icon }, i) => (
+    <div
+      key={i}
+      className="ss-feat-card"
+      style={{ width: "calc(25% - 14px)" }}  // 18px gap * 3 / 4 ≈ 13.5px
+    >
+      <div className="ss-feat-icon">
+        <Icon size={26} color="#454411" strokeWidth={1.7} />
+      </div>
+      <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:15, fontWeight:600, color:"#2d2e0a", lineHeight:1.4 }}>
+        {title}
+      </p>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
@@ -286,7 +299,7 @@ export default function SkySightPage() {
       </section>
 
       {/* High Resolution Imagery */}
-      <section style={{
+      {/* <section style={{
         background:"linear-gradient(160deg, #2a2d0f 0%, #454411 50%, #8B5E3C 100%)",
         padding:"96px 24px", position:"relative", overflow:"hidden",
       }}>
@@ -318,9 +331,9 @@ export default function SkySightPage() {
 
           <div className="ss-highres-grid" style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:28 }}>
             {[
-              { src:"/assets/vc-detection.jpg",  alt:"VC Detection",            title:"VC Detection",            desc:"AI detects volunteer canola plants with pinpoint accuracy, enabling precise roguing and protecting seed purity.",   boxes:false },
+              { src:"/assets/vc detection.jpg",  alt:"VC Detection",            title:"VC Detection",            desc:"AI detects volunteer canola plants with pinpoint accuracy, enabling precise roguing and protecting seed purity.",   boxes:false },
               { src:"/assets/pods.jpeg",          alt:"Pod Count",               title:"Pod Count(Yield Estimation)",               desc:"Automated pod counting at the individual plant level delivers reliable yield estimates before harvest.", boxes:false },
-              { src:"/assets/weed-3.jpg",      alt:"Weed Detection",          title:"Weed Detection",          desc:"Weed pressure mapped across every zone of your field, so treatment goes exactly where it's needed — nothing more.", boxes:false },
+              { src:"/assets/Weedd.jpg",      alt:"Weed Detection",          title:"Weed Detection",          desc:"Weed pressure mapped across every zone of your field, so treatment goes exactly where it's needed — nothing more.", boxes:false },
            
             ].map((img, i) => (
               <div key={i} className="ss-img-card" style={{
@@ -352,7 +365,7 @@ export default function SkySightPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );
