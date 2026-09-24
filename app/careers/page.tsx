@@ -58,7 +58,7 @@ function filterDescription(description: string): string {
   return filtered.trim();
 }
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://admin.terraskyai.com';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://backend.terraskyai.com';
 
 function formatCurrencyAmount(value: unknown, currency: string): string | undefined {
   const n = typeof value === 'number' ? value : typeof value === 'string' ? Number(value) : NaN;
@@ -184,7 +184,7 @@ async function fetchCareerPostsList(): Promise<CareerPostSummary[]> {
   const res = await fetch(`${API_BASE_URL}/api/career/posts/`, { cache: 'no-store' });
   if (!res.ok) throw new Error(`Failed to load jobs (${res.status})`);
   const data = await res.json();
-  const list = Array.isArray(data) ? data : (data?.results ?? data?.data ?? data?.items ?? []);
+  const list = Array.isArray(data) ? data : (data?.result ?? data?.results ?? data?.data ?? data?.items ?? []);
   if (!Array.isArray(list)) return [];
   return list.map(normalizeCareerPostSummary).filter((p) => p.id !== '');
 }
@@ -282,20 +282,34 @@ export default function CareersPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitError(null);
-    setSubmitSuccess(null);
-    if (!formData.cv) {
-      setSubmitError('Please upload your CV/Resume.');
-      return;
-    }
-    const yesNoToBoolString = (v: '' | 'yes' | 'no') => (v === 'yes' ? 'true' : 'false');
-    try {
-      setSubmitLoading(true);
-      const payload = new FormData();
-      if (formData.position && formData.position !== 'general')
-        payload.append('post', formData.position);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setSubmitError(null);
+  setSubmitSuccess(null);
+
+  if (!formData.cv) {
+    setSubmitError('Please upload your CV/Resume.');
+    return;
+  }
+
+  // Quick fix: General Application needs at least one real position to map to
+  const postValue = formData.position === 'general'
+    ? String(positions[0]?.id ?? '')
+    : formData.position;
+
+  if (!postValue) {
+    setSubmitError(
+      'General applications are currently unavailable — no open positions to apply through. Please select a specific position instead.'
+    );
+    return;
+  }
+
+  const yesNoToBoolString = (v: '' | 'yes' | 'no') => (v === 'yes' ? 'true' : 'false');
+  try {
+    setSubmitLoading(true);
+    const payload = new FormData();
+    payload.append('post', postValue);
+    // ... rest same as before
       payload.append('name', formData.name);
       payload.append('email', formData.email);
       payload.append('phone', formData.phone);
@@ -306,6 +320,7 @@ export default function CareersPage() {
       );
       payload.append('valid_drivers_license', yesNoToBoolString(formData.validDriversLicense));
       payload.append('drone_pilot_license', yesNoToBoolString(formData.dronePilotLicense));
+      payload.append('access_to_own_vehicle', 'false');
       payload.append('cv', formData.cv);
       const res = await fetch(`${API_BASE_URL}/api/career/applications/`, {
         method: 'POST',
@@ -1350,8 +1365,10 @@ export default function CareersPage() {
                         {pos.title ?? String(pos.id)}
                       </option>
                     ))}
-                    <option value="general">General Application</option>
-                  </select>
+                    {positionsForRender.length > 0 && (
+    <option value="general">General Application</option>
+  )}
+</select>
                 </div>
 
                 {/* Radio questions */}

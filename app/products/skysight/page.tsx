@@ -231,7 +231,7 @@ export default function SkySightPage() {
       </section>
 
       {/* Portal Features */}
-      <section
+      {/* <section
         className="ss-dot-bg"
         style={{
           background: '#FDFCF5',
@@ -304,7 +304,7 @@ export default function SkySightPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Dashboard Preview */}
       <section style={{ background: '#fff', padding: '80px 24px' }}>
