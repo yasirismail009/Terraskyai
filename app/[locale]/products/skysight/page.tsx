@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import {
   Search,
   Leaf,
@@ -28,21 +29,27 @@ const portalFeatures = [
 ];
 
 const reportFeatures = [
-  { title: 'High Resolution Map (1cm to 5cm)', image: '/assets/Picture1.png' },
-  { title: 'Crop Area and Boundary', image: '/assets/fishnet.jpeg' },
-  { title: 'Weed Detection for Spot-treatment', image: '/assets/weed-1.jpg' },
-  { title: 'Germination Map (Plant Count)', image: '/assets/Picture4.png' },
-  { title: 'Off-type detection', image: '/assets/vc-detection-2.jpg' },
-  { title: 'Male and Female Parent Lines', image: '/assets/male female bay.jpeg' },
-  { title: 'Disease detection', image: '/assets/disease.jpg' },
-  { title: 'Insect defoliation detection', image: '/assets/Picture8.png' },
-  { title: 'Digital Elevation Map(DEM)', image: '/assets/dem.png' },
-  { title: 'Pod Count(Yield Estimation)', image: '/assets/pods.jpeg' },
-  { title: 'Crop Health Zones', image: '/assets/Picture10.png' },
-  { title: 'Flight Mission Automation', image: '/assets/Picture12.png' },
-];
+  { key: 'highRes', image: '/assets/Picture1.png' },
+  { key: 'cropArea', image: '/assets/fishnet.jpeg' },
+  { key: 'weed', image: '/assets/weed-1.jpg' },
+  { key: 'germination', image: '/assets/Picture4.png' },
+  { key: 'offType', image: '/assets/vc-detection-2.jpg' },
+  { key: 'parentLines', image: '/assets/male female bay.jpeg' },
+  { key: 'disease', image: '/assets/disease.jpg' },
+  { key: 'defoliation', image: '/assets/Picture8.png' },
+  { key: 'dem', image: '/assets/dem.png' },
+  { key: 'podCount', image: '/assets/pods.jpeg' },
+  { key: 'healthZones', image: '/assets/Picture10.png' },
+  { key: 'flightAutomation', image: '/assets/Picture12.png' },
+] as const;
 
-export default function SkySightPage() {
+const em = (chunks: React.ReactNode) => <em style={{ color: '#8B5E3C' }}>{chunks}</em>;
+
+export default async function SkySightPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations('SkySight');
+
   return (
     <div className="min-h-screen" style={{ background: '#FDFCF5' }}>
       <style>{`
@@ -199,7 +206,7 @@ export default function SkySightPage() {
               color: '#fff',
             }}
           >
-            Real-Time AI Portal & Dashboard
+            {t('hero.badge')}
           </div>
           <h1
             style={{
@@ -224,8 +231,7 @@ export default function SkySightPage() {
               margin: '0 auto',
             }}
           >
-            All-in-one digital farming portal for seamless farm management — unlocking efficiency
-            and success from anywhere, anytime.
+            {t('hero.description')}
           </p>
         </div>
       </section>
@@ -310,7 +316,7 @@ export default function SkySightPage() {
       <section style={{ background: '#fff', padding: '80px 24px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div className="ss-fade" style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="ss-section-tag">Dashboard</span>
+            <span className="ss-section-tag">{t('dashboard.badge')}</span>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond',Georgia,serif",
@@ -320,7 +326,7 @@ export default function SkySightPage() {
                 lineHeight: 1.2,
               }}
             >
-              Intuitive Interface, <em style={{ color: '#8B5E3C' }}>Powerful Insights</em>
+              {t.rich('dashboard.title', { em })}
             </h2>
           </div>
           <div
@@ -333,7 +339,7 @@ export default function SkySightPage() {
           >
             <Image
               src="/assets/dashboard.png"
-              alt="SkySight Dashboard"
+              alt={t('dashboard.imageAlt')}
               width={1200}
               height={800}
               style={{ width: '100%', height: 'auto', display: 'block' }}
@@ -367,7 +373,7 @@ export default function SkySightPage() {
         />
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="ss-fade" style={{ textAlign: 'center', marginBottom: 56 }}>
-            <span className="ss-section-tag">Crop Insights & Reports</span>
+            <span className="ss-section-tag">{t('reports.badge')}</span>
             <h2
               style={{
                 fontFamily: "'Cormorant Garamond',Georgia,serif",
@@ -379,7 +385,7 @@ export default function SkySightPage() {
                 marginBottom: 12,
               }}
             >
-              Precision Analysis at <em style={{ color: '#8B5E3C' }}>Every Scale</em>
+              {t.rich('reports.title', { em })}
             </h2>
             <p
               style={{
@@ -391,40 +397,42 @@ export default function SkySightPage() {
                 lineHeight: 1.75,
               }}
             >
-              From high-resolution mapping to individual plant health — every insight you need, on
-              demand.
+              {t('reports.description')}
             </p>
           </div>
           <div
             className="ss-report-grid ss-fade-2"
             style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20 }}
           >
-            {reportFeatures.map((f, i) => (
-              <div key={i} className="ss-report-card">
-                <div style={{ overflow: 'hidden' }}>
-                  <Image
-                    src={f.image}
-                    alt={f.title}
-                    width={400}
-                    height={300}
-                    className="ss-report-img"
-                  />
+            {reportFeatures.map((f) => {
+              const title = t(`reports.features.${f.key}`);
+              return (
+                <div key={f.key} className="ss-report-card">
+                  <div style={{ overflow: 'hidden' }}>
+                    <Image
+                      src={f.image}
+                      alt={title}
+                      width={400}
+                      height={300}
+                      className="ss-report-img"
+                    />
+                  </div>
+                  <div style={{ padding: '14px 16px 18px' }}>
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        color: '#2d2e0a',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {title}
+                    </p>
+                  </div>
                 </div>
-                <div style={{ padding: '14px 16px 18px' }}>
-                  <p
-                    style={{
-                      fontFamily: "'DM Sans',sans-serif",
-                      fontSize: 14,
-                      fontWeight: 600,
-                      color: '#2d2e0a',
-                      lineHeight: 1.4,
-                    }}
-                  >
-                    {f.title}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

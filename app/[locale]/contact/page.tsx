@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://backend.terraskyai.com';
 
@@ -13,11 +14,28 @@ type QueryCreatedResponse = {
   created_at?: string;
 };
 
-function formatSubmittedAt(iso: string | undefined): string | null {
+class HttpError extends Error {
+  status: number;
+  constructor(status: number) {
+    super(`HTTP ${status}`);
+    this.status = status;
+  }
+}
+
+// value = what the backend expects (keep in English), key = translation key for the label
+const areaOptions = [
+  { value: 'Plant Stand Count', key: 'plantStand' },
+  { value: 'Weed & Insect Detection', key: 'weed' },
+  { value: 'Off-Type Detection', key: 'offType' },
+  { value: 'Yield Estimation', key: 'yield' },
+  { value: 'All Services', key: 'all' },
+] as const;
+
+function formatSubmittedAt(iso: string | undefined, locale: string): string | null {
   if (!iso) return null;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+  return d.toLocaleString(locale, { dateStyle: 'medium', timeStyle: 'short' });
 }
 
 function parseQueryCreated(
@@ -46,8 +64,12 @@ function ContactSuccessPanel({
   query: QueryCreatedResponse;
   onSubmitAnother: () => void;
 }) {
-  const submittedAt = formatSubmittedAt(query.created_at);
-  const firstName = query.full_name.trim().split(/\s+/)[0] || 'there';
+  const t = useTranslations('Contact');
+  const locale = useLocale();
+  const submittedAt = formatSubmittedAt(query.created_at, locale);
+  const firstName = query.full_name.trim().split(/\s+/)[0];
+  const areaOption = areaOptions.find((o) => o.value === query.area_of_interest);
+  const areaLabel = areaOption ? t(`form.areas.${areaOption.key}`) : query.area_of_interest;
 
   return (
     <div className="c-success-wrap" role="status">
@@ -62,12 +84,11 @@ function ContactSuccessPanel({
           />
         </svg>
       </div>
-      <p className="c-success-eyebrow">Inquiry sent</p>
-      <h3 className="c-success-title">You&apos;re on our list, {firstName}</h3>
-      <p className="c-success-sub">
-        We received your message and will follow up by email. Keep this reference handy if you
-        contact support.
-      </p>
+      <p className="c-success-eyebrow">{t('success.eyebrow')}</p>
+      <h3 className="c-success-title">
+        {firstName ? t('success.title', { name: firstName }) : t('success.titleNoName')}
+      </h3>
+      <p className="c-success-sub">{t('success.description')}</p>
 
       <div className="c-success-details">
         <div className="c-success-detail">
@@ -82,7 +103,7 @@ function ContactSuccessPanel({
             </svg>
           </div>
           <div className="c-success-detail-body">
-            <div className="c-success-detail-label">Reference ID</div>
+            <div className="c-success-detail-label">{t('success.referenceId')}</div>
             <div className="c-success-detail-value c-success-ref">{query.id}</div>
           </div>
         </div>
@@ -99,8 +120,8 @@ function ContactSuccessPanel({
             </svg>
           </div>
           <div className="c-success-detail-body">
-            <div className="c-success-detail-label">Area of interest</div>
-            <div className="c-success-detail-value">{query.area_of_interest}</div>
+            <div className="c-success-detail-label">{t('success.areaOfInterest')}</div>
+            <div className="c-success-detail-value">{areaLabel}</div>
           </div>
         </div>
 
@@ -117,7 +138,7 @@ function ContactSuccessPanel({
               </svg>
             </div>
             <div className="c-success-detail-body">
-              <div className="c-success-detail-label">Submitted</div>
+              <div className="c-success-detail-label">{t('success.submitted')}</div>
               <div className="c-success-detail-value">{submittedAt}</div>
             </div>
           </div>
@@ -125,13 +146,14 @@ function ContactSuccessPanel({
       </div>
 
       <button type="button" className="c-btn-secondary c-success-cta" onClick={onSubmitAnother}>
-        Submit another query
+        {t('success.another')}
       </button>
     </div>
   );
 }
 
 export default function ContactPage() {
+  const t = useTranslations('Contact');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [areaOfInterest, setAreaOfInterest] = useState('');
@@ -145,7 +167,7 @@ export default function ContactPage() {
     setSubmitError(null);
     setSubmittedQuery(null);
     if (!fullName.trim() || !email.trim() || !areaOfInterest.trim() || !message.trim()) {
-      setSubmitError('Please fill in all fields.');
+      setSubmitError(t('errors.fillAll'));
       return;
     }
     try {
@@ -172,7 +194,7 @@ export default function ContactPage() {
             .filter(Boolean);
           if (messages.length) throw new Error(messages.join(' | '));
         }
-        throw new Error(`Submission failed (${res.status})`);
+        throw new HttpError(res.status);
       }
       const payload = {
         full_name: fullName.trim(),
@@ -186,7 +208,13 @@ export default function ContactPage() {
       setAreaOfInterest('');
       setMessage('');
     } catch (err: unknown) {
-      setSubmitError(err instanceof Error ? err.message : 'Failed to send message.');
+      setSubmitError(
+        err instanceof HttpError
+          ? t('errors.submitStatus', { status: err.status })
+          : err instanceof Error
+            ? err.message
+            : t('errors.submitFallback')
+      );
     } finally {
       setSubmitLoading(false);
     }
@@ -447,7 +475,7 @@ export default function ContactPage() {
               fontFamily: "'DM Sans',sans-serif",
             }}
           >
-            Get In Touch
+            {t('hero.badge')}
           </span>
           <h1
             style={{
@@ -460,7 +488,9 @@ export default function ContactPage() {
               marginBottom: 12,
             }}
           >
-            Let&apos;s Grow Something <em style={{ color: '#BEA950' }}>Together</em>
+            {t.rich('hero.title', {
+              gold: (chunks) => <em style={{ color: '#BEA950' }}>{chunks}</em>,
+            })}
           </h1>
           <p
             style={{
@@ -472,8 +502,7 @@ export default function ContactPage() {
               lineHeight: 1.75,
             }}
           >
-            Share your goals and challenges — our team will respond with tailored recommendations
-            for your operation.
+            {t('hero.description')}
           </p>
         </div>
 
@@ -508,7 +537,7 @@ export default function ContactPage() {
                   marginBottom: 8,
                 }}
               >
-                Contact Info
+                {t('info.badge')}
               </p>
               <h2
                 style={{
@@ -520,7 +549,7 @@ export default function ContactPage() {
                   marginBottom: 20,
                 }}
               >
-                We&apos;re here to help your farm thrive
+                {t('info.title')}
               </h2>
 
               <a href="tel:+15875741601" className="c-detail" style={{ marginBottom: 10 }}>
@@ -558,7 +587,7 @@ export default function ContactPage() {
                       marginBottom: 2,
                     }}
                   >
-                    Call us
+                    {t('info.call')}
                   </p>
                   <p
                     style={{
@@ -612,7 +641,7 @@ export default function ContactPage() {
                       marginBottom: 2,
                     }}
                   >
-                    Email
+                    {t('info.email')}
                   </p>
                   <p
                     style={{
@@ -669,7 +698,7 @@ export default function ContactPage() {
                       marginBottom: 2,
                     }}
                   >
-                    Location
+                    {t('info.location')}
                   </p>
                   <p
                     style={{
@@ -679,7 +708,7 @@ export default function ContactPage() {
                       fontWeight: 600,
                     }}
                   >
-                    Lethbridge, Alberta, Canada
+                    {t('info.locationValue')}
                   </p>
                 </div>
               </a>
@@ -719,7 +748,7 @@ export default function ContactPage() {
                       marginBottom: 2,
                     }}
                   >
-                    Head Office
+                    {t('info.headOffice')}
                   </p>
                   <p
                     style={{
@@ -729,7 +758,7 @@ export default function ContactPage() {
                       fontWeight: 600,
                     }}
                   >
-                    Mississauga, Ontario, Canada
+                    {t('info.headOfficeValue')}
                   </p>
                 </div>
               </a>
@@ -757,7 +786,7 @@ export default function ContactPage() {
                 marginBottom: 6,
               }}
             >
-              Send a Message
+              {t('form.badge')}
             </p>
             <h2
               style={{
@@ -769,13 +798,13 @@ export default function ContactPage() {
                 marginBottom: 24,
               }}
             >
-              {submittedQuery ? (
-                <>
-                  Inquiry <em style={{ color: '#BEA950', fontStyle: 'normal' }}>received</em>
-                </>
-              ) : (
-                'Tell us about your farm'
-              )}
+              {submittedQuery
+                ? t.rich('form.titleSuccess', {
+                    gold: (chunks) => (
+                      <em style={{ color: '#BEA950', fontStyle: 'normal' }}>{chunks}</em>
+                    ),
+                  })
+                : t('form.title')}
             </h2>
 
             {submittedQuery ? (
@@ -814,14 +843,14 @@ export default function ContactPage() {
                 >
                   <div>
                     <label className="c-label" htmlFor="name">
-                      Full Name
+                      {t('form.fullName')}
                     </label>
                     <input
                       id="name"
                       name="full_name"
                       type="text"
                       autoComplete="name"
-                      placeholder="Your full name"
+                      placeholder={t('form.namePlaceholder')}
                       className="c-input"
                       value={fullName}
                       onChange={(ev) => setFullName(ev.target.value)}
@@ -830,14 +859,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <label className="c-label" htmlFor="email">
-                      Email
+                      {t('form.email')}
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       autoComplete="email"
-                      placeholder="you@example.com"
+                      placeholder={t('form.emailPlaceholder')}
                       className="c-input"
                       value={email}
                       onChange={(ev) => setEmail(ev.target.value)}
@@ -848,7 +877,7 @@ export default function ContactPage() {
 
                 <div style={{ marginBottom: 14 }}>
                   <label className="c-label" htmlFor="interest">
-                    Area of Interest
+                    {t('form.areaOfInterest')}
                   </label>
                   <select
                     id="interest"
@@ -859,23 +888,23 @@ export default function ContactPage() {
                     onChange={(ev) => setAreaOfInterest(ev.target.value)}
                     required
                   >
-                    <option value="">Select a service…</option>
-                    <option value="Plant Stand Count">Plant Stand Count</option>
-                    <option value="Weed & Insect Detection">Weed &amp; Insect Detection</option>
-                    <option value="Off-Type Detection">Off-Type Detection</option>
-                    <option value="Yield Estimation">Yield Estimation</option>
-                    <option value="All Services">All Services</option>
+                    <option value="">{t('form.selectService')}</option>
+                    {areaOptions.map((o) => (
+                      <option key={o.value} value={o.value}>
+                        {t(`form.areas.${o.key}`)}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div style={{ marginBottom: 24 }}>
                   <label className="c-label" htmlFor="message">
-                    Tell us about your farm and what you need
+                    {t('form.messageLabel')}
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    placeholder="Acres, crops, current challenges, and the outcomes you're targeting…"
+                    placeholder={t('form.messagePlaceholder')}
                     rows={5}
                     className="c-input"
                     style={{ resize: 'vertical' }}
@@ -900,7 +929,7 @@ export default function ContactPage() {
                     disabled={submitLoading}
                     aria-busy={submitLoading}
                   >
-                    {submitLoading ? 'Sending…' : 'Send Message'}
+                    {submitLoading ? t('form.sending') : t('form.send')}
                     <svg viewBox="0 0 24 24" fill="none" style={{ width: 16, height: 16 }}>
                       <path
                         d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"
@@ -912,7 +941,7 @@ export default function ContactPage() {
                     </svg>
                   </button>
                   <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: '#b0ac90' }}>
-                    We respond within 24 hours
+                    {t('form.responseTime')}
                   </p>
                 </div>
               </form>

@@ -1,57 +1,30 @@
 import Image from 'next/image';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 
 const features = [
-  {
-    title: 'High Resolution Map (1cm to 5cm)',
-    image: '/assets/Picture1.png',
-  },
-  {
-    title: 'Crop Area and Boundary',
-    image: '/assets/Picture2.png',
-  },
-  {
-    title: 'Weed Detection for Spot-treatment',
-    image: '/assets/Picture3.png',
-  },
-  {
-    title: 'Germination Map (Plant Count)',
-    image: '/assets/Picture4.png',
-  },
-  {
-    title: 'Off-type detection',
-    image: '/assets/Picture5.png',
-  },
-  {
-    title: 'Canopy Cover Analysis',
-    image: '/assets/Picture6.png',
-  },
-  {
-    title: 'Disease detection',
-    image: '/assets/Picture7.png',
-  },
-  {
-    title: 'Insect defoliation detection',
-    image: '/assets/Picture8.png',
-  },
-  {
-    title: 'Water Logging Zones',
-    image: '/assets/Picture9.png',
-  },
-  {
-    title: 'Crop Health Zones',
-    image: '/assets/Picture10.png',
-  },
-  {
-    title: 'Individual Plant Health',
-    image: '/assets/Picture11.png',
-  },
-  {
-    title: 'Flight Mission Automation',
-    image: '/assets/Picture12.png',
-  },
-];
+  { key: 'highRes', image: '/assets/Picture1.png' },
+  { key: 'cropArea', image: '/assets/Picture2.png' },
+  { key: 'weed', image: '/assets/Picture3.png' },
+  { key: 'germination', image: '/assets/Picture4.png' },
+  { key: 'offType', image: '/assets/Picture5.png' },
+  { key: 'canopy', image: '/assets/Picture6.png' },
+  { key: 'disease', image: '/assets/Picture7.png' },
+  { key: 'defoliation', image: '/assets/Picture8.png' },
+  { key: 'waterlogging', image: '/assets/Picture9.png' },
+  { key: 'healthZones', image: '/assets/Picture10.png' },
+  { key: 'plantHealth', image: '/assets/Picture11.png' },
+  { key: 'flightAutomation', image: '/assets/Picture12.png' },
+] as const;
 
-export default function TerraScoutPage() {
+export default async function TerraScoutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations('TerraScout');
+
   return (
     <div className="min-h-screen bg-[#E6E2D6]">
       {/* Hero Section */}
@@ -71,17 +44,17 @@ export default function TerraScoutPage() {
         <div className="relative z-10 max-w-6xl mx-auto text-center">
           <div className="inline-block mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-white/10 to-[#545454]/10 border border-[#454411]/20 backdrop-blur-sm">
             <span className="text-sm font-semibold uppercase tracking-widest text-white">
-              Desktop Application
+              {t('hero.badge')}
             </span>
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight tracking-tight">
             TerraScout
           </h1>
           <p className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-4 max-w-4xl mx-auto leading-relaxed">
-            Actionable Intelligence and Reports at Your Fingertips
+            {t('hero.headline')}
           </p>
           <p className="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Revolutionizing farm analysis with cutting-edge AI technology
+            {t('hero.subtitle')}
           </p>
         </div>
       </section>
@@ -99,39 +72,41 @@ export default function TerraScoutPage() {
 
           {/* Main Headline */}
           <h3 className="text-xl sm:text-2xl lg:text-3xl font-medium text-[#454411] mb-4 leading-relaxed max-w-4xl">
-            Actionable Intelligence and Reports at Your Fingertips
+            {t('hero.headline')}
           </h3>
 
           {/* Description */}
           <p className="text-sm sm:text-base text-[#545454] mb-12 max-w-3xl leading-relaxed">
-            Crop Insights and Reports, along with numerous on-request analyses to cater to specific
-            farming needs and preferences.
+            {t('details.description')}
           </p>
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="group relative bg-white rounded-lg p-3 hover:shadow-lg transition-all duration-300 border border-[#b0b0b0]/20 hover:border-[#454411]/30 overflow-hidden"
-              >
-                {/* Subtle gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#454411]/0 to-[#545454]/0 group-hover:from-[#454411]/3 group-hover:to-[#545454]/3 transition-all duration-300 rounded-lg"></div>
+            {features.map((feature) => {
+              const title = t(`features.${feature.key}`);
+              return (
+                <div
+                  key={feature.key}
+                  className="group relative bg-white rounded-lg p-3 hover:shadow-lg transition-all duration-300 border border-[#b0b0b0]/20 hover:border-[#454411]/30 overflow-hidden"
+                >
+                  {/* Subtle gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#454411]/0 to-[#545454]/0 group-hover:from-[#454411]/3 group-hover:to-[#545454]/3 transition-all duration-300 rounded-lg"></div>
 
-                <div className="relative w-full h-40 mb-3 rounded-lg overflow-hidden border border-[#b0b0b0]/15 group-hover:border-[#454411]/30 transition-all duration-300">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
+                  <div className="relative w-full h-40 mb-3 rounded-lg overflow-hidden border border-[#b0b0b0]/15 group-hover:border-[#454411]/30 transition-all duration-300">
+                    <Image
+                      src={feature.image}
+                      alt={title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
+                  <h4 className="text-xs sm:text-sm font-medium text-[#454411] text-center group-hover:text-[#545454] transition-colors duration-300 relative z-10 leading-tight">
+                    {title}
+                  </h4>
                 </div>
-                <h4 className="text-xs sm:text-sm font-medium text-[#454411] text-center group-hover:text-[#545454] transition-colors duration-300 relative z-10 leading-tight">
-                  {feature.title}
-                </h4>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -171,7 +146,7 @@ export default function TerraScoutPage() {
             <div className="group relative aspect-square rounded-full overflow-hidden border-4 border-white/30 shadow-2xl hover:border-white/50 transition-all duration-300 hover:scale-105">
               <Image
                 src="/assets/Picture14.png"
-                alt="High resolution crop analysis with detection"
+                alt={t('imagery.alt1')}
                 fill
                 className="object-cover"
                 sizes="(min-width: 768px) 33vw, 100vw"
@@ -188,7 +163,7 @@ export default function TerraScoutPage() {
             <div className="group relative aspect-square rounded-full overflow-hidden border-4 border-white/30 shadow-2xl hover:border-white/50 transition-all duration-300 hover:scale-105">
               <Image
                 src="/assets/Picture16.png"
-                alt="Detailed field imagery with plant detection"
+                alt={t('imagery.alt2')}
                 fill
                 className="object-cover"
                 sizes="(min-width: 768px) 33vw, 100vw"
@@ -207,7 +182,7 @@ export default function TerraScoutPage() {
             <div className="group relative aspect-square rounded-full overflow-hidden border-4 border-white/30 shadow-2xl hover:border-white/50 transition-all duration-300 hover:scale-105">
               <Image
                 src="/assets/Picture17.png"
-                alt="Precision agriculture imagery"
+                alt={t('imagery.alt3')}
                 fill
                 className="object-cover"
                 sizes="(min-width: 768px) 33vw, 100vw"
@@ -237,11 +212,10 @@ export default function TerraScoutPage() {
           {/* Headline Text */}
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-6 leading-tight max-w-5xl mx-auto drop-shadow-lg">
-              High definition imagery so clear you can count the spots on a lady bug
+              {t('imagery.title')}
             </h2>
             <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Experience unparalleled detail with our ultra-high resolution mapping technology,
-              delivering precision down to the individual plant level.
+              {t('imagery.description')}
             </p>
           </div>
         </div>

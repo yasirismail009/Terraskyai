@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 
 type CareerPostSummary = {
   id: string | number;
@@ -36,6 +37,14 @@ type CareerPostDetail = CareerPostSummary & {
   requireDronePilotLicense?: boolean;
 };
 
+class HttpError extends Error {
+  status: number;
+  constructor(status: number) {
+    super(`HTTP ${status}`);
+    this.status = status;
+  }
+}
+
 function looksLikeHtml(value: string): boolean {
   return /<\/?[a-z][\s\S]*>/i.test(value);
 }
@@ -60,33 +69,51 @@ function filterDescription(description: string): string {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://backend.terraskyai.com';
 
-function formatCurrencyAmount(value: unknown, currency: string): string | undefined {
+// Unwraps API responses like { result: {...} } / { data: {...} } / [ {...} ] / {...}
+function unwrapPayload(data: unknown): Record<string, unknown> {
+  if (Array.isArray(data)) return (data[0] ?? {}) as Record<string, unknown>;
+  const d = (data ?? {}) as Record<string, unknown>;
+  const inner = d.result ?? d.data ?? d.results ?? d.item;
+  if (inner && typeof inner === 'object') {
+    return (Array.isArray(inner) ? (inner[0] ?? {}) : inner) as Record<string, unknown>;
+  }
+  return d;
+}
+
+// Drops undefined/null values so they never overwrite real values when merging
+function pickDefined<T extends object>(obj: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== undefined && v !== null)
+  ) as Partial<T>;
+}
+
+function formatCurrencyAmount(value: unknown, currency: string, locale: string): string | undefined {
   const n = typeof value === 'number' ? value : typeof value === 'string' ? Number(value) : NaN;
   if (!Number.isFinite(n)) return undefined;
   try {
-    return new Intl.NumberFormat(undefined, { style: 'currency', currency }).format(n);
+    return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
   } catch {
     return `${currency} ${n.toFixed(2)}`;
   }
 }
 
-function formatSalaryRange(raw: Record<string, unknown>): string | undefined {
+function formatSalaryRange(raw: Record<string, unknown>, locale: string): string | undefined {
   const currency =
     (typeof raw?.salary_currency === 'string' && raw.salary_currency) ||
     (typeof raw?.currency === 'string' && raw.currency) ||
     undefined;
   if (!currency) return undefined;
-  const min = formatCurrencyAmount(raw?.salary_min, currency);
-  const max = formatCurrencyAmount(raw?.salary_max, currency);
+  const min = formatCurrencyAmount(raw?.salary_min, currency, locale);
+  const max = formatCurrencyAmount(raw?.salary_max, currency, locale);
   if (min && max) return `${min} – ${max}`;
   return min ?? max;
 }
 
-function formatDeadline(value: unknown): string | undefined {
+function formatDeadline(value: unknown, locale: string): string | undefined {
   if (typeof value !== 'string') return undefined;
   const d = new Date(value);
   if (Number.isNaN(d.getTime())) return value;
-  return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
 function coerceStringArray(value: unknown): string[] | undefined {
@@ -125,7 +152,7 @@ function normalizeCareerPostSummary(raw: Record<string, unknown>): CareerPostSum
   } as CareerPostSummary;
 }
 
-function normalizeCareerPostDetail(raw: Record<string, unknown>): CareerPostDetail {
+function normalizeCareerPostDetail(raw: Record<string, unknown>, locale: string): CareerPostDetail {
   const base = normalizeCareerPostSummary(raw);
   return {
     ...base,
@@ -138,11 +165,15 @@ function normalizeCareerPostDetail(raw: Record<string, unknown>): CareerPostDeta
     preferredSkills: coerceStringArray(
       raw?.preferredSkills ?? raw?.preferred_skills ?? raw?.preferred_skills_list
     ),
-    compensation: raw?.compensation ?? raw?.salary ?? raw?.pay_range ?? formatSalaryRange(raw),
+    compensation:
+      raw?.compensation ?? raw?.salary ?? raw?.pay_range ?? formatSalaryRange(raw, locale),
     applicationEmail: raw?.applicationEmail ?? raw?.application_email ?? raw?.apply_email,
     applicationSubject: raw?.applicationSubject ?? raw?.application_subject ?? raw?.apply_subject,
     applicationDeadline:
-      formatDeadline(raw?.applicationDeadline ?? raw?.application_deadline ?? raw?.deadline) ??
+      formatDeadline(
+        raw?.applicationDeadline ?? raw?.application_deadline ?? raw?.deadline,
+        locale
+      ) ??
       raw?.applicationDeadline ??
       raw?.application_deadline ??
       raw?.deadline,
@@ -182,22 +213,45 @@ function normalizeCareerPostDetail(raw: Record<string, unknown>): CareerPostDeta
 
 async function fetchCareerPostsList(): Promise<CareerPostSummary[]> {
   const res = await fetch(`${API_BASE_URL}/api/career/posts/`, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Failed to load jobs (${res.status})`);
+  if (!res.ok) throw new HttpError(res.status);
   const data = await res.json();
-  const list = Array.isArray(data) ? data : (data?.result ?? data?.results ?? data?.data ?? data?.items ?? []);
+  const list = Array.isArray(data)
+    ? data
+    : (data?.result ?? data?.results ?? data?.data ?? data?.items ?? []);
   if (!Array.isArray(list)) return [];
   return list.map(normalizeCareerPostSummary).filter((p) => p.id !== '');
 }
 
-async function fetchCareerPostDetail(id: string | number): Promise<CareerPostDetail> {
+async function fetchCareerPostDetail(
+  id: string | number,
+  locale: string
+): Promise<CareerPostDetail> {
   const res = await fetch(`${API_BASE_URL}/api/career/posts/${id}/`, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Failed to load job details (${res.status})`);
+  if (!res.ok) throw new HttpError(res.status);
   const data = await res.json();
-  const obj = Array.isArray(data) ? data?.[0] : (data?.data ?? data);
-  return normalizeCareerPostDetail(obj);
+  const obj = unwrapPayload(data);
+  return normalizeCareerPostDetail(obj, locale);
 }
 
+const heroStatKeys = ['ai', 'location', 'impact'] as const;
+
+const radioQuestions = [
+  { name: 'eligibleToWorkInCanada', labelKey: 'eligible' },
+  { name: 'validDriversLicense', labelKey: 'license' },
+  { name: 'dronePilotLicense', labelKey: 'drone' },
+] as const;
+
 export default function CareersPage() {
+  const t = useTranslations('Careers');
+  const locale = useLocale();
+
+  // Translate known API values (e.g. "Full Time"); unknown values stay as they are
+  const tValue = (v?: string) => {
+    if (!v) return v;
+    const key = `values.${v.toLowerCase().replace(/[^a-z0-9]/g, '')}`;
+    return t.has(key) ? t(key) : v;
+  };
+
   const [selectedPositionId, setSelectedPositionId] = useState<string | null>(null);
   const [positions, setPositions] = useState<CareerPostSummary[]>([]);
   const [positionsLoading, setPositionsLoading] = useState(true);
@@ -238,7 +292,11 @@ export default function CareersPage() {
       } catch (e: unknown) {
         if (cancelled) return;
         setPositionsError(
-          (e instanceof Error ? e.message : null) ?? 'Failed to load open positions.'
+          e instanceof HttpError
+            ? t('errors.loadJobs', { status: e.status })
+            : e instanceof Error
+              ? e.message
+              : t('errors.loadJobsFallback')
         );
         setPositions([]);
       } finally {
@@ -248,6 +306,7 @@ export default function CareersPage() {
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTogglePosition = async (id: string | number) => {
@@ -257,12 +316,17 @@ export default function CareersPage() {
     try {
       setDetailsLoadingById((prev) => ({ ...prev, [key]: true }));
       setDetailsErrorById((prev) => ({ ...prev, [key]: undefined }));
-      const detail = await fetchCareerPostDetail(id);
+      const detail = await fetchCareerPostDetail(id, locale);
       setDetailsById((prev) => ({ ...prev, [key]: detail }));
     } catch (e: unknown) {
       setDetailsErrorById((prev) => ({
         ...prev,
-        [key]: e instanceof Error ? e.message : 'Failed to load job details.',
+        [key]:
+          e instanceof HttpError
+            ? t('errors.loadDetails', { status: e.status })
+            : e instanceof Error
+              ? e.message
+              : t('errors.loadDetailsFallback'),
       }));
     } finally {
       setDetailsLoadingById((prev) => ({ ...prev, [key]: false }));
@@ -282,34 +346,30 @@ export default function CareersPage() {
     }
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setSubmitError(null);
-  setSubmitSuccess(null);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError(null);
+    setSubmitSuccess(null);
 
-  if (!formData.cv) {
-    setSubmitError('Please upload your CV/Resume.');
-    return;
-  }
+    if (!formData.cv) {
+      setSubmitError(t('errors.noCv'));
+      return;
+    }
 
-  // Quick fix: General Application needs at least one real position to map to
-  const postValue = formData.position === 'general'
-    ? String(positions[0]?.id ?? '')
-    : formData.position;
+    // Quick fix: General Application needs at least one real position to map to
+    const postValue =
+      formData.position === 'general' ? String(positions[0]?.id ?? '') : formData.position;
 
-  if (!postValue) {
-    setSubmitError(
-      'General applications are currently unavailable — no open positions to apply through. Please select a specific position instead.'
-    );
-    return;
-  }
+    if (!postValue) {
+      setSubmitError(t('errors.noGeneral'));
+      return;
+    }
 
-  const yesNoToBoolString = (v: '' | 'yes' | 'no') => (v === 'yes' ? 'true' : 'false');
-  try {
-    setSubmitLoading(true);
-    const payload = new FormData();
-    payload.append('post', postValue);
-    // ... rest same as before
+    const yesNoToBoolString = (v: '' | 'yes' | 'no') => (v === 'yes' ? 'true' : 'false');
+    try {
+      setSubmitLoading(true);
+      const payload = new FormData();
+      payload.append('post', postValue);
       payload.append('name', formData.name);
       payload.append('email', formData.email);
       payload.append('phone', formData.phone);
@@ -338,9 +398,9 @@ const handleSubmit = async (e: React.FormEvent) => {
             .filter(Boolean);
           if (messages.length) throw new Error(messages.join(' | '));
         }
-        throw new Error(`Submission failed (${res.status})`);
+        throw new HttpError(res.status);
       }
-      setSubmitSuccess('Application submitted successfully. Thank you!');
+      setSubmitSuccess(t('success.submitted'));
       setFormData({
         name: '',
         email: '',
@@ -359,7 +419,13 @@ const handleSubmit = async (e: React.FormEvent) => {
           ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     } catch (err: unknown) {
-      setSubmitError(err instanceof Error ? err.message : 'Failed to submit application.');
+      setSubmitError(
+        err instanceof HttpError
+          ? t('errors.submitStatus', { status: err.status })
+          : err instanceof Error
+            ? err.message
+            : t('errors.submitFallback')
+      );
     } finally {
       setSubmitLoading(false);
     }
@@ -600,7 +666,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               fontFamily: "'DM Sans',sans-serif",
             }}
           >
-            We&apos;re Hiring
+            {t('hero.badge')}
           </span>
           <h1
             style={{
@@ -613,7 +679,9 @@ const handleSubmit = async (e: React.FormEvent) => {
               marginBottom: 20,
             }}
           >
-            Grow Your Career with <em style={{ color: '#BEA950' }}>TerraSkyAI</em>
+            {t.rich('hero.title', {
+              gold: (chunks) => <em style={{ color: '#BEA950' }}>{chunks}</em>,
+            })}
           </h1>
           <p
             style={{
@@ -625,18 +693,13 @@ const handleSubmit = async (e: React.FormEvent) => {
               margin: '0 auto 40px',
             }}
           >
-            Help us revolutionize agriculture through AI and drone technology. Be part of a team
-            making a real impact on farming and food security worldwide.
+            {t('hero.description')}
           </p>
 
           {/* Stats row */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: 48, flexWrap: 'wrap' }}>
-            {[
-              { val: 'AI-Powered', label: 'AgTech' },
-              { val: 'Based In', label: 'Canada' },
-              { val: 'Real-World', label: 'Impact' },
-            ].map((s) => (
-              <div key={s.val} style={{ textAlign: 'center' }}>
+            {heroStatKeys.map((key) => (
+              <div key={key} style={{ textAlign: 'center' }}>
                 {/* SMALL VALUE */}
                 <p
                   style={{
@@ -649,7 +712,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     marginBottom: 6,
                   }}
                 >
-                  {s.val}
+                  {t(`hero.stats.${key}.top`)}
                 </p>
 
                 {/* BIG LABEL */}
@@ -662,7 +725,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     lineHeight: 1,
                   }}
                 >
-                  {s.label}
+                  {t(`hero.stats.${key}.bottom`)}
                 </p>
               </div>
             ))}
@@ -712,7 +775,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 fontFamily: "'DM Sans',sans-serif",
               }}
             >
-              Open Positions
+              {t('positions.badge')}
             </span>
             <h2
               style={{
@@ -725,7 +788,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 marginBottom: 8,
               }}
             >
-              Current Opportunities
+              {t('positions.title')}
             </h2>
             <div className="cr-shimmer" style={{ maxWidth: 160, marginTop: 16 }} />
           </div>
@@ -740,7 +803,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 fontSize: 15,
               }}
             >
-              Loading open positions…
+              {t('positions.loading')}
             </div>
           )}
 
@@ -761,7 +824,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   marginBottom: 6,
                 }}
               >
-                Couldn&apos;t load positions right now.
+                {t('positions.errorTitle')}
               </p>
               <p style={{ fontFamily: "'DM Sans',sans-serif", color: '#b91c1c', fontSize: 13 }}>
                 {positionsError}
@@ -780,7 +843,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               }}
             >
               <p style={{ fontFamily: "'DM Sans',sans-serif", color: '#9a9878', fontSize: 15 }}>
-                No open positions at the moment. Please check back soon.
+                {t('positions.empty')}
               </p>
             </div>
           )}
@@ -792,7 +855,10 @@ const handleSubmit = async (e: React.FormEvent) => {
               const isOpen = selectedPositionId === key;
               const isDetailLoading = !!detailsLoadingById[key];
               const detailError = detailsErrorById[key];
-              const merged: CareerPostDetail = { ...position, ...(detail ?? {}) };
+              const merged = {
+                ...position,
+                ...(detail ? pickDefined(detail) : {}),
+              } as CareerPostDetail;
 
               return (
                 <div key={position.id} className={`cr-job-card${isOpen ? ' is-open' : ''}`}>
@@ -816,14 +882,18 @@ const handleSubmit = async (e: React.FormEvent) => {
                           marginBottom: 12,
                         }}
                       >
-                        {merged.title ?? 'Untitled Position'}
+                        {merged.title ?? t('positions.untitled')}
                       </h3>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                        {merged.department && <span className="cr-badge">{merged.department}</span>}
+                        {merged.department && (
+                          <span className="cr-badge">{tValue(merged.department)}</span>
+                        )}
                         {merged.location && <span className="cr-badge">📍 {merged.location}</span>}
-                        {merged.type && <span className="cr-badge">{merged.type}</span>}
-                        {merged.isRemote && <span className="cr-badge">🌐 Remote</span>}
-                        {merged.status && <span className="cr-badge">{merged.status}</span>}
+                        {merged.type && <span className="cr-badge">{tValue(merged.type)}</span>}
+                        {merged.isRemote && (
+                          <span className="cr-badge">🌐 {t('positions.remote')}</span>
+                        )}
+                        {merged.status && <span className="cr-badge">{tValue(merged.status)}</span>}
                       </div>
                     </div>
                     <button
@@ -877,7 +947,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                             color: '#9a9878',
                           }}
                         >
-                          Loading details…
+                          {t('positions.loadingDetails')}
                         </p>
                       )}
                       {!isDetailLoading && detailError && (
@@ -919,7 +989,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                       marginBottom: 3,
                                     }}
                                   >
-                                    Compensation
+                                    {t('positions.compensation')}
                                   </p>
                                   <p
                                     style={{
@@ -953,7 +1023,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                       marginBottom: 3,
                                     }}
                                   >
-                                    Deadline
+                                    {t('positions.deadline')}
                                   </p>
                                   <p
                                     style={{
@@ -987,7 +1057,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                       marginBottom: 3,
                                     }}
                                   >
-                                    Apply Email
+                                    {t('positions.applyEmail')}
                                   </p>
                                   <a
                                     href={`mailto:${merged.applicationEmail}`}
@@ -1018,7 +1088,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                   marginBottom: 12,
                                 }}
                               >
-                                Key Responsibilities
+                                {t('positions.responsibilities')}
                               </h4>
                               <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {merged.responsibilities
@@ -1065,7 +1135,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                   marginBottom: 12,
                                 }}
                               >
-                                Requirements
+                                {t('positions.requirements')}
                               </h4>
                               <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {merged.requirements.map((r, i) => (
@@ -1106,7 +1176,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                   marginBottom: 12,
                                 }}
                               >
-                                Requirements
+                                {t('positions.requirements')}
                               </h4>
                               <div
                                 style={{
@@ -1134,7 +1204,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                   marginBottom: 12,
                                 }}
                               >
-                                Preferred Skills
+                                {t('positions.preferredSkills')}
                               </h4>
                               <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {merged.preferredSkills.map((s, i) => (
@@ -1173,7 +1243,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                                 ?.scrollIntoView({ behavior: 'smooth' });
                             }}
                           >
-                            Apply for this Position
+                            {t('positions.apply')}
                             <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
                               <path
                                 d="M4 10h12M10 4l6 6-6 6"
@@ -1251,7 +1321,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 fontFamily: "'DM Sans',sans-serif",
               }}
             >
-              Apply Now
+              {t('form.badge')}
             </span>
             <h2
               style={{
@@ -1264,7 +1334,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 marginBottom: 12,
               }}
             >
-              Submit Your <em style={{ color: '#8B5E3C' }}>Application</em>
+              {t.rich('form.title', {
+                em: (chunks) => <em style={{ color: '#8B5E3C' }}>{chunks}</em>,
+              })}
             </h2>
             <p
               style={{
@@ -1276,8 +1348,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 lineHeight: 1.75,
               }}
             >
-              Fill out the form below to apply for a position or submit your CV for future
-              opportunities.
+              {t('form.description')}
             </p>
           </div>
 
@@ -1295,7 +1366,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 {/* Name */}
                 <div>
                   <label className="cr-form-label" htmlFor="name">
-                    Full Name *
+                    {t('form.fullName')} *
                   </label>
                   <input
                     type="text"
@@ -1304,7 +1375,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="John Doe"
+                    placeholder={t('form.namePlaceholder')}
                     className="cr-form-input"
                   />
                 </div>
@@ -1316,7 +1387,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 >
                   <div>
                     <label className="cr-form-label" htmlFor="email">
-                      Email Address *
+                      {t('form.email')} *
                     </label>
                     <input
                       type="email"
@@ -1325,13 +1396,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="you@example.com"
+                      placeholder={t('form.emailPlaceholder')}
                       className="cr-form-input"
                     />
                   </div>
                   <div>
                     <label className="cr-form-label" htmlFor="phone">
-                      Phone Number
+                      {t('form.phone')}
                     </label>
                     <input
                       type="tel"
@@ -1339,7 +1410,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder={t('form.phonePlaceholder')}
                       className="cr-form-input"
                     />
                   </div>
@@ -1348,7 +1419,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 {/* Position */}
                 <div>
                   <label className="cr-form-label" htmlFor="position">
-                    Position Applying For *
+                    {t('form.position')} *
                   </label>
                   <select
                     id="position"
@@ -1359,16 +1430,16 @@ const handleSubmit = async (e: React.FormEvent) => {
                     className="cr-form-input"
                     style={{ appearance: 'none', cursor: 'pointer' }}
                   >
-                    <option value="">Select a position…</option>
+                    <option value="">{t('form.selectPosition')}</option>
                     {positionsForRender.map((pos) => (
                       <option key={pos.id} value={String(pos.id)}>
                         {pos.title ?? String(pos.id)}
                       </option>
                     ))}
                     {positionsForRender.length > 0 && (
-    <option value="general">General Application</option>
-  )}
-</select>
+                      <option value="general">{t('form.general')}</option>
+                    )}
+                  </select>
                 </div>
 
                 {/* Radio questions */}
@@ -1376,23 +1447,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   className="cr-radio-grid"
                   style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}
                 >
-                  {[
-                    {
-                      name: 'eligibleToWorkInCanada',
-                      label: 'Eligible to work in Canada',
-                      value: formData.eligibleToWorkInCanada,
-                    },
-                    {
-                      name: 'validDriversLicense',
-                      label: "Valid driver's license",
-                      value: formData.validDriversLicense,
-                    },
-                    {
-                      name: 'dronePilotLicense',
-                      label: 'Drone pilot license',
-                      value: formData.dronePilotLicense,
-                    },
-                  ].map((q) => (
+                  {radioQuestions.map((q) => (
                     <div key={q.name} className="cr-radio-card">
                       <p
                         style={{
@@ -1405,10 +1460,10 @@ const handleSubmit = async (e: React.FormEvent) => {
                           marginBottom: 12,
                         }}
                       >
-                        {q.label} *
+                        {t(`form.questions.${q.labelKey}`)} *
                       </p>
                       <div style={{ display: 'flex', gap: 24 }}>
-                        {['yes', 'no'].map((opt) => (
+                        {(['yes', 'no'] as const).map((opt) => (
                           <label
                             key={opt}
                             style={{
@@ -1427,11 +1482,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                               name={q.name}
                               value={opt}
                               required
-                              checked={q.value === opt}
+                              checked={formData[q.name] === opt}
                               onChange={handleInputChange}
                               style={{ accentColor: '#454411', width: 16, height: 16 }}
                             />
-                            {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                            {t(`form.${opt}`)}
                           </label>
                         ))}
                       </div>
@@ -1442,7 +1497,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 {/* Cover letter */}
                 <div>
                   <label className="cr-form-label" htmlFor="coverLetter">
-                    Cover Letter
+                    {t('form.coverLetter')}
                   </label>
                   <textarea
                     id="coverLetter"
@@ -1450,7 +1505,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     rows={5}
                     value={formData.coverLetter}
                     onChange={handleInputChange}
-                    placeholder="Tell us why you're interested in joining TerraSkyAI…"
+                    placeholder={t('form.coverPlaceholder')}
                     className="cr-form-input"
                     style={{ resize: 'vertical' }}
                   />
@@ -1459,7 +1514,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 {/* CV Upload */}
                 <div>
                   <label className="cr-form-label" htmlFor="cv">
-                    Upload CV / Resume *
+                    {t('form.cv')} *
                   </label>
                   <input
                     ref={fileInputRef}
@@ -1480,7 +1535,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       marginTop: 6,
                     }}
                   >
-                    Accepted: PDF, DOC, DOCX (Max 5MB)
+                    {t('form.cvHint')}
                   </p>
                 </div>
 
@@ -1491,7 +1546,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   className="cr-submit-btn"
                   style={{ marginTop: 8 }}
                 >
-                  {submitLoading ? 'Submitting…' : 'Submit Application'}
+                  {submitLoading ? t('form.submitting') : t('form.submit')}
                   {!submitLoading && (
                     <svg viewBox="0 0 24 24" fill="none" style={{ width: 18, height: 18 }}>
                       <path
