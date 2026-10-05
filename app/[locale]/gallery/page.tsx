@@ -2,33 +2,26 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { Link } from '../../../i18n/navigation';
 
 const events = [
   {
     id: 1,
-    name: 'Lethbridge Ag Expo',
-    location: 'Lethbridge, Alberta',
-    tag: 'Industry Expo',
+    key: 'expo',
     tagColor: '#8B5E3C',
-    description:
-      'TerraSkyAI proudly showcased at the Lethbridge Ag Expo in collaboration with SkyDrones Inc — demonstrating how AI-powered aerial intelligence is transforming modern agriculture. From smarter decisions to stronger sustainability and improved farm profitability, this event brought together growers, agronomists, and industry partners to explore the future of precision farming.',
-    highlight: 'Collaboration with SkyDrones Inc',
     images: ['/assets/Ag_Expo1.jpeg', '/assets/Ag_Expo2.jpeg', '/assets/Ag_Expo3.jpeg'],
   },
   {
     id: 2,
-    name: 'University of Lethbridge Career Fair',
-    location: 'Lethbridge, Alberta',
-    tag: 'Career Event',
+    key: 'careerFair',
     tagColor: '#454411',
-    description:
-      'It was a pleasure connecting with talented students and professionals passionate about agriculture, technology, and innovation at the University of Lethbridge Career Fair. We shared our vision for the future of AgTech, discussed career opportunities, and were energized by the enthusiasm of the next generation of agricultural innovators.',
-    highlight: 'Connecting with the next generation',
     images: ['/assets/Career-Fair1.jpeg', '/assets/Career-Fair2.jpeg', '/assets/Career-Fair3.jpeg'],
   },
-];
+] as const;
 
 export default function GalleryPage() {
+  const t = useTranslations('Gallery');
   const [lightbox, setLightbox] = useState<{ src: string; eventName: string } | null>(null);
 
   return (
@@ -334,7 +327,7 @@ export default function GalleryPage() {
               animation: 'gl-fadeUp 0.5s ease both',
             }}
           >
-            Events & Community
+            {t('hero.badge')}
           </span>
 
           <h1
@@ -349,7 +342,7 @@ export default function GalleryPage() {
               animation: 'gl-fadeUp 0.6s 0.1s ease both',
             }}
           >
-            Our Gallery
+            {t('hero.title')}
           </h1>
 
           <div
@@ -390,195 +383,202 @@ export default function GalleryPage() {
               animation: 'gl-fadeUp 0.6s 0.2s ease both',
             }}
           >
-            From expos to career fairs — moments where TerraSkyAI connects with growers, students,
-            and innovators shaping the future of agriculture.
+            {t('hero.description')}
           </p>
         </div>
       </section>
 
       {/* ── EVENTS ── */}
-      {events.map((event, idx) => (
-        <section key={event.id} className="gl-section">
-          <div
-            className="gl-dot-bg"
-            style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
-          />
+      {events.map((event, idx) => {
+        const eventName = t(`events.${event.key}.name`);
 
-          {/* Glow orb */}
-          <div
-            style={{
-              position: 'absolute',
-              top: idx % 2 === 0 ? -60 : 'auto',
-              bottom: idx % 2 !== 0 ? -60 : 'auto',
-              left: idx % 2 === 0 ? '5%' : 'auto',
-              right: idx % 2 !== 0 ? '5%' : 'auto',
-              width: 350,
-              height: 350,
-              borderRadius: '50%',
-              background: `radial-gradient(circle, rgba(${idx % 2 === 0 ? '190,169,80' : '139,94,60'},0.07) 0%, transparent 70%)`,
-              filter: 'blur(50px)',
-              pointerEvents: 'none',
-            }}
-          />
+        return (
+          <section key={event.id} className="gl-section">
+            <div
+              className="gl-dot-bg"
+              style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+            />
 
-          <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-            {/* Event header */}
-            <div className="gl-event-label" style={{ marginBottom: 44 }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 16,
-                  flexWrap: 'wrap',
-                  marginBottom: 12,
-                }}
-              >
-                <span
+            {/* Glow orb */}
+            <div
+              style={{
+                position: 'absolute',
+                top: idx % 2 === 0 ? -60 : 'auto',
+                bottom: idx % 2 !== 0 ? -60 : 'auto',
+                left: idx % 2 === 0 ? '5%' : 'auto',
+                right: idx % 2 !== 0 ? '5%' : 'auto',
+                width: 350,
+                height: 350,
+                borderRadius: '50%',
+                background: `radial-gradient(circle, rgba(${idx % 2 === 0 ? '190,169,80' : '139,94,60'},0.07) 0%, transparent 70%)`,
+                filter: 'blur(50px)',
+                pointerEvents: 'none',
+              }}
+            />
+
+            <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
+              {/* Event header */}
+              <div className="gl-event-label" style={{ marginBottom: 44 }}>
+                <div
                   style={{
-                    background: idx % 2 === 0 ? 'rgba(139,94,60,0.1)' : 'rgba(69,68,17,0.08)',
-                    border: `1px solid ${idx % 2 === 0 ? 'rgba(139,94,60,0.25)' : 'rgba(69,68,17,0.2)'}`,
-                    color: event.tagColor,
-                    fontSize: 11,
-                    fontWeight: 700,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    padding: '4px 14px',
-                    borderRadius: 999,
-                    fontFamily: "'DM Sans',sans-serif",
-                  }}
-                >
-                  {event.tag}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'DM Sans',sans-serif",
-                    fontSize: 13,
-                    color: '#9a9878',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 6,
+                    gap: 16,
+                    flexWrap: 'wrap',
+                    marginBottom: 12,
                   }}
                 >
-                  <svg viewBox="0 0 16 16" fill="none" style={{ width: 13, height: 13 }}>
-                    <path
-                      d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"
-                      stroke="#9a9878"
-                      strokeWidth="1.3"
-                    />
-                    <circle cx="8" cy="6" r="1.5" stroke="#9a9878" strokeWidth="1.3" />
-                  </svg>
-                  {event.location}
-                </span>
-              </div>
-
-              <h2
-                style={{
-                  fontFamily: "'Cormorant Garamond',Georgia,serif",
-                  fontSize: 'clamp(2.2rem,4vw,3.5rem)',
-                  fontWeight: 700,
-                  color: '#2d2e0a',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.025em',
-                }}
-              >
-                {event.name}
-              </h2>
-            </div>
-
-            {/* Main grid: images left, info right — alternate on even */}
-            <div
-              className="gl-event-grid"
-              style={{
-                display: 'grid',
-                gridTemplateColumns: idx % 2 === 0 ? '1.2fr 1fr' : '1fr 1.2fr',
-                gap: 40,
-                alignItems: 'stretch',
-              }}
-            >
-              {/* Image grid */}
-              <div
-                style={{ order: idx % 2 === 0 ? 0 : 1, display: 'flex', flexDirection: 'column' }}
-              >
-                <div className="gl-img-grid" style={{ flex: 1 }}>
-                  {event.images.map((src, i) => (
-                    <div
-                      key={i}
-                      className="gl-img-item"
-                      onClick={() => setLightbox({ src, eventName: event.name })}
-                    >
-                      <Image
-                        src={src}
-                        alt={`${event.name} ${i + 1}`}
-                        width={800}
-                        height={600}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  <span
+                    style={{
+                      background: idx % 2 === 0 ? 'rgba(139,94,60,0.1)' : 'rgba(69,68,17,0.08)',
+                      border: `1px solid ${idx % 2 === 0 ? 'rgba(139,94,60,0.25)' : 'rgba(69,68,17,0.2)'}`,
+                      color: event.tagColor,
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      padding: '4px 14px',
+                      borderRadius: 999,
+                      fontFamily: "'DM Sans',sans-serif",
+                    }}
+                  >
+                    {t(`events.${event.key}.tag`)}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'DM Sans',sans-serif",
+                      fontSize: 13,
+                      color: '#9a9878',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 6,
+                    }}
+                  >
+                    <svg viewBox="0 0 16 16" fill="none" style={{ width: 13, height: 13 }}>
+                      <path
+                        d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"
+                        stroke="#9a9878"
+                        strokeWidth="1.3"
                       />
-                      <div className="gl-img-overlay">
-                        <div className="gl-zoom-icon">
-                          <svg viewBox="0 0 20 20" fill="none" style={{ width: 18, height: 18 }}>
-                            <circle cx="9" cy="9" r="5.5" stroke="white" strokeWidth="1.5" />
-                            <path
-                              d="M13.5 13.5l3 3"
-                              stroke="white"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                            />
-                            <path
-                              d="M7 9h4M9 7v4"
-                              stroke="white"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                      <circle cx="8" cy="6" r="1.5" stroke="#9a9878" strokeWidth="1.3" />
+                    </svg>
+                    {t(`events.${event.key}.location`)}
+                  </span>
                 </div>
 
-                {/* Image count label */}
-                <p
+                <h2
                   style={{
-                    fontFamily: "'DM Sans',sans-serif",
-                    fontSize: 12,
-                    color: '#b0ac90',
-                    marginTop: 12,
-                    textAlign: 'center',
-                    letterSpacing: '0.06em',
+                    fontFamily: "'Cormorant Garamond',Georgia,serif",
+                    fontSize: 'clamp(2.2rem,4vw,3.5rem)',
+                    fontWeight: 700,
+                    color: '#2d2e0a',
+                    lineHeight: 1.1,
+                    letterSpacing: '-0.025em',
                   }}
                 >
-                  {event.images.length} photos — click to enlarge
-                </p>
+                  {eventName}
+                </h2>
               </div>
 
-              {/* Info card */}
-              <div style={{ order: idx % 2 === 0 ? 1 : 0 }}>
-                <div className="gl-info-card">
+              {/* Main grid: images left, info right — alternate on even */}
+              <div
+                className="gl-event-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: idx % 2 === 0 ? '1.2fr 1fr' : '1fr 1.2fr',
+                  gap: 40,
+                  alignItems: 'stretch',
+                }}
+              >
+                {/* Image grid */}
+                <div
+                  style={{
+                    order: idx % 2 === 0 ? 0 : 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <div className="gl-img-grid" style={{ flex: 1 }}>
+                    {event.images.map((src, i) => (
+                      <div
+                        key={i}
+                        className="gl-img-item"
+                        onClick={() => setLightbox({ src, eventName })}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${eventName} ${i + 1}`}
+                          width={800}
+                          height={600}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                        <div className="gl-img-overlay">
+                          <div className="gl-zoom-icon">
+                            <svg viewBox="0 0 20 20" fill="none" style={{ width: 18, height: 18 }}>
+                              <circle cx="9" cy="9" r="5.5" stroke="white" strokeWidth="1.5" />
+                              <path
+                                d="M13.5 13.5l3 3"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                              />
+                              <path
+                                d="M7 9h4M9 7v4"
+                                stroke="white"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Image count label */}
                   <p
                     style={{
                       fontFamily: "'DM Sans',sans-serif",
-                      fontSize: 15,
-                      color: '#545454',
-                      lineHeight: 1.85,
+                      fontSize: 12,
+                      color: '#b0ac90',
+                      marginTop: 12,
+                      textAlign: 'center',
+                      letterSpacing: '0.06em',
                     }}
                   >
-                    {event.description}
+                    {t('photosHint', { count: event.images.length })}
                   </p>
+                </div>
 
-                  <div className="gl-shimmer-line" />
+                {/* Info card */}
+                <div style={{ order: idx % 2 === 0 ? 1 : 0 }}>
+                  <div className="gl-info-card">
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 15,
+                        color: '#545454',
+                        lineHeight: 1.85,
+                      }}
+                    >
+                      {t(`events.${event.key}.description`)}
+                    </p>
 
-                  <div className="gl-highlight">
-                    <svg viewBox="0 0 12 12" fill="#BEA950" style={{ width: 8, height: 8 }}>
-                      <circle cx="6" cy="6" r="6" />
-                    </svg>
-                    {event.highlight}
+                    <div className="gl-shimmer-line" />
+
+                    <div className="gl-highlight">
+                      <svg viewBox="0 0 12 12" fill="#BEA950" style={{ width: 8, height: 8 }}>
+                        <circle cx="6" cy="6" r="6" />
+                      </svg>
+                      {t(`events.${event.key}.highlight`)}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
 
       {/* ── STAY CONNECTED banner ── */}
       <section
@@ -632,7 +632,7 @@ export default function GalleryPage() {
               lineHeight: 1.15,
             }}
           >
-            Missed us at an event?
+            {t('cta.title')}
           </h2>
           <p
             style={{
@@ -643,9 +643,9 @@ export default function GalleryPage() {
               marginBottom: 32,
             }}
           >
-            Reach out and let&apos;s start a conversation about the future of your farm.
+            {t('cta.description')}
           </p>
-          <a
+          <Link
             href="/contact"
             style={{
               display: 'inline-flex',
@@ -671,7 +671,7 @@ export default function GalleryPage() {
               (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 24px rgba(190,169,80,0.35)';
             }}
           >
-            Let&apos;s Connect
+            {t('cta.button')}
             <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
               <path
                 d="M4 10h12M10 4l6 6-6 6"
@@ -681,7 +681,7 @@ export default function GalleryPage() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </section>
 

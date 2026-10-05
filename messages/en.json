@@ -1,0 +1,459 @@
+{
+  "Metadata": {
+    "title": "TerraSkyAI - Where Technology Meets Agriculture",
+    "description": "TerraSkyAI is a precision agriculture platform that uses AI to help farmers make better decisions about their crops and soil."
+  },
+  "Header": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About TerraSkyAI",
+    "contact": "Contact Us",
+    "careers": "Career",
+    "gallery": "Gallery",
+    "logoAlt": "terraskyai logo",
+    "toggleMenu": "Toggle menu",
+    "language": "Language"
+  },
+  "Footer": {
+    "tagline": "From flights to insights — precision farming for the modern age.",
+    "logoAlt": "TerraSkyAI Logo",
+    "description": "Revolutionizing agriculture through AI-powered precision farming. Empowering farmers with actionable insights for sustainable, efficient crop management.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "career": "Career",
+    "about": "About Us",
+    "whyUs": "Why Us",
+    "contact": "Contact",
+    "products": "Products",
+    "contactTitle": "Contact",
+    "copyright": "© {year} TerraSkyAI. All Rights Reserved."
+  },
+  "Home": {
+    "hero": {
+      "imageAlt": "TerraSkyAI in action",
+      "title": "Flights to Insights",
+      "subtitle": "Making Precision Farming Sustainable and Profitable",
+      "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm."
+    },
+    "products": {
+      "badge": "Our Products",
+      "title": "Tools Built for the <em>Modern Farm</em>",
+      "description": "Our flagship platform — turning aerial drone data into actionable decisions that grow your yield and bottom line.",
+      "webPortal": "Web Portal",
+      "tag": "Precision Analytics",
+      "skysightDescription": "All-in-one digital farming portal for seamless farm management, unlocking efficiency and success from anywhere, anytime.",
+      "cta": "Explore SkySight",
+      "features": {
+        "monitoring": {
+          "label": "Real-time field monitoring",
+          "desc": "Live data from every corner of your farm"
+        },
+        "drone": {
+          "label": "Drone data integration",
+          "desc": "Seamless aerial imagery processing"
+        },
+        "cloud": {
+          "label": "Cloud-based portal",
+          "desc": "Access from anywhere, anytime"
+        },
+        "analytics": {
+          "label": "AI-powered analytics",
+          "desc": "Turn raw data into clear decisions"
+        },
+        "vision": {
+          "label": "Computer Vision Analytics and Reports",
+          "desc": "In-depth insights and simplified report generation"
+        },
+        "crop": {
+          "label": "AI Powered Crop Intelligence",
+          "desc": "Smart recommendations for every growth stage"
+        }
+      }
+    },
+    "about": {
+      "badge": "About Us",
+      "title": "Powering Smarter Fields with <em>Practical AI</em>",
+      "description": "TerraSkyAI is an innovative AgTech company leveraging Artificial Intelligence and Machine Learning to revolutionize agriculture — empowering farmers worldwide with optimized operations and improved crop yields.",
+      "pills": {
+        "ai": "AI & Machine Learning",
+        "drone": "Drone Imagery",
+        "analytics": "Precision Analytics",
+        "sustainable": "Sustainable Farming"
+      },
+      "learnMore": "Learn More",
+      "imageAlt": "TerraSkyAI in action",
+      "imageCaption": "From Flights to Insights"
+    },
+    "why": {
+      "badge": "Why Us?",
+      "title": "Trusted, AI-driven partner for <em>smarter farming</em>",
+      "description": "TerraSkyAI blends satellite imagery and advanced machine learning to deliver actionable insights that cut waste, improve yields, and reduce costs.",
+      "stats": {
+        "inputs": "Input savings",
+        "scouting": "Faster scouting",
+        "accuracy": "Detection accuracy"
+      },
+      "points": {
+        "p1": "Real-time visibility into crop health.",
+        "p2": "Early detection of pests and stress for faster intervention.",
+        "p3": "Precision irrigation guidance to save water and inputs.",
+        "p4": "Dedicated experts focused on outcomes, not just tools."
+      }
+    }
+  },
+ "CoreValues": {
+    "badge": "Core Capabilities",
+    "title": "AI-Powered Precision Agriculture Analytics",
+    "description": "Cutting-edge aerial intelligence that transforms how Canadian farmers make decisions — from seed to harvest.",
+    "items": {
+      "plantStand": {
+        "title": "Plant Stand Count",
+        "tag": "Red square detection",
+        "points": {
+          "p1": "Reseeding decisions with real-time accuracy",
+          "p2": "Parent seed line vigor evaluation",
+          "p3": "Insurance claims validation support"
+        }
+      },
+      "weed": {
+        "title": "Weed & Insect Detection",
+        "tag": "Multi-color threat mapping",
+        "highlight": "80% input savings",
+        "points": {
+          "p1": "Targeted spot treatment for precise management",
+          "p2": "Multi-species color-coded identification",
+          "p3": "Crop input savings by up to 80%"
+        }
+      },
+      "offType": {
+        "title": "Off-Type Detection",
+        "tag": "Single plant anomaly",
+        "highlight": "80% cost reduction",
+        "points": {
+          "p1": "Hybrid seed purity verification",
+          "p2": "Minimize cost of production up to 80%",
+          "p3": "Rouging optimization & automation"
+        }
+      },
+      "yield": {
+        "title": "Yield Estimation",
+        "tag": "HD pod-level detection",
+        "points": {
+          "p1": "Optimized supply chain planning",
+          "p2": "Seed storage optimization",
+          "p3": "Sales & harvest planning support"
+        }
+      }
+    }
+  },
+ "Careers": {
+    "hero": {
+      "badge": "We're Hiring",
+      "title": "Grow Your Career with <gold>TerraSkyAI</gold>",
+      "description": "Help us revolutionize agriculture through AI and drone technology. Be part of a team making a real impact on farming and food security worldwide.",
+      "stats": {
+        "ai": { "top": "AI-Powered", "bottom": "AgTech" },
+        "location": { "top": "Based In", "bottom": "Canada" },
+        "impact": { "top": "Real-World", "bottom": "Impact" }
+      }
+    },
+    "positions": {
+      "badge": "Open Positions",
+      "title": "Current Opportunities",
+      "loading": "Loading open positions…",
+      "errorTitle": "Couldn't load positions right now.",
+      "empty": "No open positions at the moment. Please check back soon.",
+      "untitled": "Untitled Position",
+      "remote": "Remote",
+      "loadingDetails": "Loading details…",
+      "compensation": "Compensation",
+      "deadline": "Deadline",
+      "applyEmail": "Apply Email",
+      "responsibilities": "Key Responsibilities",
+      "requirements": "Requirements",
+      "preferredSkills": "Preferred Skills",
+      "apply": "Apply for this Position"
+    },
+    "form": {
+      "badge": "Apply Now",
+      "title": "Submit Your <em>Application</em>",
+      "description": "Fill out the form below to apply for a position or submit your CV for future opportunities.",
+      "fullName": "Full Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "you@example.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+1 (555) 123-4567",
+      "position": "Position Applying For",
+      "selectPosition": "Select a position…",
+      "general": "General Application",
+      "questions": {
+        "eligible": "Eligible to work in Canada",
+        "license": "Valid driver's license",
+        "drone": "Drone pilot license"
+      },
+      "yes": "Yes",
+      "no": "No",
+      "coverLetter": "Cover Letter",
+      "coverPlaceholder": "Tell us why you're interested in joining TerraSkyAI…",
+      "cv": "Upload CV / Resume",
+      "cvHint": "Accepted: PDF, DOC, DOCX (Max 5MB)",
+      "submit": "Submit Application",
+      "submitting": "Submitting…"
+    },
+    "errors": {
+      "loadJobs": "Failed to load jobs ({status})",
+      "loadJobsFallback": "Failed to load open positions.",
+      "loadDetails": "Failed to load job details ({status})",
+      "loadDetailsFallback": "Failed to load job details.",
+      "noCv": "Please upload your CV/Resume.",
+      "noGeneral": "General applications are currently unavailable — no open positions to apply through. Please select a specific position instead.",
+      "submitStatus": "Submission failed ({status})",
+      "submitFallback": "Failed to submit application."
+    },
+    "success": {
+      "submitted": "Application submitted successfully. Thank you!"
+    }
+  },
+    "Contact": {
+    "hero": {
+      "badge": "Get In Touch",
+      "title": "Let's Grow Something <gold>Together</gold>",
+      "description": "Share your goals and challenges — our team will respond with tailored recommendations for your operation."
+    },
+    "info": {
+      "badge": "Contact Info",
+      "title": "We're here to help your farm thrive",
+      "call": "Call us",
+      "email": "Email",
+      "location": "Location",
+      "locationValue": "Lethbridge, Alberta, Canada",
+      "headOffice": "Head Office",
+      "headOfficeValue": "Mississauga, Ontario, Canada"
+    },
+    "form": {
+      "badge": "Send a Message",
+      "title": "Tell us about your farm",
+      "titleSuccess": "Inquiry <gold>received</gold>",
+      "fullName": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "areaOfInterest": "Area of Interest",
+      "selectService": "Select a service…",
+      "areas": {
+        "plantStand": "Plant Stand Count",
+        "weed": "Weed & Insect Detection",
+        "offType": "Off-Type Detection",
+        "yield": "Yield Estimation",
+        "all": "All Services"
+      },
+      "messageLabel": "Tell us about your farm and what you need",
+      "messagePlaceholder": "Acres, crops, current challenges, and the outcomes you're targeting…",
+      "send": "Send Message",
+      "sending": "Sending…",
+      "responseTime": "We respond within 24 hours"
+    },
+    "success": {
+      "eyebrow": "Inquiry sent",
+      "title": "You're on our list, {name}",
+      "titleNoName": "You're on our list",
+      "description": "We received your message and will follow up by email. Keep this reference handy if you contact support.",
+      "referenceId": "Reference ID",
+      "areaOfInterest": "Area of interest",
+      "submitted": "Submitted",
+      "another": "Submit another query"
+    },
+    "errors": {
+      "fillAll": "Please fill in all fields.",
+      "submitStatus": "Submission failed ({status})",
+      "submitFallback": "Failed to send message."
+    }
+  },
+    "Gallery": {
+    "hero": {
+      "badge": "Events & Community",
+      "title": "Our Gallery",
+      "description": "From expos to career fairs — moments where TerraSkyAI connects with growers, students, and innovators shaping the future of agriculture."
+    },
+    "photosHint": "{count, plural, one {# photo} other {# photos}} — click to enlarge",
+    "events": {
+      "expo": {
+        "name": "Lethbridge Ag Expo",
+        "location": "Lethbridge, Alberta",
+        "tag": "Industry Expo",
+        "description": "TerraSkyAI proudly showcased at the Lethbridge Ag Expo in collaboration with SkyDrones Inc — demonstrating how AI-powered aerial intelligence is transforming modern agriculture. From smarter decisions to stronger sustainability and improved farm profitability, this event brought together growers, agronomists, and industry partners to explore the future of precision farming.",
+        "highlight": "Collaboration with SkyDrones Inc"
+      },
+      "careerFair": {
+        "name": "University of Lethbridge Career Fair",
+        "location": "Lethbridge, Alberta",
+        "tag": "Career Event",
+        "description": "It was a pleasure connecting with talented students and professionals passionate about agriculture, technology, and innovation at the University of Lethbridge Career Fair. We shared our vision for the future of AgTech, discussed career opportunities, and were energized by the enthusiasm of the next generation of agricultural innovators.",
+        "highlight": "Connecting with the next generation"
+      }
+    },
+    "cta": {
+      "title": "Missed us at an event?",
+      "description": "Reach out and let's start a conversation about the future of your farm.",
+      "button": "Let's Connect"
+    }
+  },
+    "SkySight": {
+    "hero": {
+      "badge": "Real-Time AI Portal & Dashboard",
+      "description": "All-in-one digital farming portal for seamless farm management — unlocking efficiency and success from anywhere, anytime."
+    },
+    "dashboard": {
+      "badge": "Dashboard",
+      "title": "Intuitive Interface, <em>Powerful Insights</em>",
+      "imageAlt": "SkySight Dashboard"
+    },
+    "reports": {
+      "badge": "Crop Insights & Reports",
+      "title": "Precision Analysis at <em>Every Scale</em>",
+      "description": "From high-resolution mapping to individual plant health — every insight you need, on demand.",
+      "features": {
+        "highRes": "High Resolution Map (1cm to 5cm)",
+        "cropArea": "Crop Area and Boundary",
+        "weed": "Weed Detection for Spot-treatment",
+        "germination": "Germination Map (Plant Count)",
+        "offType": "Off-type detection",
+        "parentLines": "Male and Female Parent Lines",
+        "disease": "Disease detection",
+        "defoliation": "Insect defoliation detection",
+        "dem": "Digital Elevation Map(DEM)",
+        "podCount": "Pod Count(Yield Estimation)",
+        "healthZones": "Crop Health Zones",
+        "flightAutomation": "Flight Mission Automation"
+      }
+    }
+  },
+    "TerraScout": {
+    "hero": {
+      "badge": "Desktop Application",
+      "headline": "Actionable Intelligence and Reports at Your Fingertips",
+      "subtitle": "Revolutionizing farm analysis with cutting-edge AI technology"
+    },
+    "details": {
+      "description": "Crop Insights and Reports, along with numerous on-request analyses to cater to specific farming needs and preferences."
+    },
+    "features": {
+      "highRes": "High Resolution Map (1cm to 5cm)",
+      "cropArea": "Crop Area and Boundary",
+      "weed": "Weed Detection for Spot-treatment",
+      "germination": "Germination Map (Plant Count)",
+      "offType": "Off-type detection",
+      "canopy": "Canopy Cover Analysis",
+      "disease": "Disease detection",
+      "defoliation": "Insect defoliation detection",
+      "waterlogging": "Water Logging Zones",
+      "healthZones": "Crop Health Zones",
+      "plantHealth": "Individual Plant Health",
+      "flightAutomation": "Flight Mission Automation"
+    },
+    "imagery": {
+      "alt1": "High resolution crop analysis with detection",
+      "alt2": "Detailed field imagery with plant detection",
+      "alt3": "Precision agriculture imagery",
+      "title": "High definition imagery so clear you can count the spots on a lady bug",
+      "description": "Experience unparalleled detail with our ultra-high resolution mapping technology, delivering precision down to the individual plant level."
+    }
+  },
+    "Services": {
+    "badge": "Services",
+    "title": "What We Deliver",
+    "items": {
+      "analytics": {
+        "title": "AI-Driven Crop & Soil Analytics",
+        "description": "Predict yields, detect pests, and optimize irrigation with hyper-accurate AI models trained on millions of agricultural data points."
+      },
+      "edge": {
+        "title": "Edge-Powered Real-Time Monitoring",
+        "description": "Process data locally with edge devices to reduce latency, cut costs, and deliver instant insights—even in low-connectivity rural areas."
+      },
+      "iot": {
+        "title": "IoT-Enabled Precision Farming",
+        "description": "Deploy smart sensors and drones to monitor soil health, weather patterns, and crop growth, turning raw data into actionable steps."
+      }
+    }
+  },
+    "TechnologyInAction": {
+    "hero": {
+      "badge": "Technology In Action",
+      "title": "TerraSkyAI is revolutionizing agriculture with real-time, AI-powered intelligence",
+      "description": "Through satellite imagery, IoT sensors, and machine learning, TerraSkyAI delivers instant visibility into crop health, soil conditions, and weather patterns. Farmers can optimize irrigation, detect pests early, and boost yields while reducing costs and environmental impact—bridging traditional farming with modern innovation for a sustainable future."
+    },
+    "benefits": {
+      "title": "How can they benefit by using TerraSkyAI?",
+      "description": "Discover how different sectors of agriculture leverage TerraSkyAI for enhanced productivity and profitability",
+      "items": {
+        "seed": {
+          "title": "Seed Production Industry",
+          "description": "Hybrid canola seed purity through off-type/volunteer canola detection, yield estimation for supply chain optimization."
+        },
+        "potato": {
+          "title": "Potato Processing Industry",
+          "description": "Delivers precise, field-level intelligence that helps secure reliable supply, improve quality consistency, and reduce production risk."
+        },
+        "retail": {
+          "title": "Agri-Retails",
+          "description": "Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance."
+        },
+        "growers": {
+          "title": "Growers",
+          "description": "Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability."
+        },
+        "insurance": {
+          "title": "Insurance Companies",
+          "description": "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency."
+        }
+      }
+    }
+  },
+    "VisionMission": {
+    "vision": {
+      "imageAlt": "Aerial view of forest and agricultural fields",
+      "logoAlt": "TerraSkyAI Logo",
+      "badge": "Our Vision",
+      "title": "Making Precision Farming Sustainable and Profitable"
+    },
+    "mission": {
+      "badge": "Our Mission",
+      "title": "To empower farmers globally",
+      "description": "by developing advanced, innovative AI-driven precision farming technologies that optimize farm operations, enhance productivity, and promote sustainable farming.",
+      "imageAlt": "Agricultural field monitoring dashboard"
+    },
+    "tech": {
+      "badge": "Technology In Action",
+      "title": "TerraSkyAI is revolutionizing agriculture with real-time, AI-powered intelligence",
+      "description": "Through satellite imagery, IoT sensors, and machine learning, TerraSkyAI delivers instant visibility into crop health, soil conditions, and weather patterns. Farmers can optimize irrigation, detect pests early, and boost yields while reducing costs and environmental impact—bridging traditional farming with modern innovation for a sustainable future."
+    },
+    "stakeholders": {
+      "title": "Our Stakeholders",
+      "description": "Discover how different sectors of agriculture leverage TerraSkyAI for enhanced productivity and profitability",
+      "items": {
+        "seed": {
+          "title": "Seed Production Industry",
+          "description": "Hybrid canola seed purity through off-type/volunteer canola detection, yield estimation for supply chain optimization."
+        },
+        "potato": {
+          "title": "Potato Processing Industry",
+          "description": "Delivers precise, field-level intelligence that helps secure reliable supply, improve quality consistency, and reduce production risk."
+        },
+        "retail": {
+          "title": "Ag-Retails",
+          "description": "Drive profitability by enabling faster, data-backed agronomic decisions, reducing input wastage, and improving crop performance."
+        },
+        "growers": {
+          "title": "Growers",
+          "description": "Insect and weed detection, spot-treatment prescription reducing cost of production and enhance profitability."
+        },
+        "insurance": {
+          "title": "Insurance Companies",
+          "description": "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency."
+        }
+      }
+    }
+  }
+}

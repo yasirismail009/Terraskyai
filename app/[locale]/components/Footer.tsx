@@ -1,7 +1,18 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '../../../i18n/navigation';
+
+const quickLinks = [
+  { key: 'home', href: '/#home' },
+  { key: 'career', href: '/careers' },
+  { key: 'about', href: '/vision-mission' },
+  { key: 'whyUs', href: '/#why-us' },
+  { key: 'contact', href: '/contact' },
+] as const;
 
 export default function Footer() {
+  const t = useTranslations('Footer');
+
   return (
     <footer
       style={{
@@ -198,7 +209,7 @@ export default function Footer() {
               fontWeight: 600,
             }}
           >
-            &quot;From flights to insights — precision farming for the modern age.&quot;
+            &quot;{t('tagline')}&quot;
           </p>
         </div>
 
@@ -212,7 +223,7 @@ export default function Footer() {
             <Link href="/">
               <Image
                 src="/assets/Logo2.svg"
-                alt="TerraSkyAI Logo"
+                alt={t('logoAlt')}
                 width={200}
                 height={80}
                 style={{ height: 72, width: 'auto', marginBottom: 16 }}
@@ -228,8 +239,7 @@ export default function Footer() {
                 marginBottom: 24,
               }}
             >
-              Revolutionizing agriculture through AI-powered precision farming. Empowering farmers
-              with actionable insights for sustainable, efficient crop management.
+              {t('description')}
             </p>
             {/* Socials */}
             <div style={{ display: 'flex', gap: 8 }}>
@@ -275,7 +285,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="ft-col-title">Quick Links</h3>
+            <h3 className="ft-col-title">{t('quickLinks')}</h3>
             <ul
               style={{
                 listStyle: 'none',
@@ -286,16 +296,10 @@ export default function Footer() {
                 gap: 10,
               }}
             >
-              {[
-                { label: 'Home', href: '/#home' },
-                { label: 'Career', href: '/careers' },
-                { label: 'About Us', href: '/vision-mission' },
-                { label: 'Why Us', href: '/#why-us' },
-                { label: 'Contact', href: '/contact' },
-              ].map((l) => (
-                <li key={l.label}>
+              {quickLinks.map((l) => (
+                <li key={l.key}>
                   <Link href={l.href} className="ft-link">
-                    {l.label}
+                    {t(l.key)}
                   </Link>
                 </li>
               ))}
@@ -304,7 +308,7 @@ export default function Footer() {
 
           {/* Products */}
           <div>
-            <h3 className="ft-col-title">Products</h3>
+            <h3 className="ft-col-title">{t('products')}</h3>
             <ul
               style={{
                 listStyle: 'none',
@@ -326,7 +330,7 @@ export default function Footer() {
 
             {/* Contact quick info */}
             <div style={{ marginTop: 28 }}>
-              <h3 className="ft-col-title">Contact</h3>
+              <h3 className="ft-col-title">{t('contactTitle')}</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <a
                   href="tel:+15875741601"
@@ -388,7 +392,7 @@ export default function Footer() {
           }}
         >
           <p style={{ fontSize: 12, color: '#a0a080' }}>
-            © {new Date().getFullYear()} TerraSkyAI. All Rights Reserved.
+            {t('copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

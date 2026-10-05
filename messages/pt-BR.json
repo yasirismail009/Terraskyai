@@ -1,0 +1,445 @@
+{
+  "Metadata": {
+    "title": "TerraSkyAI - Onde a Tecnologia Encontra a Agricultura",
+    "description": "A TerraSkyAI é uma plataforma de agricultura de precisão que usa IA para ajudar produtores rurais a tomar melhores decisões sobre suas lavouras e seu solo."
+  },
+  "Header": {
+    "home": "Início",
+    "products": "Produtos",
+    "about": "Sobre a TerraSkyAI",
+    "contact": "Fale Conosco",
+    "careers": "Carreiras",
+    "gallery": "Galeria",
+    "logoAlt": "Logotipo da TerraSkyAI",
+    "toggleMenu": "Alternar menu",
+    "language": "Idioma"
+  },
+  "Footer": {
+    "tagline": "Do voo aos insights — agricultura de precisão para a era moderna.",
+    "logoAlt": "Logotipo da TerraSkyAI",
+    "description": "Revolucionando o setor agrícola por meio da agricultura de precisão com IA. Capacitando produtores rurais com insights práticos para um manejo de lavouras sustentável e eficiente.",
+    "quickLinks": "Links Rápidos",
+    "home": "Início",
+    "career": "Carreiras",
+    "about": "Sobre Nós",
+    "whyUs": "Por Que Nós",
+    "contact": "Contato",
+    "products": "Produtos",
+    "contactTitle": "Contato",
+    "copyright": "© {year} TerraSkyAI. Todos os direitos reservados."
+  },
+  "Home": {
+    "hero": {
+      "imageAlt": "TerraSkyAI em ação",
+      "title": "Do Voo aos Insights",
+      "subtitle": "Tornando a Agricultura de Precisão Sustentável e Lucrativa",
+      "description": "Aproveite imagens avançadas de drones e tecnologia de IA para otimizar o monitoramento das suas lavouras, aumentar a produtividade e tomar decisões baseadas em dados na sua propriedade."
+    },
+    "products": {
+      "badge": "Nossos Produtos",
+      "title": "Ferramentas Feitas para a <em>Fazenda Moderna</em>",
+      "description": "Nossa plataforma principal — transformando dados aéreos de drones em decisões práticas que aumentam sua produtividade e seu lucro.",
+      "webPortal": "Portal Web",
+      "tag": "Análise de Precisão",
+      "skysightDescription": "Portal digital completo para a gestão integrada da sua propriedade, impulsionando eficiência e sucesso de qualquer lugar, a qualquer hora.",
+      "cta": "Conheça o SkySight",
+      "features": {
+        "monitoring": {
+          "label": "Monitoramento de talhões em tempo real",
+          "desc": "Dados ao vivo de cada canto da sua propriedade"
+        },
+        "drone": {
+          "label": "Integração de dados de drones",
+          "desc": "Processamento contínuo de imagens aéreas"
+        },
+        "cloud": {
+          "label": "Portal em nuvem",
+          "desc": "Acesse de qualquer lugar, a qualquer hora"
+        },
+        "analytics": {
+          "label": "Análises com IA",
+          "desc": "Transforme dados brutos em decisões claras"
+        },
+        "vision": {
+          "label": "Análises e Relatórios com Visão Computacional",
+          "desc": "Insights detalhados e geração simplificada de relatórios"
+        },
+        "crop": {
+          "label": "Inteligência de Lavoura com IA",
+          "desc": "Recomendações inteligentes para cada fase de desenvolvimento"
+        }
+      }
+    },
+    "about": {
+      "badge": "Sobre Nós",
+      "title": "Impulsionando Lavouras Mais Inteligentes com <em>IA Prática</em>",
+      "description": "A TerraSkyAI é uma empresa inovadora de AgTech que utiliza Inteligência Artificial e Machine Learning para revolucionar a agricultura — capacitando produtores rurais do mundo todo com operações otimizadas e maior produtividade das lavouras.",
+      "pills": {
+        "ai": "IA e Machine Learning",
+        "drone": "Imagens de Drone",
+        "analytics": "Análise de Precisão",
+        "sustainable": "Agricultura Sustentável"
+      },
+      "learnMore": "Saiba Mais",
+      "imageAlt": "TerraSkyAI em ação",
+      "imageCaption": "Do Voo aos Insights"
+    },
+    "why": {
+      "badge": "Por Que Nós?",
+      "title": "Um parceiro confiável, movido por IA, para uma <em>agricultura mais inteligente</em>",
+      "description": "A TerraSkyAI combina imagens de satélite e machine learning avançado para entregar insights práticos que reduzem desperdícios, aumentam a produtividade e cortam custos.",
+      "stats": {
+        "inputs": "Economia de insumos",
+        "scouting": "Monitoramento mais rápido",
+        "accuracy": "Precisão na detecção"
+      },
+      "points": {
+        "p1": "Visibilidade em tempo real da saúde das lavouras.",
+        "p2": "Detecção precoce de pragas e estresse para uma intervenção mais rápida.",
+        "p3": "Orientação de irrigação de precisão para economizar água e insumos.",
+        "p4": "Especialistas dedicados, focados em resultados, e não apenas em ferramentas."
+      }
+    }
+  },
+  "CoreValues": {
+    "badge": "Principais Recursos",
+    "title": "Análises de Agricultura de Precisão com IA",
+    "description": "Inteligência aérea de ponta que transforma a forma como os produtores rurais canadenses tomam decisões — da semente à colheita.",
+    "items": {
+      "plantStand": {
+        "title": "Contagem de Estande de Plantas",
+        "tag": "Detecção por quadrados vermelhos",
+        "points": {
+          "p1": "Decisões de replantio com precisão em tempo real",
+          "p2": "Avaliação do vigor das linhagens parentais de sementes",
+          "p3": "Apoio à validação de sinistros de seguros"
+        }
+      },
+      "weed": {
+        "title": "Detecção de Plantas Daninhas e Insetos",
+        "tag": "Mapeamento de ameaças multicolorido",
+        "highlight": "80% de economia em insumos",
+        "points": {
+          "p1": "Tratamento localizado para um manejo preciso",
+          "p2": "Identificação de múltiplas espécies por código de cores",
+          "p3": "Economia de até 80% em insumos agrícolas"
+        }
+      },
+      "offType": {
+        "title": "Detecção de Plantas Atípicas",
+        "tag": "Anomalia em planta individual",
+        "highlight": "80% de redução de custos",
+        "points": {
+          "p1": "Verificação da pureza de sementes híbridas",
+          "p2": "Redução de até 80% nos custos de produção",
+          "p3": "Otimização e automação do roguing"
+        }
+      },
+      "yield": {
+        "title": "Estimativa de Produtividade",
+        "tag": "Detecção em HD no nível de vagem",
+        "points": {
+          "p1": "Planejamento otimizado da cadeia de suprimentos",
+          "p2": "Otimização do armazenamento de sementes",
+          "p3": "Apoio ao planejamento de vendas e colheita"
+        }
+      }
+    }
+  },
+  "Careers": {
+    "hero": {
+      "badge": "Estamos Contratando",
+      "title": "Faça Sua Carreira Crescer com a <gold>TerraSkyAI</gold>",
+      "description": "Ajude-nos a revolucionar a agricultura por meio de IA e tecnologia de drones. Faça parte de uma equipe que gera impacto real na produção agrícola e na segurança alimentar em todo o mundo.",
+      "stats": {
+        "ai": { "top": "Movida por IA", "bottom": "AgTech" },
+        "location": { "top": "Sede no", "bottom": "Canadá" },
+        "impact": { "top": "Impacto no", "bottom": "Mundo Real" }
+      }
+    },
+    "positions": {
+      "badge": "Vagas Abertas",
+      "title": "Oportunidades Atuais",
+      "loading": "Carregando vagas abertas…",
+      "errorTitle": "Não foi possível carregar as vagas no momento.",
+      "empty": "Não há vagas abertas no momento. Volte em breve.",
+      "untitled": "Vaga sem título",
+      "remote": "Remoto",
+      "loadingDetails": "Carregando detalhes…",
+      "compensation": "Remuneração",
+      "deadline": "Prazo de Inscrição",
+      "applyEmail": "E-mail para Candidatura",
+      "responsibilities": "Principais Responsabilidades",
+      "requirements": "Requisitos",
+      "preferredSkills": "Diferenciais",
+      "apply": "Candidatar-se a esta Vaga"
+    },
+    "form": {
+      "badge": "Candidate-se Agora",
+      "title": "Envie Sua <em>Candidatura</em>",
+      "description": "Preencha o formulário abaixo para se candidatar a uma vaga ou enviar seu currículo para oportunidades futuras.",
+      "fullName": "Nome Completo",
+      "namePlaceholder": "Maria Silva",
+      "email": "Endereço de E-mail",
+      "emailPlaceholder": "voce@exemplo.com",
+      "phone": "Telefone",
+      "phonePlaceholder": "+55 (11) 91234-5678",
+      "position": "Vaga Pretendida",
+      "selectPosition": "Selecione uma vaga…",
+      "general": "Candidatura Espontânea",
+      "questions": {
+        "eligible": "Autorização para trabalhar no Canadá",
+        "license": "Carteira de motorista válida",
+        "drone": "Licença de piloto de drone"
+      },
+      "yes": "Sim",
+      "no": "Não",
+      "coverLetter": "Carta de Apresentação",
+      "coverPlaceholder": "Conte-nos por que você tem interesse em fazer parte da TerraSkyAI…",
+      "cv": "Enviar Currículo",
+      "cvHint": "Formatos aceitos: PDF, DOC, DOCX (máx. 5 MB)",
+      "submit": "Enviar Candidatura",
+      "submitting": "Enviando…"
+    },
+    "errors": {
+      "loadJobs": "Falha ao carregar as vagas ({status})",
+      "loadJobsFallback": "Falha ao carregar as vagas abertas.",
+      "loadDetails": "Falha ao carregar os detalhes da vaga ({status})",
+      "loadDetailsFallback": "Falha ao carregar os detalhes da vaga.",
+      "noCv": "Por favor, envie seu currículo.",
+      "noGeneral": "Candidaturas espontâneas estão indisponíveis no momento, pois não há vagas abertas para vincular. Por favor, selecione uma vaga específica.",
+      "submitStatus": "Falha no envio ({status})",
+      "submitFallback": "Não foi possível enviar a candidatura."
+    },
+    "success": {
+      "submitted": "Candidatura enviada com sucesso. Agradecemos o seu interesse!"
+    }
+  },
+    "Contact": {
+    "hero": {
+      "badge": "Entre em Contato",
+      "title": "Vamos Cultivar Algo <gold>Juntos</gold>",
+      "description": "Compartilhe seus objetivos e desafios — nossa equipe responderá com recomendações personalizadas para a sua operação."
+    },
+    "info": {
+      "badge": "Informações de Contato",
+      "title": "Estamos aqui para ajudar a sua propriedade a prosperar",
+      "call": "Ligue para nós",
+      "email": "E-mail",
+      "location": "Localização",
+      "locationValue": "Lethbridge, Alberta, Canadá",
+      "headOffice": "Sede",
+      "headOfficeValue": "Mississauga, Ontário, Canadá"
+    },
+    "form": {
+      "badge": "Envie uma Mensagem",
+      "title": "Conte-nos sobre a sua propriedade",
+      "titleSuccess": "Mensagem <gold>recebida</gold>",
+      "fullName": "Nome Completo",
+      "namePlaceholder": "Seu nome completo",
+      "email": "E-mail",
+      "emailPlaceholder": "voce@exemplo.com",
+      "areaOfInterest": "Área de Interesse",
+      "selectService": "Selecione um serviço…",
+      "areas": {
+        "plantStand": "Contagem de Estande de Plantas",
+        "weed": "Detecção de Plantas Daninhas e Insetos",
+        "offType": "Detecção de Plantas Atípicas",
+        "yield": "Estimativa de Produtividade",
+        "all": "Todos os Serviços"
+      },
+      "messageLabel": "Conte-nos sobre a sua propriedade e o que você precisa",
+      "messagePlaceholder": "Hectares, culturas, desafios atuais e os resultados que você deseja alcançar…",
+      "send": "Enviar Mensagem",
+      "sending": "Enviando…",
+      "responseTime": "Respondemos em até 24 horas"
+    },
+    "success": {
+      "eyebrow": "Mensagem enviada",
+      "title": "Recebemos a sua mensagem, {name}",
+      "titleNoName": "Recebemos a sua mensagem",
+      "description": "Recebemos a sua mensagem e retornaremos por e-mail. Guarde este código de referência caso entre em contato com o suporte.",
+      "referenceId": "Código de Referência",
+      "areaOfInterest": "Área de interesse",
+      "submitted": "Enviado em",
+      "another": "Enviar outra mensagem"
+    },
+    "errors": {
+      "fillAll": "Por favor, preencha todos os campos.",
+      "submitStatus": "Falha no envio ({status})",
+      "submitFallback": "Não foi possível enviar a mensagem."
+    }
+  },
+    "Gallery": {
+    "hero": {
+      "badge": "Eventos e Comunidade",
+      "title": "Nossa Galeria",
+      "description": "De feiras agrícolas a feiras de carreiras — momentos em que a TerraSkyAI se conecta com produtores, estudantes e inovadores que estão moldando o futuro da agricultura."
+    },
+    "photosHint": "{count, plural, one {# foto} other {# fotos}} — clique para ampliar",
+    "events": {
+      "expo": {
+        "name": "Lethbridge Ag Expo",
+        "location": "Lethbridge, Alberta",
+        "tag": "Feira do Setor",
+        "description": "A TerraSkyAI participou com orgulho da Lethbridge Ag Expo, em parceria com a SkyDrones Inc, mostrando como a inteligência aérea baseada em IA está transformando a agricultura moderna. De decisões mais inteligentes a maior sustentabilidade e melhor rentabilidade das propriedades, o evento reuniu produtores, agrônomos e parceiros do setor para explorar o futuro da agricultura de precisão.",
+        "highlight": "Em parceria com a SkyDrones Inc"
+      },
+      "careerFair": {
+        "name": "Feira de Carreiras da Universidade de Lethbridge",
+        "location": "Lethbridge, Alberta",
+        "tag": "Evento de Carreira",
+        "description": "Foi um prazer conhecer estudantes e profissionais talentosos, apaixonados por agricultura, tecnologia e inovação, na Feira de Carreiras da Universidade de Lethbridge. Compartilhamos nossa visão sobre o futuro da AgTech, conversamos sobre oportunidades de carreira e saímos animados com o entusiasmo da próxima geração de inovadores do agro.",
+        "highlight": "Conectando-nos com a próxima geração"
+      }
+    },
+    "cta": {
+      "title": "Perdeu algum de nossos eventos?",
+      "description": "Entre em contato e vamos conversar sobre o futuro da sua propriedade.",
+      "button": "Vamos Conversar"
+    }
+  },
+    "SkySight": {
+    "hero": {
+      "badge": "Portal e Painel de IA em Tempo Real",
+      "description": "Portal digital completo para a gestão integrada da sua propriedade — impulsionando eficiência e sucesso de qualquer lugar, a qualquer hora."
+    },
+    "dashboard": {
+      "badge": "Painel",
+      "title": "Interface Intuitiva, <em>Insights Poderosos</em>",
+      "imageAlt": "Painel do SkySight"
+    },
+    "reports": {
+      "badge": "Insights e Relatórios de Lavoura",
+      "title": "Análise de Precisão em <em>Todas as Escalas</em>",
+      "description": "Do mapeamento em alta resolução à saúde de cada planta — todos os insights de que você precisa, sob demanda.",
+      "features": {
+        "highRes": "Mapa de Alta Resolução (1 cm a 5 cm)",
+        "cropArea": "Área e Limites da Lavoura",
+        "weed": "Detecção de Plantas Daninhas para Aplicação Localizada",
+        "germination": "Mapa de Germinação (Contagem de Plantas)",
+        "offType": "Detecção de Plantas Atípicas",
+        "parentLines": "Linhagens Parentais Macho e Fêmea",
+        "disease": "Detecção de Doenças",
+        "defoliation": "Detecção de Desfolha por Insetos",
+        "dem": "Modelo Digital de Elevação (MDE)",
+        "podCount": "Contagem de Vagens (Estimativa de Produtividade)",
+        "healthZones": "Zonas de Saúde da Lavoura",
+        "flightAutomation": "Automação de Missões de Voo"
+      }
+    }
+  },
+    "Services": {
+    "badge": "Serviços",
+    "title": "O Que Entregamos",
+    "items": {
+      "analytics": {
+        "title": "Análises de Lavoura e Solo com IA",
+        "description": "Preveja a produtividade, detecte pragas e otimize a irrigação com modelos de IA de altíssima precisão, treinados com milhões de dados agrícolas."
+      },
+      "edge": {
+        "title": "Monitoramento em Tempo Real com Edge Computing",
+        "description": "Processe os dados localmente em dispositivos de borda para reduzir a latência, cortar custos e obter insights instantâneos, mesmo em áreas rurais com pouca conectividade."
+      },
+      "iot": {
+        "title": "Agricultura de Precisão com IoT",
+        "description": "Utilize sensores inteligentes e drones para monitorar a saúde do solo, o clima e o crescimento das lavouras, transformando dados brutos em ações práticas."
+      }
+    }
+  },
+    "TechnologyInAction": {
+    "hero": {
+      "badge": "Tecnologia em Ação",
+      "title": "A TerraSkyAI está revolucionando a agricultura com inteligência em tempo real, movida por IA",
+      "description": "Por meio de imagens de satélite, sensores IoT e machine learning, a TerraSkyAI oferece visibilidade instantânea da saúde das lavouras, das condições do solo e dos padrões climáticos. Os produtores podem otimizar a irrigação, detectar pragas precocemente e aumentar a produtividade, reduzindo custos e impacto ambiental — unindo a agricultura tradicional à inovação moderna para um futuro sustentável."
+    },
+    "benefits": {
+      "title": "Como cada setor pode se beneficiar com a TerraSkyAI?",
+      "description": "Veja como diferentes setores do agronegócio utilizam a TerraSkyAI para aumentar a produtividade e a rentabilidade",
+      "items": {
+        "seed": {
+          "title": "Indústria de Produção de Sementes",
+          "description": "Pureza de sementes híbridas de canola por meio da detecção de plantas atípicas e de canola voluntária, com estimativa de produtividade para otimizar a cadeia de suprimentos."
+        },
+        "potato": {
+          "title": "Indústria de Processamento de Batata",
+          "description": "Entrega inteligência precisa, no nível do talhão, que ajuda a garantir um abastecimento confiável, melhorar a consistência da qualidade e reduzir o risco de produção."
+        },
+        "retail": {
+          "title": "Revendas Agrícolas",
+          "description": "Impulsione a rentabilidade com decisões agronômicas mais rápidas e baseadas em dados, reduzindo o desperdício de insumos e melhorando o desempenho das lavouras."
+        },
+        "growers": {
+          "title": "Produtores Rurais",
+          "description": "Detecção de insetos e plantas daninhas e prescrição de aplicação localizada, reduzindo o custo de produção e aumentando a rentabilidade."
+        },
+        "insurance": {
+          "title": "Seguradoras",
+          "description": "Ofereça avaliações de lavoura objetivas e de alta confiabilidade, que melhoram a análise de risco, a precisão na precificação das apólices e a eficiência na regulação de sinistros."
+        }
+      }
+    }
+  },
+    "VisionMission": {
+    "vision": {
+      "imageAlt": "Vista aérea de floresta e áreas agrícolas",
+      "logoAlt": "Logotipo da TerraSkyAI",
+      "badge": "Nossa Visão",
+      "title": "Tornando a Agricultura de Precisão Sustentável e Lucrativa"
+    },
+    "mission": {
+      "badge": "Nossa Missão",
+      "title": "Capacitar produtores rurais em todo o mundo",
+      "description": "por meio do desenvolvimento de tecnologias avançadas e inovadoras de agricultura de precisão com IA, que otimizam as operações, aumentam a produtividade e promovem uma agricultura sustentável.",
+      "imageAlt": "Painel de monitoramento de lavouras"
+    },
+    "tech": {
+      "badge": "Tecnologia em Ação",
+      "title": "A TerraSkyAI está revolucionando a agricultura com inteligência em tempo real, movida por IA",
+      "description": "Por meio de imagens de satélite, sensores IoT e machine learning, a TerraSkyAI oferece visibilidade instantânea da saúde das lavouras, das condições do solo e dos padrões climáticos. Os produtores podem otimizar a irrigação, detectar pragas precocemente e aumentar a produtividade, reduzindo custos e impacto ambiental — unindo a agricultura tradicional à inovação moderna para um futuro sustentável."
+    },
+    "stakeholders": {
+      "title": "Nossos Stakeholders",
+      "description": "Veja como diferentes setores do agronegócio utilizam a TerraSkyAI para aumentar a produtividade e a rentabilidade",
+      "items": {
+        "seed": {
+          "title": "Indústria de Produção de Sementes",
+          "description": "Pureza de sementes híbridas de canola por meio da detecção de plantas atípicas e de canola voluntária, com estimativa de produtividade para otimizar a cadeia de suprimentos."
+        },
+        "potato": {
+          "title": "Indústria de Processamento de Batata",
+          "description": "Entrega inteligência precisa, no nível do talhão, que ajuda a garantir um abastecimento confiável, melhorar a consistência da qualidade e reduzir o risco de produção."
+        },
+        "retail": {
+          "title": "Revendas Agrícolas",
+          "description": "Impulsione a rentabilidade com decisões agronômicas mais rápidas e baseadas em dados, reduzindo o desperdício de insumos e melhorando o desempenho das lavouras."
+        },
+        "growers": {
+          "title": "Produtores Rurais",
+          "description": "Detecção de insetos e plantas daninhas e prescrição de aplicação localizada, reduzindo o custo de produção e aumentando a rentabilidade."
+        },
+        "insurance": {
+          "title": "Seguradoras",
+          "description": "Ofereça avaliações de lavoura objetivas e de alta confiabilidade, que melhoram a análise de risco, a precisão na precificação das apólices e a eficiência na regulação de sinistros."
+        }
+      }
+    }
+  },
+      "values": {
+      "fulltime": "Tempo Integral",
+      "parttime": "Meio Período",
+      "contract": "Contrato",
+      "internship": "Estágio",
+      "temporary": "Temporário",
+      "seasonal": "Sazonal",
+      "published": "Publicada",
+      "draft": "Rascunho",
+      "closed": "Encerrada",
+      "operations": "Operações",
+      "agronomy": "Agronomia",
+      "engineering": "Engenharia",
+      "sales": "Vendas",
+      "marketing": "Marketing",
+      "research": "Pesquisa"
+    }
+}
