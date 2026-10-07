@@ -291,7 +291,19 @@
         "tag": "Evento de Carreira",
         "description": "Foi um prazer conhecer estudantes e profissionais talentosos, apaixonados por agricultura, tecnologia e inovação, na Feira de Carreiras da Universidade de Lethbridge. Compartilhamos nossa visão sobre o futuro da AgTech, conversamos sobre oportunidades de carreira e saímos animados com o entusiasmo da próxima geração de inovadores do agro.",
         "highlight": "Conectando-nos com a próxima geração"
-      }
+      },
+ "features": {
+  "name": "Precisão que Você Pode Ver",
+  "location": "Em Cada Talhão, Em Cada Safra",
+  "tag": "Tecnologia em Ação",
+  "description": "Cada hectare conta uma história — a nossa apenas a torna visível. Da identificação de uma única planta atípica escondida entre milhares de fileiras, à contagem de cada muda antes mesmo de crescer, até a separação precisa de linhagens parentais macho e fêmea — a TerraSkyAI transforma imagens aéreas em decisões que produtores e empresas de sementes podem tomar no mesmo dia. Esta é a tecnologia por trás dos resultados: menos suposições, menos desperdício de insumos e uma visão mais clara de cada lavoura que sobrevoamos.",
+  "highlight": "Construído para a precisão. Comprovado no campo.",
+  "captions": {
+    "offType": "Detecção de Plantas Atípicas e Canola Voluntária",
+    "plantStand": "Contagem de Estande de Plantas",
+    "parentLines": "Detecção de Baias Macho e Fêmea"
+  }
+}
     },
     "cta": {
       "title": "Perdeu algum de nossos eventos?",
