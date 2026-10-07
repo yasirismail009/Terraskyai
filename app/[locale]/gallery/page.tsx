@@ -10,13 +10,26 @@ const events = [
     id: 1,
     key: 'expo',
     tagColor: '#8B5E3C',
+    layout: 'default',
     images: ['/assets/Ag_Expo1.jpeg', '/assets/Ag_Expo2.jpeg', '/assets/Ag_Expo3.jpeg'],
   },
   {
     id: 2,
     key: 'careerFair',
     tagColor: '#454411',
+    layout: 'default',
     images: ['/assets/Career-Fair1.jpeg', '/assets/Career-Fair2.jpeg', '/assets/Career-Fair3.jpeg'],
+  },
+  {
+    id: 3,
+    key: 'features',
+    tagColor: '#BEA950',
+    layout: 'feature', // NEW — this one uses the big-image layout further down
+    images: [
+      { src: '/assets/vc detection.JPG', captionKey: 'offType' },
+      { src: '/assets/fishnet_new.jpg', captionKey: 'plantStand' },
+      { src: '/assets/male female bay.jpeg', captionKey: 'parentLines' },
+    ],
   },
 ] as const;
 
@@ -102,7 +115,7 @@ export default function GalleryPage() {
           animation: gl-fadeUp 0.6s ease both;
         }
 
-        /* ── Image grid ── */
+        /* ── Image grid (expo / career fair style) ── */
         .gl-img-grid {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
@@ -151,7 +164,7 @@ export default function GalleryPage() {
           display: flex; align-items: center; justify-content: center;
         }
 
-        /* ── Info card ── */
+        /* ── Info card (expo / career fair style) ── */
         .gl-info-card {
           background: #fff;
           border: 1.5px solid rgba(69,68,17,0.1);
@@ -184,6 +197,59 @@ export default function GalleryPage() {
           background-size: 200% auto;
           animation: gl-shimmer 3s linear infinite;
           margin: 24px 0;
+        }
+
+        /* ── NEW: big-image feature layout ── */
+        .gl-feature-row {
+          display: flex;
+          gap: 24px;
+          margin-bottom: 48px;
+        }
+        .gl-feature-item {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .gl-feature-img-wrap {
+          position: relative;
+          overflow: hidden;
+          cursor: zoom-in;
+          border-radius: 18px;
+          aspect-ratio: 3 / 4;
+          background: rgba(69,68,17,0.08);
+          box-shadow: 0 10px 40px rgba(69,68,17,0.1);
+        }
+.gl-feature-img-wrap {
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+  border-radius: 18px;
+  aspect-ratio: 4 / 3;       /* shorter now */
+  background: rgba(69,68,17,0.08);
+  box-shadow: 0 10px 40px rgba(69,68,17,0.1);
+}
+        .gl-feature-img-wrap:hover img {
+          transform: scale(1.05);
+        }
+        .gl-feature-caption {
+          margin-top: 14px;
+          text-align: center;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 600;
+          color: #454411;
+          letter-spacing: 0.01em;
+        }
+        .gl-feature-story {
+          max-width: 760px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .gl-feature-story p {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 16px;
+          color: #545454;
+          line-height: 1.9;
         }
 
         /* ── Lightbox ── */
@@ -240,6 +306,8 @@ export default function GalleryPage() {
         @media (max-width: 900px) {
           .gl-event-grid { grid-template-columns: 1fr !important; }
           .gl-img-grid { grid-template-columns: 1fr 1fr 1fr !important; }
+          .gl-feature-row { flex-direction: column; }
+          .gl-feature-img-wrap { aspect-ratio: 16 / 10; }
         }
         @media (max-width: 600px) {
           .gl-img-grid { grid-template-columns: 1fr !important; }
@@ -417,7 +485,7 @@ export default function GalleryPage() {
             />
 
             <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-              {/* Event header */}
+              {/* Event header (shared by both layouts) */}
               <div className="gl-event-label" style={{ marginBottom: 44 }}>
                 <div
                   style={{
@@ -480,93 +548,42 @@ export default function GalleryPage() {
                 </h2>
               </div>
 
-              {/* Main grid: images left, info right — alternate on even */}
-              <div
-                className="gl-event-grid"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: idx % 2 === 0 ? '1.2fr 1fr' : '1fr 1.2fr',
-                  gap: 40,
-                  alignItems: 'stretch',
-                }}
-              >
-                {/* Image grid */}
-                <div
-                  style={{
-                    order: idx % 2 === 0 ? 0 : 1,
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <div className="gl-img-grid" style={{ flex: 1 }}>
-                    {event.images.map((src, i) => (
-                      <div
-                        key={i}
-                        className="gl-img-item"
-                        onClick={() => setLightbox({ src, eventName })}
-                      >
-                        <Image
-                          src={src}
-                          alt={`${eventName} ${i + 1}`}
-                          width={800}
-                          height={600}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        />
-                        <div className="gl-img-overlay">
-                          <div className="gl-zoom-icon">
-                            <svg viewBox="0 0 20 20" fill="none" style={{ width: 18, height: 18 }}>
-                              <circle cx="9" cy="9" r="5.5" stroke="white" strokeWidth="1.5" />
-                              <path
-                                d="M13.5 13.5l3 3"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                              />
-                              <path
-                                d="M7 9h4M9 7v4"
-                                stroke="white"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                              />
-                            </svg>
-                          </div>
+              {event.layout === 'feature' ? (
+                // ── NEW: BIG-IMAGE FEATURE LAYOUT (for "features" entry) ──
+                <div>
+                  <div className="gl-feature-row">
+                    {event.images.map((img, i) => (
+                      <div key={i} className="gl-feature-item">
+                        <div
+                          className="gl-feature-img-wrap"
+                          onClick={() =>
+                            setLightbox({
+                              src: img.src,
+                              eventName: t(`events.features.captions.${img.captionKey}`),
+                            })
+                          }
+                        >
+                          <Image
+                            src={img.src}
+                            alt={t(`events.features.captions.${img.captionKey}`)}
+                            width={700}
+                            height={900}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
                         </div>
+                        <p className="gl-feature-caption">
+                          {t(`events.features.captions.${img.captionKey}`)}
+                        </p>
                       </div>
                     ))}
                   </div>
 
-                  {/* Image count label */}
-                  <p
-                    style={{
-                      fontFamily: "'DM Sans',sans-serif",
-                      fontSize: 12,
-                      color: '#b0ac90',
-                      marginTop: 12,
-                      textAlign: 'center',
-                      letterSpacing: '0.06em',
-                    }}
-                  >
-                    {t('photosHint', { count: event.images.length })}
-                  </p>
-                </div>
-
-                {/* Info card */}
-                <div style={{ order: idx % 2 === 0 ? 1 : 0 }}>
-                  <div className="gl-info-card">
-                    <p
-                      style={{
-                        fontFamily: "'DM Sans',sans-serif",
-                        fontSize: 15,
-                        color: '#545454',
-                        lineHeight: 1.85,
-                      }}
+                  <div className="gl-feature-story">
+                    <p>{t(`events.${event.key}.description`)}</p>
+                    <div
+                      className="gl-highlight"
+                      style={{ marginTop: 24, display: 'inline-flex' }}
                     >
-                      {t(`events.${event.key}.description`)}
-                    </p>
-
-                    <div className="gl-shimmer-line" />
-
-                    <div className="gl-highlight">
                       <svg viewBox="0 0 12 12" fill="#BEA950" style={{ width: 8, height: 8 }}>
                         <circle cx="6" cy="6" r="6" />
                       </svg>
@@ -574,7 +591,103 @@ export default function GalleryPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              ) : (
+                // ── EXISTING: side-by-side layout (expo / careerFair) — unchanged ──
+                <div
+                  className="gl-event-grid"
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: idx % 2 === 0 ? '1.2fr 1fr' : '1fr 1.2fr',
+                    gap: 40,
+                    alignItems: 'stretch',
+                  }}
+                >
+                  {/* Image grid */}
+                  <div
+                    style={{
+                      order: idx % 2 === 0 ? 0 : 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <div className="gl-img-grid" style={{ flex: 1 }}>
+                      {event.images.map((src, i) => (
+                        <div
+                          key={i}
+                          className="gl-img-item"
+                          onClick={() => setLightbox({ src: src as string, eventName })}
+                        >
+                          <Image
+                            src={src as string}
+                            alt={`${eventName} ${i + 1}`}
+                            width={800}
+                            height={600}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
+                          <div className="gl-img-overlay">
+                            <div className="gl-zoom-icon">
+                              <svg viewBox="0 0 20 20" fill="none" style={{ width: 18, height: 18 }}>
+                                <circle cx="9" cy="9" r="5.5" stroke="white" strokeWidth="1.5" />
+                                <path
+                                  d="M13.5 13.5l3 3"
+                                  stroke="white"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                />
+                                <path
+                                  d="M7 9h4M9 7v4"
+                                  stroke="white"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Image count label */}
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 12,
+                        color: '#b0ac90',
+                        marginTop: 12,
+                        textAlign: 'center',
+                        letterSpacing: '0.06em',
+                      }}
+                    >
+                      {t('photosHint', { count: event.images.length })}
+                    </p>
+                  </div>
+
+                  {/* Info card */}
+                  <div style={{ order: idx % 2 === 0 ? 1 : 0 }}>
+                    <div className="gl-info-card">
+                      <p
+                        style={{
+                          fontFamily: "'DM Sans',sans-serif",
+                          fontSize: 15,
+                          color: '#545454',
+                          lineHeight: 1.85,
+                        }}
+                      >
+                        {t(`events.${event.key}.description`)}
+                      </p>
+
+                      <div className="gl-shimmer-line" />
+
+                      <div className="gl-highlight">
+                        <svg viewBox="0 0 12 12" fill="#BEA950" style={{ width: 8, height: 8 }}>
+                          <circle cx="6" cy="6" r="6" />
+                        </svg>
+                        {t(`events.${event.key}.highlight`)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
         );
