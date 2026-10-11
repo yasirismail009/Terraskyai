@@ -25,6 +25,65 @@ const localeNames: Record<string, string> = {
   'pt-BR': 'Português (Brasil)',
 };
 
+function Flag({ locale }: { locale: string }) {
+  const clipId = `flag-clip-${locale}`;
+
+  return (
+    <svg
+      className="lt-flag"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <clipPath id={clipId}>
+          <circle cx="10" cy="10" r="10" />
+        </clipPath>
+      </defs>
+
+      <g clipPath={`url(#${clipId})`}>
+        {locale === 'pt-BR' ? (
+          <>
+            {/* Brazil */}
+            <rect width="20" height="20" fill="#009C3B" />
+            <polygon points="10,3 17.5,10 10,17 2.5,10" fill="#FFDF00" />
+            <circle cx="10" cy="10" r="3.7" fill="#002776" />
+            <path
+              d="M6.5 10.7 Q10 9 13.5 10.7"
+              stroke="#ffffff"
+              strokeWidth="0.7"
+              fill="none"
+            />
+          </>
+        ) : (
+          <>
+            {/* Canada */}
+            <rect width="20" height="20" fill="#ffffff" />
+            <rect width="5" height="20" fill="#D52B1E" />
+            <rect x="15" width="5" height="20" fill="#D52B1E" />
+            <g transform="translate(10 10) scale(0.8) translate(-10 -10)">
+              <polygon
+                fill="#D52B1E"
+                points="10,3.2 11.2,5.4 12.3,4.9 12.1,7.6 13.9,6.6 14.3,8.1 16.3,8.6 15.4,10.3 16,10.9 13.2,12.6 13.5,13.8 10.6,13.1 10.6,16.2 9.4,16.2 9.4,13.1 6.5,13.8 6.8,12.6 4,10.9 4.6,10.3 3.7,8.6 5.7,8.1 6.1,6.6 7.9,7.6 7.7,4.9 8.8,5.4"
+              />
+            </g>
+          </>
+        )}
+      </g>
+
+      {/* soft ring so the flag stands out on any background */}
+      <circle
+        cx="10"
+        cy="10"
+        r="9.6"
+        fill="none"
+        stroke="rgba(0,0,0,0.15)"
+        strokeWidth="0.8"
+      />
+    </svg>
+  );
+}
+
 function LanguageSwitcher() {
   const t = useTranslations('Header');
   const locale = useLocale();
@@ -39,17 +98,6 @@ function LanguageSwitcher() {
 
   return (
     <div role="group" aria-label={t('language')} className="lt-wrap">
-      <svg className="lt-globe" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.7" />
-        <path
-          d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-
       <div className="lt-track">
         <span
           className="lt-thumb"
@@ -73,7 +121,8 @@ function LanguageSwitcher() {
               aria-label={localeNames[l] ?? l}
               title={localeNames[l] ?? l}
             >
-              {localeLabels[l] ?? l}
+              <Flag locale={l} />
+              <span>{localeLabels[l] ?? l}</span>
             </button>
           );
         })}
@@ -93,13 +142,6 @@ export default function Header() {
         .lt-wrap {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-        }
-        .lt-globe {
-          width: 18px;
-          height: 18px;
-          color: #8B5E3C;
-          flex-shrink: 0;
         }
         .lt-track {
           position: relative;
@@ -123,8 +165,12 @@ export default function Header() {
         .lt-btn {
           position: relative;
           z-index: 1;
-          min-width: 46px;
-          padding: 6px 12px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          width: 68px;
+          padding: 6px 10px;
           border: none;
           background: transparent;
           border-radius: 999px;
@@ -146,6 +192,24 @@ export default function Header() {
         .lt-btn:focus-visible {
           outline: 2px solid #BEA950;
           outline-offset: 2px;
+        }
+        .lt-flag {
+          width: 18px;
+          height: 18px;
+          flex-shrink: 0;
+          display: block;
+        }
+        @media (max-width: 400px) {
+          .lt-btn {
+            width: 58px;
+            padding: 6px 8px;
+            gap: 4px;
+            font-size: 12px;
+          }
+          .lt-flag {
+            width: 16px;
+            height: 16px;
+          }
         }
       `}</style>
 
@@ -200,10 +264,8 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Desktop Language Switcher */}
-            <div className="hidden lg:block">
-              <LanguageSwitcher />
-            </div>
+            {/* Language switcher: visible on desktop AND mobile */}
+            <LanguageSwitcher />
 
             {/* Mobile Menu Button */}
             <button
@@ -264,9 +326,6 @@ export default function Header() {
                 </Link>
               );
             })}
-            <div style={{ paddingLeft: 12, paddingTop: 14, paddingBottom: 4 }}>
-              <LanguageSwitcher />
-            </div>
           </nav>
         </div>
       )}

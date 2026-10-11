@@ -24,11 +24,11 @@ const events = [
     id: 3,
     key: 'features',
     tagColor: '#BEA950',
-    layout: 'feature', // NEW — this one uses the big-image layout further down
+    layout: 'feature',
     images: [
-      { src: '/assets/vc detection.JPG', captionKey: 'offType' },
-      { src: '/assets/fishnet_new.jpg', captionKey: 'plantStand' },
-      { src: '/assets/male female bay.jpeg', captionKey: 'parentLines' },
+      { src: '/assets/field1.JPG', captionKey: 'image1' },
+      { src: '/assets/field3.JPG', captionKey: 'image2' },
+      { src: '/assets/field2.JPG', captionKey: 'image3' },
     ],
   },
 ] as const;
@@ -199,7 +199,7 @@ export default function GalleryPage() {
           margin: 24px 0;
         }
 
-        /* ── NEW: big-image feature layout ── */
+        /* ── Big-image feature layout ── */
         .gl-feature-row {
           display: flex;
           gap: 24px;
@@ -549,7 +549,7 @@ export default function GalleryPage() {
               </div>
 
               {event.layout === 'feature' ? (
-                // ── NEW: BIG-IMAGE FEATURE LAYOUT (for "features" entry) ──
+                // ── BIG-IMAGE FEATURE LAYOUT (for "features" entry) ──
                 <div>
                   <div className="gl-feature-row">
                     {event.images.map((img, i) => (
@@ -559,36 +559,46 @@ export default function GalleryPage() {
                           onClick={() =>
                             setLightbox({
                               src: img.src,
-                              eventName: t(`events.features.captions.${img.captionKey}`),
+                              eventName: t(`events.features.captions.${img.captionKey}.title`),
                             })
                           }
                         >
                           <Image
                             src={img.src}
-                            alt={t(`events.features.captions.${img.captionKey}`)}
+                            alt={t(`events.features.captions.${img.captionKey}.title`)}
                             width={700}
                             height={900}
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
                         </div>
+
+                        {/* Caption under each image */}
                         <p className="gl-feature-caption">
-                          {t(`events.features.captions.${img.captionKey}`)}
+                          <span
+                            style={{
+                              display: 'block',
+                              fontSize: 15,
+                              fontWeight: 700,
+                              color: '#2d2e0a',
+                            }}
+                          >
+                            {t(`events.features.captions.${img.captionKey}.title`)}
+                          </span>
+                          <span
+                            style={{
+                              display: 'block',
+                              marginTop: 4,
+                              fontSize: 14,
+                              fontWeight: 400,
+                              color: '#545454',
+                              lineHeight: 1.6,
+                            }}
+                          >
+                            {t(`events.features.captions.${img.captionKey}.text`)}
+                          </span>
                         </p>
                       </div>
                     ))}
-                  </div>
-
-                  <div className="gl-feature-story">
-                    <p>{t(`events.${event.key}.description`)}</p>
-                    <div
-                      className="gl-highlight"
-                      style={{ marginTop: 24, display: 'inline-flex' }}
-                    >
-                      <svg viewBox="0 0 12 12" fill="#BEA950" style={{ width: 8, height: 8 }}>
-                        <circle cx="6" cy="6" r="6" />
-                      </svg>
-                      {t(`events.${event.key}.highlight`)}
-                    </div>
                   </div>
                 </div>
               ) : (
