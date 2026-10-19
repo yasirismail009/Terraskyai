@@ -2,10 +2,22 @@ import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '../../i18n/navigation';
 import CoreValues from '@/app/[locale]/components/CoreValues';
+import HeroSlider from '@/app/[locale]/components/HeroSlider';
 
 const productFeatureKeys = ['monitoring', 'drone', 'cloud', 'analytics', 'vision', 'crop'] as const;
 
 const aboutPillKeys = ['ai', 'drone', 'analytics', 'sustainable'] as const;
+
+// Hero slider — story order: drones → flight plan → detections
+const heroSlideConfig = [
+  { key: 'drone', src: '/assets/hero/hero-01-drone-canola.jpg', position: 'center 40%' },
+  { key: 'scale', src: '/assets/hero/hero-02-drones-pivot.jpg', position: 'center' },
+  { key: 'crew', src: '/assets/hero/hero-03-pilot.jpg', position: 'center 45%' },
+  { key: 'plan', src: '/assets/hero/hero-04-flight-plan.jpg', position: 'center' },
+  { key: 'offType', src: '/assets/hero/hero-05-offtype.JPG', position: 'center' },
+  { key: 'stand', src: '/assets/hero/hero-06-plant-count.jpeg', position: 'center' },
+  { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg', position: '70% 60%' },
+] as const;
 
 const whyStats = [
   { val: '80%', key: 'inputs', bar: '80' },
@@ -27,54 +39,45 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
   const t = await getTranslations('Home');
 
+  const heroSlides = heroSlideConfig.map((s) => ({
+    src: s.src,
+    position: s.position,
+    tag: t(`hero.slides.${s.key}.tag`),
+    caption: t(`hero.slides.${s.key}.caption`),
+  }));
+
   return (
     <div className="min-h-screen bg-[#E6E2D6] relative overflow-hidden">
-      {/* ── Hero ── */}
-      <section
-        id="home"
-        className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-hidden"
+      {/* ── Hero (auto-sliding) ── */}
+      <HeroSlider
+        slides={heroSlides}
+        labels={{
+          prev: t('hero.controls.prev'),
+          next: t('hero.controls.next'),
+          goTo: t('hero.controls.goTo'),
+        }}
       >
-        {' '}
-        {/* <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-fill z-0">
-          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page${AZURE_SAS_TOKEN}`} type="video/mp4" />
-          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.webm${AZURE_SAS_TOKEN}`} type="video/webm" />
-          <source src={`${AZURE_BASE_URL}/Videos/Landing_Page.ogv${AZURE_SAS_TOKEN}`} type="video/ogg" />
-        </video> */}
-        {/* Background Image */}
-        <Image
-          src="/assets/behind.jpg"
-          alt={t('hero.imageAlt')}
-          fill
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/30 z-10" />
-        {/* Content */}
-        <div className="relative z-20 mx-auto text-center flex flex-col items-center justify-center">
-          <h1
-            style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
-            className="text-3xl sm:text-4xl lg:text-5xl text-white mb-2 leading-tight tracking-tight drop-shadow-lg"
-          >
-            {t('hero.title')}
-          </h1>
+        <h1
+          style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
+          className="text-4xl sm:text-5xl lg:text-6xl text-white mb-4 leading-[1.05] tracking-tight drop-shadow-lg"
+        >
+          {t('hero.title')}
+        </h1>
 
-          <h2
-            style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
-            className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-3 leading-tight tracking-tight drop-shadow-lg"
-          >
-            <span className="px-2 py-1">{t('hero.subtitle')}</span>
-          </h2>
+        <h2
+          style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
+          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-5 leading-tight tracking-tight drop-shadow-lg"
+        >
+          <span className="px-2 py-1">{t('hero.subtitle')}</span>
+        </h2>
 
-          <p
-            style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 400 }}
-            className="text-base sm:text-lg text-white max-w-2xl mx-auto leading-relaxed mb-6 drop-shadow-md"
-          >
-            {t('hero.description')}
-          </p>
-        </div>
-      </section>
+        <p
+          style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 400 }}
+          className="text-base sm:text-lg text-white/90 max-w-xl leading-relaxed drop-shadow-md"
+        >
+          {t('hero.description')}
+        </p>
+      </HeroSlider>
 
       {/* ── Our Products ── */}
       <section
