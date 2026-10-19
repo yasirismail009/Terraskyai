@@ -30,11 +30,25 @@
   },
   "Home": {
     "hero": {
-      "imageAlt": "TerraSkyAI em ação",
-      "title": "Do Voo aos Insights",
-      "subtitle": "Tornando a Agricultura de Precisão Sustentável e Lucrativa",
-      "description": "Aproveite imagens avançadas de drones e tecnologia de IA para otimizar o monitoramento das suas lavouras, aumentar a produtividade e tomar decisões baseadas em dados na sua propriedade."
-    },
+  "imageAlt": "TerraSkyAI em ação",
+  "title": "Do Voo aos Insights",
+  "subtitle": "Tornando a Agricultura de Precisão Sustentável e Lucrativa",
+  "description": "Aproveite imagens avançadas de drones e tecnologia de IA para otimizar o monitoramento das suas lavouras, aumentar a produtividade e tomar decisões baseadas em dados na sua propriedade.",
+  "controls": {
+    "prev": "Slide anterior",
+    "next": "Próximo slide",
+    "goTo": "Ir para o slide"
+  },
+  "slides": {
+    "drone": { "tag": "Voar", "caption": "Cada hectare visto de cima" },
+    "scale": { "tag": "Voar", "caption": "Campos reais, voos reais" },
+    "crew": { "tag": "Voar", "caption": "Equipes no solo, drones no ar" },
+    "plan": { "tag": "Planejar", "caption": "Missões automatizadas para cada talhão" },
+    "offType": { "tag": "Detectar", "caption": "Plantas atípicas e canola voluntária, planta por planta" },
+    "stand": { "tag": "Detectar", "caption": "Cada muda contada" },
+    "pods": { "tag": "Contar", "caption": "Vagens previstas antes da colheita" }
+  }
+},
     "products": {
       "badge": "Nossos Produtos",
       "title": "Ferramentas Feitas para a <em>Fazenda Moderna</em>",
@@ -461,5 +475,25 @@
       "sales": "Vendas",
       "marketing": "Marketing",
       "research": "Pesquisa"
-    }
+    },
+    "hero": {
+  "imageAlt": "TerraSkyAI em ação",
+  "title": "Do Voo aos Insights",
+  "subtitle": "Tornando a Agricultura de Precisão Sustentável e Lucrativa",
+  "description": "Aproveite imagens avançadas de drones e tecnologia de IA para otimizar o monitoramento das suas lavouras, aumentar a produtividade e tomar decisões baseadas em dados na sua propriedade.",
+  "controls": {
+    "prev": "Slide anterior",
+    "next": "Próximo slide",
+    "goTo": "Ir para o slide"
+  },
+  "slides": {
+    "drone": { "tag": "Voar", "caption": "Cada hectare visto de cima" },
+    "scale": { "tag": "Voar", "caption": "Campos reais, voos reais" },
+    "crew": { "tag": "Voar", "caption": "Equipes no solo, drones no ar" },
+    "plan": { "tag": "Planejar", "caption": "Missões automatizadas para cada talhão" },
+    "offType": { "tag": "Detectar", "caption": "Plantas atípicas e canola voluntária, planta por planta" },
+    "stand": { "tag": "Detectar", "caption": "Cada muda contada" },
+    "pods": { "tag": "Contar", "caption": "Vagens previstas antes da colheita" }
+  }
+}
 }

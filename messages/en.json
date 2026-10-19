@@ -29,12 +29,26 @@
     "copyright": "© {year} TerraSkyAI. All Rights Reserved."
   },
   "Home": {
-    "hero": {
-      "imageAlt": "TerraSkyAI in action",
-      "title": "Flights to Insights",
-      "subtitle": "Making Precision Farming Sustainable and Profitable",
-      "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm."
-    },
+ "hero": {
+  "imageAlt": "TerraSkyAI in action",
+  "title": "Flights to Insights",
+  "subtitle": "Making Precision Farming Sustainable and Profitable",
+  "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm.",
+  "controls": {
+    "prev": "Previous slide",
+    "next": "Next slide",
+    "goTo": "Go to slide"
+  },
+  "slides": {
+    "drone": { "tag": "Fly", "caption": "Every acre, seen from above" },
+    "scale": { "tag": "Fly", "caption": "Real fields, real flights" },
+    "crew": { "tag": "Fly", "caption": "Crews on the ground, drones in the air" },
+    "plan": { "tag": "Plan", "caption": "Automated missions for every field" },
+    "offType": { "tag": "Detect", "caption": "Off-type and volunteer canola, flagged plant by plant" },
+    "stand": { "tag": "Detect", "caption": "Every seedling counted" },
+    "pods": { "tag": "Count", "caption": "Pods predicted before harvest" }
+  }
+},
     "products": {
       "badge": "Our Products",
       "title": "Tools Built for the <em>Modern Farm</em>",
@@ -475,5 +489,6 @@
         }
       }
     }
+    
   }
 }
