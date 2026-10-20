@@ -64,11 +64,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {t('hero.title')}
         </h1>
 
-        <h2
+              <h2
           style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
-          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit bg-[#E6E2D6] text-[#454411] mb-5 leading-tight tracking-tight drop-shadow-lg"
+          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit max-w-full bg-[#E6E2D6] text-[#454411] mb-5 px-4 py-2 leading-tight tracking-tight drop-shadow-lg"
         >
-          <span className="px-2 py-1">{t('hero.subtitle')}</span>
+          {t('hero.subtitle')}
         </h2>
 
         <p
