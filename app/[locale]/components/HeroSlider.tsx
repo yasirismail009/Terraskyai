@@ -18,7 +18,7 @@ type Props = {
   duration?: number;
 };
 
-export default function HeroSlider({ slides, labels, children, duration = 3000 }: Props) {
+export default function HeroSlider({ slides, labels, children, duration = 6000 }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -85,7 +85,7 @@ export default function HeroSlider({ slides, labels, children, duration = 3000 }
           z-index: 1;
         }
         .hs-slide.is-active .hs-img {
-          animation: hs-zoom 5s ease-out both;
+          animation: hs-zoom 8s ease-out both;
         }
         @keyframes hs-zoom {
           from { transform: scale(1); }
