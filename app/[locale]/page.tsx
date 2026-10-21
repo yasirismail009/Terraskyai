@@ -59,21 +59,29 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       >
         <h1
           style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
-          className="text-4xl sm:text-5xl lg:text-6xl text-white mb-4 leading-[1.05] tracking-tight drop-shadow-lg"
+          className="text-4xl sm:text-5xl xl:text-6xl text-white mb-4 leading-[1.05] tracking-tight drop-shadow-lg"
         >
           {t('hero.title')}
         </h1>
 
-              <h2
-          style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 500 }}
-          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit max-w-full bg-[#E6E2D6] text-[#454411] mb-5 px-4 py-2 leading-tight tracking-tight drop-shadow-lg"
+        <h2
+          style={{
+            fontFamily: "'Cormorant Garamond',Georgia,serif",
+            fontWeight: 700,
+            background: 'rgba(255,255,255,0.12)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255,255,255,0.4)',
+            textShadow: '0 2px 12px rgba(0,0,0,0.45)',
+          }}
+          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit max-w-full text-white mb-5 px-4 py-2 leading-tight tracking-tight"
         >
           {t('hero.subtitle')}
         </h2>
 
         <p
-          style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 400 }}
-          className="text-base sm:text-lg text-white/90 max-w-xl leading-relaxed drop-shadow-md"
+          style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 500 }}
+          className="text-base sm:text-lg text-white max-w-xl leading-relaxed drop-shadow-md"
         >
           {t('hero.description')}
         </p>
