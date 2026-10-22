@@ -46,7 +46,17 @@
     "plan": { "tag": "Planejar", "caption": "Missões automatizadas para cada talhão" },
     "offType": { "tag": "Detectar", "caption": "Plantas atípicas e canola voluntária, planta por planta" },
     "stand": { "tag": "Detectar", "caption": "Cada muda contada" },
-    "pods": { "tag": "Contar", "caption": "Vagens previstas antes da colheita" }
+    "pods": { "tag": "Contar", "caption": "Vagens previstas antes da colheita" },
+    "corn": {
+  "tag": "Contar",
+  "caption": "Cada planta contada. Cada linhagem parental avaliada por estádio",
+  "text": "Identifique linhagens macho ou fêmea fracas enquanto ainda há tempo para replantar."
+},
+"beans": {
+  "tag": "Contar",
+  "caption": "Replante apenas onde for necessário",
+  "text": "Contagem de plantas e vigor, mapeados a tempo para um replantio direcionado."
+}
   }
 },
     "products": {
