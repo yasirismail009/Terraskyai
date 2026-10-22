@@ -16,6 +16,8 @@ const heroSlideConfig = [
   { key: 'plan', src: '/assets/hero/hero-04-flight-plan.jpg', position: 'center' },
   { key: 'offType', src: '/assets/hero/hero-05-offtype.JPG', position: 'center' },
   { key: 'stand', src: '/assets/hero/hero-06-plant-count.jpeg', position: 'center' },
+  { key: 'corn', src: '/assets/hero/beam.jpeg', position: 'center' },
+  { key: 'beans', src: '/assets/hero/Corn.JPG', position: 'center' },
   { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg', position: '70% 60%' },
 ] as const;
 
@@ -44,6 +46,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     position: s.position,
     tag: t(`hero.slides.${s.key}.tag`),
     caption: t(`hero.slides.${s.key}.caption`),
+    text: s.key === 'corn' || s.key === 'beans' ? t(`hero.slides.${s.key}.text`) : undefined,
   }));
 
   return (
@@ -68,13 +71,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           style={{
             fontFamily: "'Cormorant Garamond',Georgia,serif",
             fontWeight: 700,
-            background: 'rgba(255,255,255,0.12)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(255,255,255,0.4)',
+            background: 'rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(3px)',
+            WebkitBackdropFilter: 'blur(3px)',
+            border: '1px solid rgba(255,255,255,0.35)',
             textShadow: '0 2px 12px rgba(0,0,0,0.45)',
           }}
-          className="text-2xl sm:text-3xl lg:text-4xl rounded-lg w-fit max-w-full text-white mb-5 px-4 py-2 leading-tight tracking-tight"
+          className="text-lg sm:text-xl lg:text-2xl rounded-lg w-fit max-w-full text-white mb-4 px-3 py-1.5 leading-tight tracking-tight lg:whitespace-nowrap"
         >
           {t('hero.subtitle')}
         </h2>

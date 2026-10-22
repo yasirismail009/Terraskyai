@@ -32,7 +32,7 @@
  "hero": {
   "imageAlt": "TerraSkyAI in action",
   "title": "Flights to Insights",
-  "subtitle": "Making Precision Farming Sustainable and Profitable",
+  "subtitle": "Making Precision Farming Sustainable & Profitable",
   "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm.",
   "controls": {
     "prev": "Previous slide",
@@ -46,7 +46,17 @@
     "plan": { "tag": "Plan", "caption": "Automated missions for every field" },
     "offType": { "tag": "Detect", "caption": "Off-type and volunteer canola, flagged plant by plant" },
     "stand": { "tag": "Detect", "caption": "Every seedling counted" },
-    "pods": { "tag": "Count", "caption": "Pods predicted before harvest" }
+    "pods": { "tag": "Count", "caption": "Pods predicted before harvest" },
+    "beans": {
+  "tag": "Count",
+  "caption": "Every plant counted. Every parent line staged",
+  "text": "Catch weak male or female stands while there’s still time to re-seed."
+},
+"corn": {
+  "tag": "Count",
+  "caption": "Re-seed only where it’s needed",
+  "text": "Plant counts and vigor, mapped in time for a targeted re-seed."
+}
   }
 },
     "products": {

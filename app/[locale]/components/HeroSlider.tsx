@@ -6,8 +6,12 @@ import Image from 'next/image';
 type Slide = {
   src: string;
   position?: string;
+  /** 'cover' fills the screen (may crop/zoom). 'contain' shows the whole photo on a blurred copy of itself. */
+  fit?: 'cover' | 'contain';
   tag: string;
   caption: string;
+  /** optional small line under the caption */
+  text?: string;
 };
 
 type Props = {
@@ -65,7 +69,7 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
       <style>{`
         .hs-root {
           position: relative;
-          min-height: 90vh;
+          min-height: clamp(560px, calc(100vh - 64px), 940px);
           display: flex;
           align-items: center;
           overflow: hidden;
@@ -84,12 +88,10 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           opacity: 1;
           z-index: 1;
         }
-        .hs-slide.is-active .hs-img {
-          animation: hs-zoom 8s ease-out both;
-        }
-        @keyframes hs-zoom {
-          from { transform: scale(1); }
-          to   { transform: scale(1.07); }
+        /* blurred copy behind photos that use fit: 'contain' */
+        .hs-bg {
+          filter: blur(34px) brightness(0.72);
+          transform: scale(1.2);
         }
 
         /* ── Dark shade so text is always readable ── */
@@ -111,7 +113,7 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           padding: 110px clamp(24px, 3.5vw, 72px) 190px;
         }
         .hs-text {
-          max-width: 560px;
+          max-width: 680px;
           text-align: left;
         }
         .hs-text > * {
@@ -171,8 +173,17 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           font-weight: 600;
           color: #fff;
           line-height: 1.25;
-          max-width: 560px;
+          max-width: 640px;
           text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+        }
+        .hs-cap-sub {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          line-height: 1.5;
+          color: rgba(255,255,255,0.85);
+          max-width: 520px;
+          margin-top: 6px;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.45);
         }
 
         /* ── Progress segments ── */
@@ -259,9 +270,14 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           outline-offset: 3px;
         }
 
+        @media (min-width: 1024px) {
+          .hs-root { min-height: clamp(560px, calc(100vh - 80px), 940px); }
+        }
+
         /* ── Phones ── */
         @media (max-width: 768px) {
-          .hs-root { min-height: 86vh; }
+          .hs-root { min-height: clamp(520px, calc(100svh - 64px), 940px); }
+          .hs-cap-sub { display: none; }
           .hs-shade {
             background:
               linear-gradient(180deg, rgba(18,20,5,0.55) 0%, rgba(18,20,5,0.68) 55%, rgba(18,20,5,0.88) 100%);
@@ -276,7 +292,6 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
         /* ── Respect people who turn animations off ── */
         @media (prefers-reduced-motion: reduce) {
           .hs-slide { transition: none; }
-          .hs-slide.is-active .hs-img { animation: none; }
           .hs-text > *, .hs-caption { animation: none; }
         }
       `}</style>
@@ -284,15 +299,30 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
       {/* Slides */}
       {slides.map((s, i) => (
         <div key={s.src} className={`hs-slide ${i === index ? 'is-active' : ''}`} aria-hidden={i !== index}>
+          {s.fit === 'contain' && (
+            <Image
+              src={s.src}
+              alt=""
+              fill
+              sizes="50vw"
+              quality={40}
+              className="hs-bg"
+              style={{ objectFit: 'cover' }}
+              aria-hidden
+            />
+          )}
           <Image
             src={s.src}
             alt={s.caption}
             fill
             priority={i === 0}
             sizes="100vw"
-            quality={85}
+            quality={90}
             className="hs-img"
-            style={{ objectFit: 'cover', objectPosition: s.position ?? 'center' }}
+            style={{
+              objectFit: s.fit === 'contain' ? 'contain' : 'cover',
+              objectPosition: s.position ?? 'center',
+            }}
           />
         </div>
       ))}
@@ -311,6 +341,7 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
             <div className="hs-caption" key={index}>
               <span className="hs-tag">{current.tag}</span>
               <p className="hs-cap-text">{current.caption}</p>
+              {current.text && <p className="hs-cap-sub">{current.text}</p>}
             </div>
 
             <div className="hs-progress">
