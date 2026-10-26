@@ -14,29 +14,6 @@ type CareerPostSummary = {
   status?: string;
 };
 
-type CareerPostDetail = CareerPostSummary & {
-  responsibilities?: string[];
-  requirements?: string[];
-  requirementsHtml?: string;
-  preferredSkills?: string[];
-  compensation?: string;
-  applicationEmail?: string;
-  applicationSubject?: string;
-  applicationDeadline?: string;
-  viewsCount?: number;
-  applicationsCount?: number;
-  createdAt?: string;
-  createdBy?: string;
-  updatedAt?: string;
-  updatedBy?: string;
-  showEligibleToWorkInCanada?: boolean;
-  requireEligibleToWorkInCanada?: boolean;
-  showValidDriversLicense?: boolean;
-  requireValidDriversLicense?: boolean;
-  showDronePilotLicense?: boolean;
-  requireDronePilotLicense?: boolean;
-};
-
 class HttpError extends Error {
   status: number;
   constructor(status: number) {
@@ -45,92 +22,12 @@ class HttpError extends Error {
   }
 }
 
-function looksLikeHtml(value: string): boolean {
-  return /<\/?[a-z][\s\S]*>/i.test(value);
-}
-
-function filterDescription(description: string): string {
-  const textToHide =
-    '• Assist with new and existing CV model development through data collection, labeling, ground truthing and validation';
-  let filtered = description.replace(
-    new RegExp(textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'),
-    ''
-  );
-  filtered = filtered.replace(
-    new RegExp(`<li[^>]*>\\s*${textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</li>`, 'gi'),
-    ''
-  );
-  filtered = filtered.replace(
-    new RegExp(`<p[^>]*>\\s*${textToHide.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</p>`, 'gi'),
-    ''
-  );
-  return filtered.trim();
-}
-
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://backend.terraskyai.com';
 
-// Unwraps API responses like { result: {...} } / { data: {...} } / [ {...} ] / {...}
-function unwrapPayload(data: unknown): Record<string, unknown> {
-  if (Array.isArray(data)) return (data[0] ?? {}) as Record<string, unknown>;
-  const d = (data ?? {}) as Record<string, unknown>;
-  const inner = d.result ?? d.data ?? d.results ?? d.item;
-  if (inner && typeof inner === 'object') {
-    return (Array.isArray(inner) ? (inner[0] ?? {}) : inner) as Record<string, unknown>;
-  }
-  return d;
-}
-
-// Drops undefined/null values so they never overwrite real values when merging
-function pickDefined<T extends object>(obj: T): Partial<T> {
-  return Object.fromEntries(
-    Object.entries(obj).filter(([, v]) => v !== undefined && v !== null)
-  ) as Partial<T>;
-}
-
-function formatCurrencyAmount(value: unknown, currency: string, locale: string): string | undefined {
-  const n = typeof value === 'number' ? value : typeof value === 'string' ? Number(value) : NaN;
-  if (!Number.isFinite(n)) return undefined;
-  try {
-    return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
-  } catch {
-    return `${currency} ${n.toFixed(2)}`;
-  }
-}
-
-function formatSalaryRange(raw: Record<string, unknown>, locale: string): string | undefined {
-  const currency =
-    (typeof raw?.salary_currency === 'string' && raw.salary_currency) ||
-    (typeof raw?.currency === 'string' && raw.currency) ||
-    undefined;
-  if (!currency) return undefined;
-  const min = formatCurrencyAmount(raw?.salary_min, currency, locale);
-  const max = formatCurrencyAmount(raw?.salary_max, currency, locale);
-  if (min && max) return `${min} – ${max}`;
-  return min ?? max;
-}
-
-function formatDeadline(value: unknown, locale: string): string | undefined {
-  if (typeof value !== 'string') return undefined;
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return value;
-  return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
-}
-
-function coerceStringArray(value: unknown): string[] | undefined {
-  if (Array.isArray(value)) {
-    const out = value.map((v) => (typeof v === 'string' ? v.trim() : '')).filter(Boolean);
-    return out.length ? out : undefined;
-  }
-  if (typeof value === 'string') {
-    if (looksLikeHtml(value)) return undefined;
-    const parts = value
-      .split(/\r?\n|•/g)
-      .map((s) => s.trim())
-      .filter(Boolean);
-    return parts.length ? parts : undefined;
-  }
-  return undefined;
-}
+// PDF that opens when someone clicks "View Details".
+// Put your PDF in the public folder and set its path here (for example /job-details.pdf).
+// If the file name has spaces, write them as %20.
+const JOB_DETAILS_PDF = '/post.pdf';
 
 function normalizeCareerPostSummary(raw: Record<string, unknown>): CareerPostSummary {
   const id = raw?.id ?? raw?.pk ?? raw?.uuid ?? raw?.slug;
@@ -152,65 +49,6 @@ function normalizeCareerPostSummary(raw: Record<string, unknown>): CareerPostSum
   } as CareerPostSummary;
 }
 
-function normalizeCareerPostDetail(raw: Record<string, unknown>, locale: string): CareerPostDetail {
-  const base = normalizeCareerPostSummary(raw);
-  return {
-    ...base,
-    responsibilities: coerceStringArray(raw?.responsibilities ?? raw?.responsibility),
-    requirements: coerceStringArray(raw?.requirements ?? raw?.requirement),
-    requirementsHtml:
-      typeof raw?.requirements === 'string' && looksLikeHtml(raw.requirements)
-        ? raw.requirements
-        : undefined,
-    preferredSkills: coerceStringArray(
-      raw?.preferredSkills ?? raw?.preferred_skills ?? raw?.preferred_skills_list
-    ),
-    compensation:
-      raw?.compensation ?? raw?.salary ?? raw?.pay_range ?? formatSalaryRange(raw, locale),
-    applicationEmail: raw?.applicationEmail ?? raw?.application_email ?? raw?.apply_email,
-    applicationSubject: raw?.applicationSubject ?? raw?.application_subject ?? raw?.apply_subject,
-    applicationDeadline:
-      formatDeadline(
-        raw?.applicationDeadline ?? raw?.application_deadline ?? raw?.deadline,
-        locale
-      ) ??
-      raw?.applicationDeadline ??
-      raw?.application_deadline ??
-      raw?.deadline,
-    viewsCount: typeof raw?.views_count === 'number' ? raw.views_count : raw?.viewsCount,
-    applicationsCount:
-      typeof raw?.applications_count === 'number' ? raw.applications_count : raw?.applicationsCount,
-    createdAt: raw?.created_at ?? raw?.createdAt,
-    createdBy: raw?.created_by ?? raw?.createdBy,
-    updatedAt: raw?.updated_at ?? raw?.updatedAt,
-    updatedBy: raw?.updated_by ?? raw?.updatedBy,
-    showEligibleToWorkInCanada:
-      typeof raw?.show_eligible_to_work_in_canada === 'boolean'
-        ? raw.show_eligible_to_work_in_canada
-        : raw?.showEligibleToWorkInCanada,
-    requireEligibleToWorkInCanada:
-      typeof raw?.require_eligible_to_work_in_canada === 'boolean'
-        ? raw.require_eligible_to_work_in_canada
-        : raw?.requireEligibleToWorkInCanada,
-    showValidDriversLicense:
-      typeof raw?.show_valid_drivers_license === 'boolean'
-        ? raw.show_valid_drivers_license
-        : raw?.showValidDriversLicense,
-    requireValidDriversLicense:
-      typeof raw?.require_valid_drivers_license === 'boolean'
-        ? raw.require_valid_drivers_license
-        : raw?.requireValidDriversLicense,
-    showDronePilotLicense:
-      typeof raw?.show_drone_pilot_license === 'boolean'
-        ? raw.show_drone_pilot_license
-        : raw?.showDronePilotLicense,
-    requireDronePilotLicense:
-      typeof raw?.require_drone_pilot_license === 'boolean'
-        ? raw.require_drone_pilot_license
-        : raw?.requireDronePilotLicense,
-  } as CareerPostDetail;
-}
-
 async function fetchCareerPostsList(): Promise<CareerPostSummary[]> {
   const res = await fetch(`${API_BASE_URL}/api/career/posts/`, { cache: 'no-store' });
   if (!res.ok) throw new HttpError(res.status);
@@ -220,17 +58,6 @@ async function fetchCareerPostsList(): Promise<CareerPostSummary[]> {
     : (data?.result ?? data?.results ?? data?.data ?? data?.items ?? []);
   if (!Array.isArray(list)) return [];
   return list.map(normalizeCareerPostSummary).filter((p) => p.id !== '');
-}
-
-async function fetchCareerPostDetail(
-  id: string | number,
-  locale: string
-): Promise<CareerPostDetail> {
-  const res = await fetch(`${API_BASE_URL}/api/career/posts/${id}/`, { cache: 'no-store' });
-  if (!res.ok) throw new HttpError(res.status);
-  const data = await res.json();
-  const obj = unwrapPayload(data);
-  return normalizeCareerPostDetail(obj, locale);
 }
 
 const heroStatKeys = ['ai', 'location', 'impact'] as const;
@@ -244,6 +71,7 @@ const radioQuestions = [
 export default function CareersPage() {
   const t = useTranslations('Careers');
   const locale = useLocale();
+  void locale;
 
   // Translate known API values (e.g. "Full Time"); unknown values stay as they are
   const tValue = (v?: string) => {
@@ -252,15 +80,14 @@ export default function CareersPage() {
     return t.has(key) ? t(key) : v;
   };
 
-  const [selectedPositionId, setSelectedPositionId] = useState<string | null>(null);
+  // Uses the translation if you add positions.viewDetails to your messages files, otherwise shows English
+  const viewDetailsLabel = t.has('positions.viewDetails')
+    ? t('positions.viewDetails')
+    : 'View Details';
+
   const [positions, setPositions] = useState<CareerPostSummary[]>([]);
   const [positionsLoading, setPositionsLoading] = useState(true);
   const [positionsError, setPositionsError] = useState<string | null>(null);
-  const [detailsById, setDetailsById] = useState<Record<string, CareerPostDetail | undefined>>({});
-  const [detailsLoadingById, setDetailsLoadingById] = useState<Record<string, boolean | undefined>>(
-    {}
-  );
-  const [detailsErrorById, setDetailsErrorById] = useState<Record<string, string | undefined>>({});
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
@@ -279,6 +106,20 @@ export default function CareersPage() {
   });
 
   const positionsForRender = positions;
+
+  // For the Business Development & Product Agronomist post, two questions do not apply and are hidden.
+  // The post is matched by words in its title, so change the text below if the job title changes.
+  const selectedPosition = positions.find((p) => String(p.id) === formData.position);
+  const hideCanadaQuestions = (selectedPosition?.title ?? '')
+    .toLowerCase()
+    .includes('business development');
+  const visibleQuestions = radioQuestions.filter(
+    (q) =>
+      !(
+        hideCanadaQuestions &&
+        (q.name === 'eligibleToWorkInCanada' || q.name === 'validDriversLicense')
+      )
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -309,28 +150,9 @@ export default function CareersPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleTogglePosition = async (id: string | number) => {
-    const key = String(id);
-    setSelectedPositionId((prev) => (prev === key ? null : key));
-    if (detailsById[key] || detailsLoadingById[key]) return;
-    try {
-      setDetailsLoadingById((prev) => ({ ...prev, [key]: true }));
-      setDetailsErrorById((prev) => ({ ...prev, [key]: undefined }));
-      const detail = await fetchCareerPostDetail(id, locale);
-      setDetailsById((prev) => ({ ...prev, [key]: detail }));
-    } catch (e: unknown) {
-      setDetailsErrorById((prev) => ({
-        ...prev,
-        [key]:
-          e instanceof HttpError
-            ? t('errors.loadDetails', { status: e.status })
-            : e instanceof Error
-              ? e.message
-              : t('errors.loadDetailsFallback'),
-      }));
-    } finally {
-      setDetailsLoadingById((prev) => ({ ...prev, [key]: false }));
-    }
+  const handleApply = (id: string | number) => {
+    setFormData((prev) => ({ ...prev, position: String(id ?? '') }));
+    document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const handleInputChange = (
@@ -376,9 +198,12 @@ export default function CareersPage() {
       payload.append('cover_letter', formData.coverLetter);
       payload.append(
         'eligible_to_work_in_canada',
-        yesNoToBoolString(formData.eligibleToWorkInCanada)
+        hideCanadaQuestions ? 'false' : yesNoToBoolString(formData.eligibleToWorkInCanada)
       );
-      payload.append('valid_drivers_license', yesNoToBoolString(formData.validDriversLicense));
+      payload.append(
+        'valid_drivers_license',
+        hideCanadaQuestions ? 'false' : yesNoToBoolString(formData.validDriversLicense)
+      );
       payload.append('drone_pilot_license', yesNoToBoolString(formData.dronePilotLicense));
       payload.append('access_to_own_vehicle', 'false');
       payload.append('cv', formData.cv);
@@ -470,10 +295,6 @@ export default function CareersPage() {
           box-shadow: 0 12px 40px rgba(69,68,17,0.1);
           transform: translateY(-3px);
         }
-        .cr-job-card.is-open {
-          border-color: rgba(69,68,17,0.3);
-          box-shadow: 0 12px 40px rgba(69,68,17,0.12);
-        }
 
         .cr-badge {
           display: inline-flex; align-items: center; gap: 6px;
@@ -485,17 +306,10 @@ export default function CareersPage() {
           color: #454411;
         }
 
-        .cr-toggle-btn {
-          width: 36px; height: 36px; border-radius: 50%;
-          background: rgba(69,68,17,0.07);
-          border: 1px solid rgba(69,68,17,0.18);
-          color: #454411;
-          display: flex; align-items: center; justify-content: center;
-          cursor: pointer; flex-shrink: 0;
-          transition: background 0.2s, transform 0.3s;
+        .cr-actions {
+          display: flex; flex-wrap: wrap; gap: 12px;
+          margin-top: 22px;
         }
-        .cr-toggle-btn:hover { background: rgba(69,68,17,0.14); }
-        .cr-toggle-btn.open  { transform: rotate(180deg); }
 
         .cr-apply-btn {
           display: inline-flex; align-items: center; gap: 10px;
@@ -505,12 +319,27 @@ export default function CareersPage() {
           font-size: 14px; font-weight: 600; cursor: pointer;
           box-shadow: 0 4px 20px rgba(69,68,17,0.4);
           transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-          text-decoration: none; width: 100%; justify-content: center;
+          text-decoration: none; justify-content: center;
         }
         .cr-apply-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 8px 28px rgba(69,68,17,0.5);
           background: #5a5a16;
+        }
+
+        .cr-view-btn {
+          display: inline-flex; align-items: center; gap: 10px;
+          background: transparent; color: #454411;
+          border: 1.5px solid rgba(69,68,17,0.35); border-radius: 12px; padding: 12px 28px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px; font-weight: 600; cursor: pointer;
+          transition: transform 0.2s, background 0.2s, border-color 0.2s;
+          text-decoration: none; justify-content: center;
+        }
+        .cr-view-btn:hover {
+          transform: translateY(-2px);
+          background: rgba(69,68,17,0.07);
+          border-color: #454411;
         }
 
         /* Form styles */
@@ -849,418 +678,69 @@ export default function CareersPage() {
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {positionsForRender.map((position) => {
-              const key = String(position.id);
-              const detail = detailsById[key];
-              const isOpen = selectedPositionId === key;
-              const isDetailLoading = !!detailsLoadingById[key];
-              const detailError = detailsErrorById[key];
-              const merged = {
-                ...position,
-                ...(detail ? pickDefined(detail) : {}),
-              } as CareerPostDetail;
+            {positionsForRender.map((position) => (
+              <div key={position.id} className="cr-job-card">
+                <h3
+                  style={{
+                    fontFamily: "'Cormorant Garamond',Georgia,serif",
+                    fontSize: '1.6rem',
+                    fontWeight: 700,
+                    color: '#2d2e0a',
+                    lineHeight: 1.2,
+                    marginBottom: 12,
+                  }}
+                >
+                  {position.title ?? t('positions.untitled')}
+                </h3>
 
-              return (
-                <div key={position.id} className={`cr-job-card${isOpen ? ' is-open' : ''}`}>
-                  {/* Header row */}
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      justifyContent: 'space-between',
-                      gap: 16,
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <h3
-                        style={{
-                          fontFamily: "'Cormorant Garamond',Georgia,serif",
-                          fontSize: '1.6rem',
-                          fontWeight: 700,
-                          color: '#2d2e0a',
-                          lineHeight: 1.2,
-                          marginBottom: 12,
-                        }}
-                      >
-                        {merged.title ?? t('positions.untitled')}
-                      </h3>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                        {merged.department && (
-                          <span className="cr-badge">{tValue(merged.department)}</span>
-                        )}
-                        {merged.location && <span className="cr-badge">📍 {merged.location}</span>}
-                        {merged.type && <span className="cr-badge">{tValue(merged.type)}</span>}
-                        {merged.isRemote && (
-                          <span className="cr-badge">🌐 {t('positions.remote')}</span>
-                        )}
-                        {merged.status && <span className="cr-badge">{tValue(merged.status)}</span>}
-                      </div>
-                    </div>
-                    <button
-                      className={`cr-toggle-btn${isOpen ? ' open' : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleTogglePosition(position.id);
-                      }}
-                    >
-                      <svg viewBox="0 0 24 24" fill="none" style={{ width: 16, height: 16 }}>
-                        <path
-                          d="M6 9l6 6 6-6"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-
-                  {/* Short description */}
-                  {typeof merged.description === 'string' &&
-                    merged.description.trim().length > 0 && (
-                      <div
-                        style={{
-                          fontFamily: "'DM Sans',sans-serif",
-                          fontSize: 14,
-                          color: '#7a7860',
-                          marginTop: 14,
-                          lineHeight: 1.7,
-                        }}
-                        dangerouslySetInnerHTML={{ __html: filterDescription(merged.description) }}
-                      />
-                    )}
-
-                  {/* Expanded detail */}
-                  {isOpen && (
-                    <div
-                      style={{
-                        marginTop: 28,
-                        paddingTop: 28,
-                        borderTop: '1px solid rgba(69,68,17,0.1)',
-                      }}
-                    >
-                      {isDetailLoading && (
-                        <p
-                          style={{
-                            fontFamily: "'DM Sans',sans-serif",
-                            fontSize: 13,
-                            color: '#9a9878',
-                          }}
-                        >
-                          {t('positions.loadingDetails')}
-                        </p>
-                      )}
-                      {!isDetailLoading && detailError && (
-                        <p
-                          style={{
-                            fontFamily: "'DM Sans',sans-serif",
-                            fontSize: 13,
-                            color: '#b91c1c',
-                          }}
-                        >
-                          {detailError}
-                        </p>
-                      )}
-
-                      {!isDetailLoading && !detailError && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                          {/* Meta chips */}
-                          {(merged.compensation ||
-                            merged.applicationDeadline ||
-                            merged.applicationEmail) && (
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-                              {merged.compensation && (
-                                <div
-                                  style={{
-                                    background: 'rgba(69,68,17,0.05)',
-                                    border: '1px solid rgba(69,68,17,0.12)',
-                                    borderRadius: 12,
-                                    padding: '10px 16px',
-                                  }}
-                                >
-                                  <p
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 10,
-                                      color: '#8B5E3C',
-                                      fontWeight: 700,
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.1em',
-                                      marginBottom: 3,
-                                    }}
-                                  >
-                                    {t('positions.compensation')}
-                                  </p>
-                                  <p
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 14,
-                                      color: '#2d2e0a',
-                                      fontWeight: 600,
-                                    }}
-                                  >
-                                    {merged.compensation}
-                                  </p>
-                                </div>
-                              )}
-                              {merged.applicationDeadline && (
-                                <div
-                                  style={{
-                                    background: 'rgba(69,68,17,0.05)',
-                                    border: '1px solid rgba(69,68,17,0.12)',
-                                    borderRadius: 12,
-                                    padding: '10px 16px',
-                                  }}
-                                >
-                                  <p
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 10,
-                                      color: '#8B5E3C',
-                                      fontWeight: 700,
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.1em',
-                                      marginBottom: 3,
-                                    }}
-                                  >
-                                    {t('positions.deadline')}
-                                  </p>
-                                  <p
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 14,
-                                      color: '#2d2e0a',
-                                      fontWeight: 600,
-                                    }}
-                                  >
-                                    {merged.applicationDeadline}
-                                  </p>
-                                </div>
-                              )}
-                              {merged.applicationEmail && (
-                                <div
-                                  style={{
-                                    background: 'rgba(69,68,17,0.05)',
-                                    border: '1px solid rgba(69,68,17,0.12)',
-                                    borderRadius: 12,
-                                    padding: '10px 16px',
-                                  }}
-                                >
-                                  <p
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 10,
-                                      color: '#8B5E3C',
-                                      fontWeight: 700,
-                                      textTransform: 'uppercase',
-                                      letterSpacing: '0.1em',
-                                      marginBottom: 3,
-                                    }}
-                                  >
-                                    {t('positions.applyEmail')}
-                                  </p>
-                                  <a
-                                    href={`mailto:${merged.applicationEmail}`}
-                                    style={{
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 14,
-                                      color: '#454411',
-                                      fontWeight: 600,
-                                      textDecoration: 'underline',
-                                    }}
-                                  >
-                                    {merged.applicationEmail}
-                                  </a>
-                                </div>
-                              )}
-                            </div>
-                          )}
-
-                          {/* Responsibilities */}
-                          {merged.responsibilities && (
-                            <div>
-                              <h4
-                                style={{
-                                  fontFamily: "'Cormorant Garamond',Georgia,serif",
-                                  fontSize: '1.25rem',
-                                  fontWeight: 700,
-                                  color: '#2d2e0a',
-                                  marginBottom: 12,
-                                }}
-                              >
-                                {t('positions.responsibilities')}
-                              </h4>
-                              <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                                {merged.responsibilities
-                                  .filter(
-                                    (r) =>
-                                      !r.includes(
-                                        'Assist with new and existing CV model development through data collection, labeling, ground truthing and validation'
-                                      )
-                                  )
-                                  .map((r, i) => (
-                                    <li
-                                      key={i}
-                                      style={{
-                                        display: 'flex',
-                                        alignItems: 'flex-start',
-                                        gap: 10,
-                                        fontFamily: "'DM Sans',sans-serif",
-                                        fontSize: 14,
-                                        color: '#545454',
-                                        lineHeight: 1.6,
-                                      }}
-                                    >
-                                      <span
-                                        style={{ color: '#8B5E3C', marginTop: 2, flexShrink: 0 }}
-                                      >
-                                        ▸
-                                      </span>
-                                      <span>{r}</span>
-                                    </li>
-                                  ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Requirements */}
-                          {merged.requirements && (
-                            <div>
-                              <h4
-                                style={{
-                                  fontFamily: "'Cormorant Garamond',Georgia,serif",
-                                  fontSize: '1.25rem',
-                                  fontWeight: 700,
-                                  color: '#2d2e0a',
-                                  marginBottom: 12,
-                                }}
-                              >
-                                {t('positions.requirements')}
-                              </h4>
-                              <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                                {merged.requirements.map((r, i) => (
-                                  <li
-                                    key={i}
-                                    style={{
-                                      display: 'flex',
-                                      alignItems: 'flex-start',
-                                      gap: 10,
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 14,
-                                      color: '#545454',
-                                      lineHeight: 1.6,
-                                    }}
-                                  >
-                                    <span style={{ color: '#8B5E3C', marginTop: 2, flexShrink: 0 }}>
-                                      ▸
-                                    </span>
-                                    <span
-                                      dangerouslySetInnerHTML={{
-                                        __html: typeof r === 'string' ? r : String(r),
-                                      }}
-                                    />
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {!merged.requirements && merged.requirementsHtml && (
-                            <div>
-                              <h4
-                                style={{
-                                  fontFamily: "'Cormorant Garamond',Georgia,serif",
-                                  fontSize: '1.25rem',
-                                  fontWeight: 700,
-                                  color: '#2d2e0a',
-                                  marginBottom: 12,
-                                }}
-                              >
-                                {t('positions.requirements')}
-                              </h4>
-                              <div
-                                style={{
-                                  fontFamily: "'DM Sans',sans-serif",
-                                  fontSize: 14,
-                                  color: '#545454',
-                                  lineHeight: 1.7,
-                                }}
-                                dangerouslySetInnerHTML={{
-                                  __html: filterDescription(merged.requirementsHtml),
-                                }}
-                              />
-                            </div>
-                          )}
-
-                          {/* Preferred skills */}
-                          {merged.preferredSkills && (
-                            <div>
-                              <h4
-                                style={{
-                                  fontFamily: "'Cormorant Garamond',Georgia,serif",
-                                  fontSize: '1.25rem',
-                                  fontWeight: 700,
-                                  color: '#2d2e0a',
-                                  marginBottom: 12,
-                                }}
-                              >
-                                {t('positions.preferredSkills')}
-                              </h4>
-                              <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                                {merged.preferredSkills.map((s, i) => (
-                                  <li
-                                    key={i}
-                                    style={{
-                                      display: 'flex',
-                                      alignItems: 'flex-start',
-                                      gap: 10,
-                                      fontFamily: "'DM Sans',sans-serif",
-                                      fontSize: 14,
-                                      color: '#545454',
-                                      lineHeight: 1.6,
-                                    }}
-                                  >
-                                    <span style={{ color: '#8B5E3C', marginTop: 2, flexShrink: 0 }}>
-                                      ▸
-                                    </span>
-                                    <span>{s}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          <button
-                            className="cr-apply-btn"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setFormData((prev) => ({
-                                ...prev,
-                                position: String(merged.id ?? ''),
-                              }));
-                              document
-                                .getElementById('application-form')
-                                ?.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                          >
-                            {t('positions.apply')}
-                            <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
-                              <path
-                                d="M4 10h12M10 4l6 6-6 6"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {position.department && (
+                    <span className="cr-badge">{tValue(position.department)}</span>
+                  )}
+                  {position.location && <span className="cr-badge">📍 {position.location}</span>}
+                  {position.type && <span className="cr-badge">{tValue(position.type)}</span>}
+                  {position.isRemote && (
+                    <span className="cr-badge">🌐 {t('positions.remote')}</span>
                   )}
                 </div>
-              );
-            })}
+
+                <div className="cr-actions">
+                  <a
+                    className="cr-view-btn"
+                    href={JOB_DETAILS_PDF}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {viewDetailsLabel}
+                    <svg viewBox="0 0 24 24" fill="none" style={{ width: 16, height: 16 }}>
+                      <path
+                        d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </a>
+                  <button
+                    type="button"
+                    className="cr-apply-btn"
+                    onClick={() => handleApply(position.id)}
+                  >
+                    {t('positions.apply')}
+                    <svg viewBox="0 0 20 20" fill="none" style={{ width: 16, height: 16 }}>
+                      <path
+                        d="M4 10h12M10 4l6 6-6 6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -1445,9 +925,13 @@ export default function CareersPage() {
                 {/* Radio questions */}
                 <div
                   className="cr-radio-grid"
-                  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: visibleQuestions.length > 1 ? '1fr 1fr' : '1fr',
+                    gap: 14,
+                  }}
                 >
-                  {radioQuestions.map((q) => (
+                  {visibleQuestions.map((q) => (
                     <div key={q.name} className="cr-radio-card">
                       <p
                         style={{
