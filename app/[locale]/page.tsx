@@ -13,13 +13,17 @@ const heroSlideConfig = [
   { key: 'drone', src: '/assets/hero/hero-01-drone-canola.jpg', position: 'center 40%' },
   { key: 'scale', src: '/assets/hero/hero-02-drones-pivot.jpg', position: 'center' },
   { key: 'crew', src: '/assets/hero/hero-03-pilot.jpg', position: 'center 45%' },
-  { key: 'plan', src: '/assets/hero/hero-04-flight-plan.jpg', position: 'center' },
+  { key: 'plan', src: '/assets/hero/hero-04-flight-plan-padded.jpg', position: 'center' },
   { key: 'offType', src: '/assets/hero/hero-05-offtype.JPG', position: 'center' },
   { key: 'stand', src: '/assets/hero/corrn.jpeg', position: 'center' },
   { key: 'corn', src: '/assets/hero/beam.jpeg', position: 'center' },
   { key: 'beans', src: '/assets/hero/Corn.JPG', position: 'center' },
   { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg', position: '70% 60%' },
 ] as const;
+
+// Slides that have an extra "text" line under the caption.
+// If you add "text" to another slide in the messages files, add its key here too.
+const slidesWithText: readonly string[] = ['drone', 'corn', 'beans'];
 
 const whyStats = [
   { val: '80%', key: 'inputs', bar: '80' },
@@ -46,7 +50,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     position: s.position,
     tag: t(`hero.slides.${s.key}.tag`),
     caption: t(`hero.slides.${s.key}.caption`),
-    text: s.key === 'corn' || s.key === 'beans' ? t(`hero.slides.${s.key}.text`) : undefined,
+    text: slidesWithText.includes(s.key) ? t(`hero.slides.${s.key}.text`) : undefined,
   }));
 
   return (

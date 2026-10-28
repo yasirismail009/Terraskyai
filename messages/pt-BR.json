@@ -40,13 +40,13 @@
     "goTo": "Ir para o slide"
   },
   "slides": {
-    "drone": { "tag": "Voar", "caption": "Cada hectare visto de cima" },
-    "scale": { "tag": "Voar", "caption": "Campos reais, voos reais" },
-    "crew": { "tag": "Voar", "caption": "Equipes no solo, drones no ar" },
-    "plan": { "tag": "Planejar", "caption": "Missões automatizadas para cada talhão" },
-    "offType": { "tag": "Detectar", "caption": "Plantas atípicas e canola voluntária, planta por planta" },
-    "stand": { "tag": "Detectar", "caption": "Cada muda contada" },
-    "pods": { "tag": "Contar", "caption": "Vagens previstas antes da colheita" },
+    "drone": { "tag": "Voar", "caption": "Monitoramento de lavouras transformado", "text":"Cobertura. Velocidade. Insights acionáveis."},
+    "scale": { "tag": "Voar", "caption": "Insights instantâneos, em qualquer fase e a qualquer hora!" },
+    "crew": { "tag": "Voar", "caption": "Roguing otimizado antes da inspeção da lavoura para maior pureza genética das sementes híbridas." },
+    "plan": { "tag": "Planejar", "caption": "Missões de voo programadas. Qualquer operador, dados com a mesma qualidade. Nenhuma janela de voo perdida." },
+    "offType": { "tag": "Detectar", "caption": "Plantas atípicas identificadas uma a uma. Pureza das sementes protegida." },
+    "stand": { "tag": "Detectar", "caption": "Cada planta de batata contada. Estimativa de produtividade já na emergência." },
+    "pods": { "tag": "Contar", "caption": "Vagens contadas. Produtividade conhecida antes da colheita, para decisões mais precisas na cadeia de suprimentos." },
     "corn": {
   "tag": "Contar",
   "caption": "Cada planta contada. Cada linhagem parental avaliada por estádio",
