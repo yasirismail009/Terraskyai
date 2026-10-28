@@ -40,13 +40,13 @@
     "goTo": "Go to slide"
   },
   "slides": {
-    "drone": { "tag": "Fly", "caption": "Every acre, seen from above" },
-    "scale": { "tag": "Fly", "caption": "Real fields, real flights" },
-    "crew": { "tag": "Fly", "caption": "Crews on the ground, drones in the air" },
-    "plan": { "tag": "Plan", "caption": "Automated missions for every field" },
-    "offType": { "tag": "Detect", "caption": "Off-type and volunteer canola, flagged plant by plant" },
-    "stand": { "tag": "Detect", "caption": "Every seedling counted" },
-    "pods": { "tag": "Count", "caption": "Pods predicted before harvest" },
+    "drone": { "tag": "Fly", "caption": "Crop scouting transformed","text":"Coverage. Speed. Actionable Insights." },
+    "scale": { "tag": "Fly", "caption": "Instant insights, any stage and time!" },
+    "crew": { "tag": "Fly", "caption": "Optimized Rogueing prior to crop inspection for improved hybrid seed purity." },
+    "plan": { "tag": "Plan", "caption": "Programmed Flight missions Any operator, same quality data. No window missed." },
+    "offType": { "tag": "Detect", "caption": "Off-types flagged plant by plant. Seed purity protected." },
+    "stand": { "tag": "Detect", "caption": "Every potato plant counted. Yield estimation at emergence." },
+    "pods": { "tag": "Count", "caption": "Pods counted. Yield known before harvest for optimized supply chain decisions." },
     "beans": {
   "tag": "Count",
   "caption": "Every plant counted. Every parent line staged",
