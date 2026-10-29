@@ -116,14 +116,28 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           max-width: 680px;
           text-align: left;
         }
+        /* "backwards" (not "both"): the intro animation only affects the start,
+           so the paragraph can fade in/out afterwards with a normal transition */
         .hs-text > * {
-          animation: hs-rise 0.8s cubic-bezier(0.25,1,0.5,1) both;
+          animation: hs-rise 0.8s cubic-bezier(0.25,1,0.5,1) backwards;
         }
         .hs-text > *:nth-child(2) { animation-delay: 0.12s; }
         .hs-text > *:nth-child(3) { animation-delay: 0.24s; }
         @keyframes hs-rise {
           from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Description paragraph: visible on the FIRST slide only ── */
+        .hs-text > p {
+          transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0s;
+        }
+        .hs-text[data-first="false"] > p {
+          opacity: 0;
+          transform: translateY(-10px);
+          visibility: hidden;
+          pointer-events: none;
+          transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
         }
 
         /* ── Bottom bar (caption, progress, arrows) ── */
@@ -293,6 +307,7 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
         @media (prefers-reduced-motion: reduce) {
           .hs-slide { transition: none; }
           .hs-text > *, .hs-caption { animation: none; }
+          .hs-text > p { transition: none; }
         }
       `}</style>
 
@@ -329,9 +344,11 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
 
       <div className="hs-shade" />
 
-      {/* Hero text (passed in from the page) */}
+      {/* Hero text (passed in from the page). The description paragraph shows on slide 1 only. */}
       <div className="hs-content">
-        <div className="hs-text">{children}</div>
+        <div className="hs-text" data-first={index === 0 ? 'true' : 'false'}>
+          {children}
+        </div>
       </div>
 
       {/* Bottom bar */}
