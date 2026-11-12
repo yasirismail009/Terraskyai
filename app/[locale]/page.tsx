@@ -14,7 +14,7 @@ const heroSlideConfig = [
   { key: 'scale', src: '/assets/hero/hero-02-drones-pivot.jpg', position: 'center' },
   { key: 'crew', src: '/assets/hero/hero-03-pilot.jpg', position: 'center 45%' },
   { key: 'plan', src: '/assets/hero/hero-04-flight-plan-padded.jpg', position: 'center' },
-  { key: 'offType', src: '/assets/hero/hero-05-offtype.JPG', position: 'center' },
+  { key: 'offType', src: '/assets/hero/vc.jpg', position: 'center' },
   { key: 'stand', src: '/assets/hero/corrn.jpeg', position: 'center' },
   { key: 'corn', src: '/assets/hero/beam.jpeg', position: 'center' },
   { key: 'beans', src: '/assets/hero/Corn.JPG', position: 'center' },
