@@ -9,6 +9,7 @@ import { routing } from '../../../i18n/routing';
 const navLinks = [
   { href: '/', key: 'home' },
   { href: '/products/skysight', key: 'products' },
+  { href: '/ai-services', key: 'aiServices' },
   { href: '/vision-mission', key: 'about' },
   { href: '/contact', key: 'contact' },
   { href: '/careers', key: 'careers' },
@@ -228,7 +229,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 absolute left-1/2 -translate-x-1/2">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-8 absolute left-1/2 -translate-x-1/2">
             {navLinks.map(({ href, key }) => {
               const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href);
               return (

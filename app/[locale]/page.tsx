@@ -2,28 +2,14 @@ import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '../../i18n/navigation';
 import CoreValues from '@/app/[locale]/components/CoreValues';
-import HeroSlider from '@/app/[locale]/components/HeroSlider';
 
 const productFeatureKeys = ['monitoring', 'drone', 'cloud', 'analytics', 'vision', 'crop'] as const;
 
 const aboutPillKeys = ['ai', 'drone', 'analytics', 'sustainable'] as const;
 
-// Hero slider — story order: drones → flight plan → detections
-const heroSlideConfig = [
-  { key: 'drone', src: '/assets/hero/hero-01-drone-canola.jpg', position: 'center 40%' },
-  { key: 'scale', src: '/assets/hero/hero-02-drones-pivot.jpg', position: 'center' },
-  { key: 'crew', src: '/assets/hero/hero-03-pilot.jpg', position: 'center 45%' },
-  { key: 'plan', src: '/assets/hero/hero-04-flight-plan-padded.jpg', position: 'center' },
-  { key: 'offType', src: '/assets/hero/hero-05-offtype.JPG', position: 'center' },
-  { key: 'stand', src: '/assets/hero/corrn.jpeg', position: 'center' },
-  { key: 'corn', src: '/assets/hero/beam.jpeg', position: 'center' },
-  { key: 'beans', src: '/assets/hero/Corn.JPG', position: 'center' },
-  { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg', position: '70% 60%' },
-] as const;
+const aiServiceKeys = ['vision', 'genai', 'agentic', 'data', 'strategy', 'mlops'] as const;
 
-// Slides that have an extra "text" line under the caption.
-// If you add "text" to another slide in the messages files, add its key here too.
-const slidesWithText: readonly string[] = ['drone', 'corn', 'beans'];
+
 
 const whyStats = [
   { val: '80%', key: 'inputs', bar: '80' },
@@ -45,54 +31,108 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   setRequestLocale(locale);
   const t = await getTranslations('Home');
 
-  const heroSlides = heroSlideConfig.map((s) => ({
-    src: s.src,
-    position: s.position,
-    tag: t(`hero.slides.${s.key}.tag`),
-    caption: t(`hero.slides.${s.key}.caption`),
-    text: slidesWithText.includes(s.key) ? t(`hero.slides.${s.key}.text`) : undefined,
-  }));
+  const ta = await getTranslations('AIServices');
 
   return (
     <div className="min-h-screen bg-[#E6E2D6] relative overflow-hidden">
-      {/* ── Hero (auto-sliding) ── */}
-      <HeroSlider
-        slides={heroSlides}
-        labels={{
-          prev: t('hero.controls.prev'),
-          next: t('hero.controls.next'),
-          goTo: t('hero.controls.goTo'),
+      {/* ── Hero ── */}
+      <section
+        id="home"
+        className="relative overflow-hidden flex items-center"
+        style={{
+          background: 'linear-gradient(160deg, #2a2d0f 0%, #333618 55%, #1e2009 100%)',
+          minHeight: 'clamp(520px, calc(100vh - 80px), 760px)',
+          padding: '96px 24px',
         }}
       >
-        <h1
-          style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontWeight: 700 }}
-          className="text-4xl sm:text-5xl xl:text-6xl text-white mb-4 leading-[1.05] tracking-tight drop-shadow-lg"
-        >
-          {t('hero.title')}
-        </h1>
-
-        <h2
+        <style>{`
+          .hm-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            min-width: 230px; padding: 16px 30px; border-radius: 12px;
+            font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600;
+            text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+          }
+          .hm-btn:hover { transform: translateY(-2px); }
+          .hm-btn-gold  { background: #BEA950; color: #1a1d06; box-shadow: 0 4px 20px rgba(190,169,80,0.35); }
+          .hm-btn-cream { background: #f5f2e8; color: #2d2e0a; box-shadow: 0 4px 20px rgba(0,0,0,0.25); }
+          @media (max-width: 640px) { .hm-btn { width: 100%; } }
+        `}</style>
+        <div
+          aria-hidden
           style={{
-            fontFamily: "'Cormorant Garamond',Georgia,serif",
-            fontWeight: 700,
-            background: 'rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(3px)',
-            WebkitBackdropFilter: 'blur(3px)',
-            border: '1px solid rgba(255,255,255,0.35)',
-            textShadow: '0 2px 12px rgba(0,0,0,0.45)',
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
           }}
-          className="text-lg sm:text-xl lg:text-2xl rounded-lg w-fit max-w-full text-white mb-4 px-3 py-1.5 leading-tight tracking-tight lg:whitespace-nowrap"
-        >
-          {t('hero.subtitle')}
-        </h2>
+        />
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            top: -100,
+            left: -80,
+            width: 520,
+            height: 520,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(190,169,80,0.1) 0%, transparent 65%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            bottom: -100,
+            right: -80,
+            width: 460,
+            height: 460,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(139,94,60,0.1) 0%, transparent 65%)',
+            filter: 'blur(50px)',
+            pointerEvents: 'none',
+          }}
+        />
 
-        <p
-          style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 500 }}
-          className="text-base sm:text-lg text-white max-w-xl leading-relaxed drop-shadow-md"
-        >
-          {t('hero.description')}
-        </p>
-      </HeroSlider>
+        <div style={{ maxWidth: 1100, margin: '0 auto', width: '100%', position: 'relative' }}>
+          <h1
+            style={{
+              fontFamily: "'Cormorant Garamond',Georgia,serif",
+              fontWeight: 600,
+              fontSize: 'clamp(2.6rem,6vw,4.8rem)',
+              color: '#f5f2e8',
+              lineHeight: 1.06,
+              letterSpacing: '-0.02em',
+              maxWidth: 820,
+              marginBottom: 24,
+            }}
+          >
+            {t('heroMain.headline')}
+          </h1>
+          <p
+            style={{
+              fontFamily: "'DM Sans',sans-serif",
+              fontSize: 'clamp(1rem,2.2vw,1.25rem)',
+              color: 'rgba(255,255,255,0.84)',
+              lineHeight: 1.75,
+              maxWidth: 640,
+              marginBottom: 36,
+            }}
+          >
+            {t('heroMain.description')}
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
+            <Link href="/ai-services" className="hm-btn hm-btn-gold">
+              {t('heroMain.ctaServices')}
+            </Link>
+            <Link href="/products/skysight" className="hm-btn hm-btn-cream">
+              {t('heroMain.ctaSkysight')}
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── Our Products ── */}
       <section
@@ -409,6 +449,84 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               ))}
             </div>
           </Link>
+
+          {/* ── AI Consulting & Engineering card ── */}
+          <div className="cs-card" style={{ marginTop: 28 }}>
+            <style>{`
+              .cs-card {
+                position: relative; overflow: hidden; border-radius: 24px;
+                background: #fff; border: 1.5px solid rgba(69,68,17,0.16);
+                box-shadow: 0 8px 40px rgba(45,46,10,0.1);
+                padding: 60px 56px 52px;
+                animation: prod-fadeUp 0.7s 0.4s ease both;
+              }
+              .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+              .cs-tag {
+                display: inline-flex; background: rgba(69,68,17,0.08);
+                border: 1px solid rgba(69,68,17,0.18); color: #454411;
+                border-radius: 999px; padding: 4px 12px; margin-bottom: 20px;
+                font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+                letter-spacing: 0.1em; text-transform: uppercase; width: fit-content;
+              }
+              .cs-title {
+                font-family: 'Cormorant Garamond', Georgia, serif;
+                font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 600; color: #2d2e0a;
+                line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px;
+              }
+              .cs-desc {
+                font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.75;
+                color: #545454; margin-bottom: 28px;
+              }
+              .cs-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+              .cs-btn {
+                display: inline-flex; align-items: center; border-radius: 12px; padding: 12px 22px;
+                font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+                text-decoration: none; transition: transform 0.2s, background 0.2s;
+              }
+              .cs-btn:hover { transform: translateY(-2px); }
+              .cs-btn-primary { background: #454411; color: #f5f2e8; border: 1.5px solid #454411; }
+              .cs-btn-primary:hover { background: #5a5a16; }
+              .cs-btn-ghost { background: transparent; color: #454411; border: 1.5px solid #454411; }
+              .cs-btn-ghost:hover { background: rgba(69,68,17,0.08); }
+              .cs-chips { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+              .cs-chip {
+                display: flex; align-items: flex-start; gap: 10px;
+                background: rgba(69,68,17,0.05); border: 1px solid rgba(69,68,17,0.12);
+                border-radius: 14px; padding: 16px 14px;
+                font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+                color: #2d2e0a; line-height: 1.4;
+              }
+              .cs-dot { width: 7px; height: 7px; border-radius: 50%; background: #BEA950; flex-shrink: 0; margin-top: 5px; }
+              @media (max-width: 768px) {
+                .cs-card { padding: 32px 24px; }
+                .cs-grid { grid-template-columns: 1fr; gap: 32px; }
+              }
+              @media (max-width: 480px) { .cs-chips { grid-template-columns: 1fr; } }
+            `}</style>
+            <div className="cs-grid">
+              <div>
+                <div className="cs-tag">{t('products.consulting.tag')}</div>
+                <h3 className="cs-title">{t('products.consulting.title')}</h3>
+                <p className="cs-desc">{t('products.consulting.description')}</p>
+                <div className="cs-actions">
+                  <Link href="/contact?topic=consulting" className="cs-btn cs-btn-primary">
+                    {t('products.consulting.cta')}
+                  </Link>
+                  <Link href="/ai-services" className="cs-btn cs-btn-ghost">
+                    {t('products.consulting.secondary')}
+                  </Link>
+                </div>
+              </div>
+              <div className="cs-chips">
+                {aiServiceKeys.map((key) => (
+                  <div key={key} className="cs-chip">
+                    <span className="cs-dot" />
+                    {ta(`capabilities.items.${key}.title`)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

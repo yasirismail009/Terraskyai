@@ -13,6 +13,7 @@ import {
   Monitor,
   Cross,
 } from 'lucide-react';
+import { Link } from '../../../../i18n/navigation';
 
 const portalFeatures = [
   { title: 'Pre-Scout', Icon: Search },
@@ -49,6 +50,7 @@ export default async function SkySightPage({ params }: { params: Promise<{ local
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('SkySight');
+  const th = await getTranslations('Home');
 
   return (
     <div className="min-h-screen" style={{ background: '#FDFCF5' }}>
@@ -211,7 +213,7 @@ export default async function SkySightPage({ params }: { params: Promise<{ local
           <h1
             style={{
               fontFamily: "'Cormorant Garamond',Georgia,serif",
-              fontSize: 'clamp(3.5rem,8vw,6rem)',
+              fontSize: 'clamp(2.6rem,6vw,4.5rem)',
               fontWeight: 700,
               color: '#fff',
               lineHeight: 1.05,
@@ -219,7 +221,7 @@ export default async function SkySightPage({ params }: { params: Promise<{ local
               marginBottom: 20,
             }}
           >
-            SkySight
+            {t('hero.headline')}
           </h1>
           <p
             style={{
@@ -233,6 +235,24 @@ export default async function SkySightPage({ params }: { params: Promise<{ local
           >
             {t('hero.description')}
           </p>
+          <Link
+            href="/contact?topic=skysight"
+            style={{
+              display: 'inline-block',
+              marginTop: 28,
+              background: '#BEA950',
+              color: '#1a1d06',
+              borderRadius: 12,
+              padding: '14px 28px',
+              fontFamily: "'DM Sans',sans-serif",
+              fontSize: 15,
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            {t('hero.cta')}
+          </Link>
+
         </div>
       </section>
 
@@ -347,6 +367,53 @@ export default async function SkySightPage({ params }: { params: Promise<{ local
           </div>
         </div>
       </section>
+
+      {/* SkySight in the field (imagery reused from the previous homepage carousel) */}
+      {/* <section style={{ background: '#fff', padding: '64px 24px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div
+            className="ss-report-grid"
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20 }}
+          >
+            {(
+              [
+                { key: 'drone', src: '/assets/hero/hero-01-drone-canola.jpg' },
+                { key: 'offType', src: '/assets/hero/vc.jpg' },
+                { key: 'stand', src: '/assets/hero/corrn.jpeg' },
+                { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg' },
+              ] as const
+            ).map((f) => {
+              const caption = th(`hero.slides.${f.key}.caption`);
+              return (
+                <div key={f.key} className="ss-report-card">
+                  <div style={{ overflow: 'hidden' }}>
+                    <Image
+                      src={f.src}
+                      alt={caption}
+                      width={400}
+                      height={300}
+                      className="ss-report-img"
+                    />
+                  </div>
+                  <div style={{ padding: '14px 16px 18px' }}>
+                    <p
+                      style={{
+                        fontFamily: "'DM Sans',sans-serif",
+                        fontSize: 14,
+                        fontWeight: 600,
+                        color: '#2d2e0a',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {caption}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section> */}
 
       {/* Crop Insights & Reports */}
       <section

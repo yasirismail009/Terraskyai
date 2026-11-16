@@ -319,7 +319,10 @@ export default function Footer() {
                 gap: 10,
               }}
             >
-              {[{ label: 'SkySight', href: '/products/skysight' }].map((l) => (
+              {[
+                { label: 'SkySight', href: '/products/skysight' },
+                { label: t('aiServices'), href: '/ai-services' },
+              ].map((l) => (
                 <li key={l.label}>
                   <Link href={l.href} className="ft-link">
                     {l.label}
