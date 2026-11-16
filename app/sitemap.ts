@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/careers',
     '/contact',
     '/services',
+    '/ai-services',
     '/technology-in-action',
     '/vision-mission',
     '/products/skysight',

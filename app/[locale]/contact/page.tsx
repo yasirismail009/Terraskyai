@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? 'https://backend.terraskyai.com';
@@ -23,7 +23,12 @@ class HttpError extends Error {
 }
 
 // value = what the backend expects (keep in English), key = translation key for the label
+const CONSULTING_AREA = 'AI Consulting and Engineering';
+const SKYSIGHT_AREA = 'SkySight Inquiry';
+
 const areaOptions = [
+  { value: CONSULTING_AREA, key: 'consulting' },
+  { value: SKYSIGHT_AREA, key: 'skysight' },
   { value: 'Plant Stand Count', key: 'plantStand' },
   { value: 'Weed & Insect Detection', key: 'weed' },
   { value: 'Off-Type Detection', key: 'offType' },
@@ -161,6 +166,11 @@ export default function ContactPage() {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submittedQuery, setSubmittedQuery] = useState<QueryCreatedResponse | null>(null);
+  useEffect(() => {
+    const topic = new URLSearchParams(window.location.search).get('topic');
+    if (topic === 'consulting') setAreaOfInterest(CONSULTING_AREA);
+    else if (topic === 'skysight') setAreaOfInterest(SKYSIGHT_AREA);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -837,6 +847,59 @@ export default function ContactPage() {
                   style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr',
+                    gap: 12,
+                    marginBottom: 18,
+                  }}
+                >
+                  {(
+                    [
+                      ['consulting', CONSULTING_AREA],
+                      ['skysight', SKYSIGHT_AREA],
+                    ] as const
+                  ).map(([key, value]) => {
+                    const active = areaOfInterest === value;
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => setAreaOfInterest(value)}
+                        style={{
+                          textAlign: 'left',
+                          cursor: 'pointer',
+                          borderRadius: 14,
+                          padding: '14px 16px',
+                          background: active ? 'rgba(69,68,17,0.08)' : '#f8f7f0',
+                          border: `1.5px solid ${active ? '#454411' : '#ddd9c8'}`,
+                          fontFamily: "'DM Sans',sans-serif",
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'block',
+                            fontSize: 14,
+                            fontWeight: 700,
+                            color: '#2d2e0a',
+                            marginBottom: 4,
+                          }}
+                        >
+                          {t(`form.paths.${key}.title`)}
+                        </span>
+                        <span
+                          style={{ display: 'block', fontSize: 12, lineHeight: 1.5, color: '#6a6848' }}
+                        >
+                          {t(`form.paths.${key}.description`)}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div
+                  className="c-two-col"
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
                     gap: 14,
                     marginBottom: 14,
                   }}
@@ -912,6 +975,17 @@ export default function ContactPage() {
                     onChange={(ev) => setMessage(ev.target.value)}
                     required
                   />
+                  <p
+                    style={{
+                      fontFamily: "'DM Sans',sans-serif",
+                      fontSize: 12,
+                      color: '#8a8668',
+                      marginTop: 8,
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {t('form.helper')}
+                  </p>
                 </div>
 
                 <div

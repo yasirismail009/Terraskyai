@@ -58,6 +58,24 @@ export default async function VisionMissionPage({
         </div>
       </section>
 
+      {/* ── About TerraSkyAI ── */}
+      <section className="bg-white px-4 sm:px-6 lg:px-10 pt-20">
+        <div className="max-w-6xl mx-auto">
+          <p
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+            className="text-xl font-bold uppercase tracking-widest text-[#8B5E3C] mb-4"
+          >
+            {t('about.badge')}
+          </p>
+          <p
+            style={{ fontFamily: "'DM Sans',sans-serif" }}
+            className="text-lg leading-relaxed text-[#545454] max-w-4xl"
+          >
+            {t('about.description')}
+          </p>
+        </div>
+      </section>
+
       {/* ── Mission Section ── */}
       <section className="bg-white px-4 sm:px-6 lg:px-10 py-20">
         <div className="max-w-7xl mx-auto">

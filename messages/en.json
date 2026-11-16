@@ -1,11 +1,134 @@
 {
+  "AIServices": {
+    "meta": {
+      "title": "AI Consulting and Engineering | TerraSkyAI",
+      "description": "Work with TerraSkyAI on a focused assessment, a custom build or specialist engineering support. Our consulting services are available independently of a SkySight subscription."
+    },
+    "hero": {
+      "title": "AI Consulting and Engineering",
+      "description": "Work with TerraSkyAI on a focused assessment, a custom build or specialist engineering support. Our consulting services are available independently of a SkySight subscription.",
+      "cta": "Discuss Your AI Project"
+    },
+    "capabilities": {
+      "items": {
+        "vision": {
+          "title": "Deep Learning and Computer Vision",
+          "description": "Extract useful signals from imagery and video with models trained or adapted for detection, segmentation and classification. Deliverables can include a trained model, an inference service and an evaluation report."
+        },
+        "genai": {
+          "title": "Generative AI and Enterprise Knowledge",
+          "description": "Help staff find answers in approved documents using permission-aware search and retrieval-augmented generation (RAG). We can build a document retrieval pipeline and assistant, then test answer quality, source citations and access controls."
+        },
+        "agentic": {
+          "title": "Agentic AI and Workflow Automation",
+          "description": "Coordinate multi-step tasks across tools with defined permissions, approval steps and exception handling. A workflow can assemble a draft operations report and route it for staff approval."
+        },
+        "data": {
+          "title": "Data Engineering and Business Intelligence",
+          "description": "Integrate operational data, define shared measures and give teams a consistent view of their reporting. A typical engagement can include data pipelines, a curated data model, quality checks and a dashboard."
+        },
+        "strategy": {
+          "title": "Enterprise AI Strategy and Architecture",
+          "description": "Assess readiness, compare options and define how a proposed system fits existing technology and workflows. Get a current-state assessment, a target architecture and a phased roadmap."
+        },
+        "mlops": {
+          "title": "Cloud MLOps and Security Engineering",
+          "description": "Design cloud deployment and machine learning operations (MLOps) with access controls, monitoring and a rollback plan. We can help set up deployment pipelines and hand over an operating runbook."
+        }
+      }
+    },
+    "process": {
+      "title": "How We Work",
+      "flowAlt": "How We Work: Discover, Design, Build, Deploy, Enable",
+      "steps": {
+        "discover": {
+          "title": "Discover",
+          "description": "Confirm the workflow, its owners and what improvement would look like."
+        },
+        "design": {
+          "title": "Design",
+          "description": "Agree on scope, architecture, access and acceptance checks."
+        },
+        "build": {
+          "title": "Build",
+          "description": "Implement in stages, connect approved systems and evaluate on representative inputs."
+        },
+        "deploy": {
+          "title": "Deploy",
+          "description": "Release to the agreed environment with monitoring and a recovery plan."
+        },
+        "enable": {
+          "title": "Enable",
+          "description": "Hand over documentation, training and operating responsibilities."
+        }
+      }
+    },
+    "engage": {
+      "title": "Ways to Engage",
+      "items": {
+        "assessment": {
+          "title": "Assessment and architecture",
+          "description": "Review one opportunity and leave with options, success criteria and a scoped next step."
+        },
+        "custom": {
+          "title": "Custom development and integration",
+          "description": "Build and evaluate a pilot or deliver a phased implementation with a documented handover."
+        },
+        "advisory": {
+          "title": "Engineering and advisory",
+          "description": "Bring in specialist support for an architecture review, model evaluation, integration or ongoing improvements."
+        }
+      }
+    },
+    "industries": {
+      "title": "AI Applications by Industry",
+      "items": {
+        "agriculture": {
+          "title": "Agriculture",
+          "description": "Use SkySight aerial imagery and field analytics to inform crop scouting and field-level review."
+        },
+        "community": {
+          "title": "Community services",
+          "description": "Illustrative use cases include preparing aggregate board or funder reports, finding internal policies and routing staff handoffs for approval."
+        },
+        "enterprise": {
+          "title": "Enterprise operations",
+          "description": "Illustrative use cases include flagging inspection images for review, streamlining document workflows and defining shared reporting measures."
+        }
+      },
+      "skysightLink": "Explore SkySight",
+      "cta": "Discuss a Use Case"
+    },
+    "engineering": {
+      "title": "Engineering in Action",
+      "items": {
+        "skysight": {
+          "title": "SkySight product workflow",
+          "description": "SkySight brings aerial imagery, computer vision analysis and field reporting into one web platform. Teams can use the resulting field insights to decide where to follow up."
+        },
+        "knowledge": {
+          "title": "Internal knowledge assistant reference design",
+          "description": "Search approved sample documents, return a draft answer with citations and indicate when the sources offer insufficient support."
+        },
+        "reporting": {
+          "title": "Staff reporting reference design",
+          "description": "Assemble a report from sample records, route missing inputs to a review queue and require staff approval before handing it off."
+        }
+      }
+    },
+    "cta": {
+      "description": "Bring us a workflow, data challenge or AI initiative. We can assess feasibility, design the architecture or help build and deploy a custom solution.",
+      "button": "Discuss Your AI Project"
+    }
+  },
   "Metadata": {
-    "title": "TerraSkyAI - Where Technology Meets Agriculture",
-    "description": "TerraSkyAI is a precision agriculture platform that uses AI to help farmers make better decisions about their crops and soil."
+    "title": "TerraSkyAI - Applied AI products. Custom AI engineering.",
+    "description": "TerraSkyAI builds SkySight for precision agriculture and designs custom AI, data and automation solutions for organizations."
   },
   "Header": {
     "home": "Home",
     "products": "Products",
+    "aiServices": "AI Services",
     "about": "About TerraSkyAI",
     "contact": "Contact Us",
     "careers": "Career",
@@ -15,9 +138,9 @@
     "language": "Language"
   },
   "Footer": {
-    "tagline": "From flights to insights — precision farming for the modern age.",
+    "tagline": "Applied AI products. Custom AI engineering.",
     "logoAlt": "TerraSkyAI Logo",
-    "description": "Revolutionizing agriculture through AI-powered precision farming. Empowering farmers with actionable insights for sustainable, efficient crop management.",
+    "description": "TerraSkyAI builds SkySight for precision agriculture and designs custom AI, data and automation solutions for organizations.",
     "quickLinks": "Quick Links",
     "home": "Home",
     "career": "Career",
@@ -25,48 +148,84 @@
     "whyUs": "Why Us",
     "contact": "Contact",
     "products": "Products",
+    "aiServices": "AI Services",
     "contactTitle": "Contact",
     "copyright": "© {year} TerraSkyAI. All Rights Reserved."
   },
   "Home": {
- "hero": {
-  "imageAlt": "TerraSkyAI in action",
-  "title": "Flights to Insights",
-  "subtitle": "Making Precision Farming Sustainable & Profitable",
-  "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm.",
-  "controls": {
-    "prev": "Previous slide",
-    "next": "Next slide",
-    "goTo": "Go to slide"
-  },
-  "slides": {
-    "drone": { "tag": "Fly", "caption": "Crop scouting transformed","text":"Coverage. Speed. Actionable Insights." },
-    "scale": { "tag": "Fly", "caption": "Instant insights, any stage and time!" },
-    "crew": { "tag": "Fly", "caption": "Optimized Rogueing prior to crop inspection for improved hybrid seed purity." },
-    "plan": { "tag": "Plan", "caption": "Programmed Flight missions Any operator, same quality data. No window missed." },
-    "offType": { "tag": "Detect", "caption": "Off-types flagged plant by plant. Seed purity protected." },
-    "stand": { "tag": "Detect", "caption": "Every potato plant counted. Yield estimation at emergence." },
-    "pods": { "tag": "Count", "caption": "Pods counted. Yield known before harvest for optimized supply chain decisions." },
-    "beans": {
-  "tag": "Count",
-  "caption": "Every plant counted. Every parent line staged",
-  "text": "Catch weak male or female stands while there’s still time to re-seed."
-},
-"corn": {
-  "tag": "Count",
-  "caption": "Re-seed only where it’s needed",
-  "text": "Plant counts and vigor, mapped in time for a targeted re-seed."
-}
-  }
-},
+    "heroMain": {
+      "headline": "Applied AI products. Custom AI engineering.",
+      "description": "TerraSkyAI builds SkySight for precision agriculture and designs custom AI, data and automation solutions for organizations.",
+      "ctaServices": "Explore AI Services",
+      "ctaSkysight": "Discover SkySight"
+    },
+    "hero": {
+      "imageAlt": "TerraSkyAI in action",
+      "title": "Flights to Insights",
+      "subtitle": "Making Precision Farming Sustainable & Profitable",
+      "description": "Leverage advanced drone imagery and AI technology to optimize your crop scouting, increase yields, and make data-driven decisions for your farm.",
+      "controls": {
+        "prev": "Previous slide",
+        "next": "Next slide",
+        "goTo": "Go to slide"
+      },
+      "slides": {
+        "drone": {
+          "tag": "Fly",
+          "caption": "Crop scouting transformed",
+          "text": "Coverage. Speed. Actionable Insights."
+        },
+        "scale": {
+          "tag": "Fly",
+          "caption": "Instant insights, any stage and time!"
+        },
+        "crew": {
+          "tag": "Fly",
+          "caption": "Optimized Rogueing prior to crop inspection for improved hybrid seed purity."
+        },
+        "plan": {
+          "tag": "Plan",
+          "caption": "Programmed Flight missions Any operator, same quality data. No window missed."
+        },
+        "offType": {
+          "tag": "Detect",
+          "caption": "Off-types flagged plant by plant. Seed purity protected."
+        },
+        "stand": {
+          "tag": "Detect",
+          "caption": "Every potato plant counted. Yield estimation at emergence."
+        },
+        "pods": {
+          "tag": "Count",
+          "caption": "Pods counted. Yield known before harvest for optimized supply chain decisions."
+        },
+        "beans": {
+          "tag": "Count",
+          "caption": "Every plant counted. Every parent line staged",
+          "text": "Catch weak male or female stands while there’s still time to re-seed."
+        },
+        "corn": {
+          "tag": "Count",
+          "caption": "Re-seed only where it’s needed",
+          "text": "Plant counts and vigor, mapped in time for a targeted re-seed."
+        }
+      }
+    },
     "products": {
-      "badge": "Our Products",
-      "title": "Tools Built for the <em>Modern Farm</em>",
-      "description": "Our flagship platform — turning aerial drone data into actionable decisions that grow your yield and bottom line.",
+      "badge": "What We Offer",
+      "title": "Applied AI <em>products and engineering</em>",
+      "description": "A precision agriculture platform and custom AI consulting from one team.",
       "webPortal": "Web Portal",
       "tag": "Precision Analytics",
-      "skysightDescription": "All-in-one digital farming portal for seamless farm management, unlocking efficiency and success from anywhere, anytime.",
+      "skysightDescription": "Use aerial imagery and computer vision to review crop conditions and field-level insights in SkySight, our precision agriculture platform.",
       "cta": "Explore SkySight",
+      "consulting": {
+        "tag": "AI Consulting",
+        "title": "AI Consulting and Engineering",
+        "description": "Bring us a workflow, data challenge or AI initiative. We can assess feasibility, design the architecture or help build and deploy a custom solution.",
+        "cta": "Discuss Your AI Project",
+        "secondary": "Explore AI Services"
+      },
       "features": {
         "monitoring": {
           "label": "Real-time field monitoring",
@@ -96,13 +255,13 @@
     },
     "about": {
       "badge": "About Us",
-      "title": "Powering Smarter Fields with <em>Practical AI</em>",
-      "description": "TerraSkyAI is an innovative AgTech company leveraging Artificial Intelligence and Machine Learning to revolutionize agriculture — empowering farmers worldwide with optimized operations and improved crop yields.",
+      "title": "About TerraSkyAI",
+      "description": "TerraSkyAI develops applied AI products and provides custom AI consulting and engineering. Our agriculture work includes SkySight, a precision agriculture platform for imagery analysis and reporting. Our consulting practice helps organizations design, build and operate AI, data and automation systems.",
       "pills": {
         "ai": "AI & Machine Learning",
-        "drone": "Drone Imagery",
-        "analytics": "Precision Analytics",
-        "sustainable": "Sustainable Farming"
+        "drone": "Computer Vision",
+        "analytics": "Data & Automation",
+        "sustainable": "Precision Agriculture"
       },
       "learnMore": "Learn More",
       "imageAlt": "TerraSkyAI in action",
@@ -125,7 +284,7 @@
       }
     }
   },
- "CoreValues": {
+  "CoreValues": {
     "badge": "Core Capabilities",
     "title": "AI-Powered Precision Agriculture Analytics",
     "description": "Cutting-edge aerial intelligence that transforms how Canadian farmers make decisions — from seed to harvest.",
@@ -170,15 +329,24 @@
       }
     }
   },
- "Careers": {
+  "Careers": {
     "hero": {
       "badge": "We're Hiring",
       "title": "Grow Your Career with <gold>TerraSkyAI</gold>",
       "description": "Help us revolutionize agriculture through AI and drone technology. Be part of a team making a real impact on farming and food security worldwide.",
       "stats": {
-        "ai": { "top": "AI-Powered", "bottom": "AgTech" },
-        "location": { "top": "Based In", "bottom": "Canada" },
-        "impact": { "top": "Real-World", "bottom": "Impact" }
+        "ai": {
+          "top": "AI-Powered",
+          "bottom": "AgTech"
+        },
+        "location": {
+          "top": "Based In",
+          "bottom": "Canada"
+        },
+        "impact": {
+          "top": "Real-World",
+          "bottom": "Impact"
+        }
       }
     },
     "positions": {
@@ -239,7 +407,7 @@
       "submitted": "Application submitted successfully. Thank you!"
     }
   },
-    "Contact": {
+  "Contact": {
     "hero": {
       "badge": "Get In Touch",
       "title": "Let's Grow Something <gold>Together</gold>",
@@ -247,7 +415,7 @@
     },
     "info": {
       "badge": "Contact Info",
-      "title": "We're here to help your farm thrive",
+      "title": "We're here to help",
       "call": "Call us",
       "email": "Email",
       "location": "Location",
@@ -257,7 +425,7 @@
     },
     "form": {
       "badge": "Send a Message",
-      "title": "Tell us about your farm",
+      "title": "Contact TerraSkyAI",
       "titleSuccess": "Inquiry <gold>received</gold>",
       "fullName": "Full Name",
       "namePlaceholder": "Your full name",
@@ -266,17 +434,30 @@
       "areaOfInterest": "Area of Interest",
       "selectService": "Select a service…",
       "areas": {
+        "consulting": "AI Consulting and Engineering",
+        "skysight": "SkySight Inquiry",
         "plantStand": "Plant Stand Count",
         "weed": "Weed & Insect Detection",
         "offType": "Off-Type Detection",
         "yield": "Yield Estimation",
         "all": "All Services"
       },
-      "messageLabel": "Tell us about your farm and what you need",
-      "messagePlaceholder": "Acres, crops, current challenges, and the outcomes you're targeting…",
+      "messageLabel": "Tell us what you would like to improve",
+      "messagePlaceholder": "A short description of your workflow, challenge or field needs…",
       "send": "Send Message",
       "sending": "Sending…",
-      "responseTime": "We respond within 24 hours"
+      "responseTime": "We respond within 24 hours",
+      "helper": "Share a short description and leave out confidential information and personal records.",
+      "paths": {
+        "consulting": {
+          "title": "Consulting inquiry",
+          "description": "Share the workflow or challenge and what you would like to improve."
+        },
+        "skysight": {
+          "title": "SkySight inquiry",
+          "description": "Ask about imagery inputs, field analytics, product access or support."
+        }
+      }
     },
     "success": {
       "eyebrow": "Inquiry sent",
@@ -294,7 +475,7 @@
       "submitFallback": "Failed to send message."
     }
   },
-    "Gallery": {
+  "Gallery": {
     "hero": {
       "badge": "Events & Community",
       "title": "Our Gallery",
@@ -316,26 +497,25 @@
         "description": "It was a pleasure connecting with talented students and professionals passionate about agriculture, technology, and innovation at the University of Lethbridge Career Fair. We shared our vision for the future of AgTech, discussed career opportunities, and were energized by the enthusiasm of the next generation of agricultural innovators.",
         "highlight": "Connecting with the next generation"
       },
- "features": {
-  "name": "See It. Count It. Prove It.",
-  "location": "Detection to Prescription",
-  "tag": "Real Fields, Real Results",
-  "captions": {
-    "image1": {
-      "title": "Male bay removal, verified from the air",
-      "text": "Catch the rows that were missed before they reach the combine."
-    },
-    "image2": {
-      "title": "AI flags it. Our agronomists confirm it.",
-      "text": "Field-verified results you can take to inspection with confidence."
-    },
-    "image3": {
-      "title": "Pods counted. Yield known before harvest.",
-      "text": "Plan inventory, logistics, and sales weeks ahead."
-    }
-   
-  }
-}
+      "features": {
+        "name": "See It. Count It. Prove It.",
+        "location": "Detection to Prescription",
+        "tag": "Real Fields, Real Results",
+        "captions": {
+          "image1": {
+            "title": "Male bay removal, verified from the air",
+            "text": "Catch the rows that were missed before they reach the combine."
+          },
+          "image2": {
+            "title": "AI flags it. Our agronomists confirm it.",
+            "text": "Field-verified results you can take to inspection with confidence."
+          },
+          "image3": {
+            "title": "Pods counted. Yield known before harvest.",
+            "text": "Plan inventory, logistics, and sales weeks ahead."
+          }
+        }
+      }
     },
     "cta": {
       "title": "Missed us at an event?",
@@ -343,10 +523,12 @@
       "button": "Let's Connect"
     }
   },
-    "SkySight": {
+  "SkySight": {
     "hero": {
       "badge": "Real-Time AI Portal & Dashboard",
-      "description": "All-in-one digital farming portal for seamless farm management — unlocking efficiency and success from anywhere, anytime."
+      "description": "SkySight helps agricultural teams review aerial imagery, identify areas for follow-up and see field-level results in a web platform. Field analytics include plant stand counts, weed and insect detection, off-type detection and yield estimation.",
+      "headline": "SkySight for precision agriculture",
+      "cta": "Ask About SkySight"
     },
     "dashboard": {
       "badge": "Dashboard",
@@ -373,7 +555,7 @@
       }
     }
   },
-    "TerraScout": {
+  "TerraScout": {
     "hero": {
       "badge": "Desktop Application",
       "headline": "Actionable Intelligence and Reports at Your Fingertips",
@@ -404,7 +586,7 @@
       "description": "Experience unparalleled detail with our ultra-high resolution mapping technology, delivering precision down to the individual plant level."
     }
   },
-    "Services": {
+  "Services": {
     "badge": "Services",
     "title": "What We Deliver",
     "items": {
@@ -422,7 +604,7 @@
       }
     }
   },
-    "TechnologyInAction": {
+  "TechnologyInAction": {
     "hero": {
       "badge": "Technology In Action",
       "title": "TerraSkyAI is revolutionizing agriculture with real-time, AI-powered intelligence",
@@ -455,7 +637,7 @@
       }
     }
   },
-    "VisionMission": {
+  "VisionMission": {
     "vision": {
       "imageAlt": "Aerial view of forest and agricultural fields",
       "logoAlt": "TerraSkyAI Logo",
@@ -498,7 +680,10 @@
           "description": "Provide objective, high-confidence crop assessments that improve risk evaluation, policy pricing accuracy, and claims efficiency."
         }
       }
+    },
+    "about": {
+      "badge": "About TerraSkyAI",
+      "description": "TerraSkyAI develops applied AI products and provides custom AI consulting and engineering. Our agriculture work includes SkySight, a precision agriculture platform for imagery analysis and reporting. Our consulting practice helps organizations design, build and operate AI, data and automation systems."
     }
-    
   }
 }
