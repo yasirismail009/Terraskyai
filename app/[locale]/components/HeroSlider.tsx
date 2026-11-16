@@ -56,11 +56,13 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
 
   const pad = (n: number) => String(n).padStart(2, '0');
   const current = slides[index];
+  const isIntro = index === 0;
 
   return (
     <section
       id="home"
       className="hs-root"
+      data-intro={isIntro ? 'true' : 'false'}
       tabIndex={0}
       onKeyDown={onKeyDown}
       onTouchStart={onTouchStart}
@@ -111,13 +113,24 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           z-index: 5;
           width: 100%;
           padding: 110px clamp(24px, 3.5vw, 72px) 190px;
+          pointer-events: none;
         }
         .hs-text {
           max-width: 680px;
           text-align: left;
+
+          /* ================================================================
+             >>> HEIGHT OF "Flights to Insights" (DESKTOP) - CHANGE HERE <<<
+             Minus number = UP.   -4vh  slightly up
+                                  -6vh  (current)
+                                  -10vh more up
+                                  -15vh much more up
+             0 = original place.  A positive number (e.g. 4vh) moves it DOWN.
+             ================================================================ */
+          transform: translateY(-6vh);
         }
         /* "backwards" (not "both"): the intro animation only affects the start,
-           so the paragraph can fade in/out afterwards with a normal transition */
+           so the elements can fade in/out afterwards with a normal transition */
         .hs-text > * {
           animation: hs-rise 0.8s cubic-bezier(0.25,1,0.5,1) backwards;
         }
@@ -128,15 +141,16 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
           to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Description paragraph: visible on the FIRST slide only ── */
-        .hs-text > p {
+        /* ── Everything BELOW the main heading (subtitle + paragraph):
+              visible on the FIRST slide only. The heading itself stays on every slide.
+              Space is kept (no layout jump), so the heading never moves. ── */
+        .hs-text > :not(:first-child) {
           transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0s;
         }
-        .hs-text[data-first="false"] > p {
+        .hs-root[data-intro="false"] .hs-text > :not(:first-child) {
           opacity: 0;
           transform: translateY(-10px);
           visibility: hidden;
-          pointer-events: none;
           transition: opacity 0.6s ease, transform 0.6s ease, visibility 0s linear 0.6s;
         }
 
@@ -297,6 +311,10 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
               linear-gradient(180deg, rgba(18,20,5,0.55) 0%, rgba(18,20,5,0.68) 55%, rgba(18,20,5,0.88) 100%);
           }
           .hs-content { padding: 90px 20px 200px; }
+
+          /* >>> HEIGHT OF "Flights to Insights" (MOBILE) - CHANGE HERE <<< */
+          .hs-text { transform: translateY(-4vh); }
+
           .hs-bar-inner { gap: 12px; padding: 18px 20px 24px; }
           .hs-bar-inner::before { left: 20px; right: 20px; }
           .hs-counter { display: none; }
@@ -307,7 +325,7 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
         @media (prefers-reduced-motion: reduce) {
           .hs-slide { transition: none; }
           .hs-text > *, .hs-caption { animation: none; }
-          .hs-text > p { transition: none; }
+          .hs-text > :not(:first-child) { transition: none; }
         }
       `}</style>
 
@@ -344,11 +362,10 @@ export default function HeroSlider({ slides, labels, children, duration = 6000 }
 
       <div className="hs-shade" />
 
-      {/* Hero text (passed in from the page). The description paragraph shows on slide 1 only. */}
+      {/* Hero text (passed in from the page).
+          Heading stays on every slide; the subtitle + paragraph show on slide 1 only. */}
       <div className="hs-content">
-        <div className="hs-text" data-first={index === 0 ? 'true' : 'false'}>
-          {children}
-        </div>
+        <div className="hs-text">{children}</div>
       </div>
 
       {/* Bottom bar */}

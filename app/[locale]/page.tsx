@@ -7,8 +7,18 @@ const productFeatureKeys = ['monitoring', 'drone', 'cloud', 'analytics', 'vision
 
 const aboutPillKeys = ['ai', 'drone', 'analytics', 'sustainable'] as const;
 
-const aiServiceKeys = ['vision', 'genai', 'agentic', 'data', 'strategy', 'mlops'] as const;
-
+// Hero slider — story order: drones → flight plan → detections
+const heroSlideConfig = [
+  { key: 'drone', src: '/assets/hero/hero-01-drone-canola.jpg', position: 'center 40%' },
+  { key: 'scale', src: '/assets/hero/hero-02-drones-pivot.jpg', position: 'center' },
+  { key: 'crew', src: '/assets/hero/hero-03-pilot.jpg', position: 'center 45%' },
+  { key: 'plan', src: '/assets/hero/hero-04-flight-plan-padded.jpg', position: 'center' },
+  { key: 'offType', src: '/assets/hero/vc.jpg', position: 'center' },
+  { key: 'stand', src: '/assets/hero/corrn.jpeg', position: 'center' },
+  { key: 'corn', src: '/assets/hero/beam.jpeg', position: 'center' },
+  { key: 'beans', src: '/assets/hero/Corn.JPG', position: 'center' },
+  { key: 'pods', src: '/assets/hero/hero-07-pod-count.jpeg', position: '70% 60%' },
+] as const;
 
 
 const whyStats = [
