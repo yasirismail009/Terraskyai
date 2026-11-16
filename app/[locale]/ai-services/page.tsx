@@ -230,13 +230,39 @@ function CapabilityArt({ k }: { k: CapKey }) {
   }
 }
 
-function IndustryArt({ k }: { k: Exclude<IndKey, 'agriculture'> }) {
+function IndustryArt({ k }: { k: IndKey }) {
   const common = { viewBox: '0 0 320 160', 'aria-hidden': true, focusable: false } as const;
+  const bg = <rect width="320" height="160" fill="rgba(190,169,80,0.12)" />;
+  const ground = <path d="M60 130h200" stroke={OLIVE} strokeWidth="2" opacity="0.4" />;
+
+  if (k === 'agriculture') {
+    const xs = Array.from({ length: 11 }, (_, i) => 70 + i * 18);
+    return (
+      <svg {...common} preserveAspectRatio="xMidYMid slice">
+        {bg}
+        {ground}
+        <path d="M148 66L112 130h96L172 66z" fill={GOLD} opacity="0.22" />
+        {xs.map((x) => (
+          <g key={x}>
+            <path d={`M${x} 130V112`} stroke={OLIVE} strokeWidth="2.5" strokeLinecap="round" />
+            <circle cx={x - 5} cy="116" r="5" fill={GOLD} />
+            <circle cx={x + 5} cy="111" r="5" fill={OLIVE} opacity="0.7" />
+          </g>
+        ))}
+        <path d="M126 52h68" stroke={OLIVE} strokeWidth="3" strokeLinecap="round" />
+        <ellipse cx="126" cy="47" rx="14" ry="3" fill={GOLD} />
+        <ellipse cx="194" cy="47" rx="14" ry="3" fill={GOLD} />
+        <rect x="146" y="48" width="28" height="15" rx="6" fill={OLIVE} />
+        <circle cx="160" cy="68" r="4.5" fill={BROWN} />
+      </svg>
+    );
+  }
+
   if (k === 'community') {
     return (
       <svg {...common} preserveAspectRatio="xMidYMid slice">
-        <rect width="320" height="160" fill="rgba(190,169,80,0.12)" />
-        <path d="M60 130h200" stroke={OLIVE} strokeWidth="2" opacity="0.4" />
+        {bg}
+        {ground}
         <path d="M120 130V74l40-26 40 26v56" fill="#fff" stroke={OLIVE} strokeWidth="2.5" strokeLinejoin="round" />
         <rect x="148" y="96" width="24" height="34" rx="3" fill={GOLD} />
         <circle cx="86" cy="96" r="12" fill={OLIVE} />
@@ -248,9 +274,10 @@ function IndustryArt({ k }: { k: Exclude<IndKey, 'agriculture'> }) {
       </svg>
     );
   }
+
   return (
     <svg {...common} preserveAspectRatio="xMidYMid slice">
-      <rect width="320" height="160" fill="rgba(69,68,17,0.08)" />
+      {bg}
       <rect x="54" y="28" width="132" height="104" rx="10" fill="#fff" stroke={OLIVE} strokeWidth="2.5" />
       <rect x="54" y="28" width="132" height="22" rx="10" fill={OLIVE} />
       <circle cx="68" cy="39" r="3" fill={GOLD} />
@@ -493,17 +520,7 @@ export default async function AIServicesPage({
             {industries.map((k) => (
               <div key={k} className="ai-card" style={{ background: '#FDFCF5' }}>
                 <div className="ai-media">
-                  {k === 'agriculture' ? (
-                    <Image
-                      src="/assets/hero/hero-01-drone-canola.jpg"
-                      alt={t('industries.items.agriculture.title')}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 600px) 50vw, 100vw"
-                      style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
-                    />
-                  ) : (
-                    <IndustryArt k={k} />
-                  )}
+                               <IndustryArt k={k} />
                 </div>
                 <div className="ai-card-body">
                   <h3>{t(`industries.items.${k}.title`)}</h3>
