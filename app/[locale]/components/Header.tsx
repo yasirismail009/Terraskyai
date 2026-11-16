@@ -18,12 +18,12 @@ const navLinks = [
 
 const localeLabels: Record<string, string> = {
   en: 'EN',
-  'pt-BR': 'PT',
+  'pt': 'PT',
 };
 
 const localeNames: Record<string, string> = {
   en: 'English',
-  'pt-BR': 'Português (Brasil)',
+  'pt': 'Português (Brasil)',
 };
 
 function Flag({ locale }: { locale: string }) {
@@ -43,7 +43,7 @@ function Flag({ locale }: { locale: string }) {
       </defs>
 
       <g clipPath={`url(#${clipId})`}>
-        {locale === 'pt-BR' ? (
+        {locale === 'pt' ? (
           <>
             {/* Brazil */}
             <rect width="20" height="20" fill="#009C3B" />
