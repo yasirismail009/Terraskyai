@@ -6,6 +6,7 @@ import CoreValues from '@/app/[locale]/components/CoreValues';
 const productFeatureKeys = ['monitoring', 'drone', 'cloud', 'analytics', 'vision', 'crop'] as const;
 
 const aboutPillKeys = ['ai', 'drone', 'analytics', 'sustainable'] as const;
+const aiServiceKeys = ['vision', 'genai', 'agentic', 'data', 'strategy', 'mlops'] as const;
 
 // Hero slider — story order: drones → flight plan → detections
 const heroSlideConfig = [
